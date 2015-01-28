@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A3BAFA59-C0E6-4155-8A6B-00986306DEC7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>IoTKitLib</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>43CB9B8A0BDEB860D70AED273E85BA2260E9247E</key>
+		<string>ssh://stash.ndg.intel.com:7999/iot/iotkitlib-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>IoTKitLib.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>43CB9B8A0BDEB860D70AED273E85BA2260E9247E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://stash.ndg.intel.com:7999/iot/iotkitlib-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>43CB9B8A0BDEB860D70AED273E85BA2260E9247E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>43CB9B8A0BDEB860D70AED273E85BA2260E9247E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iotkit-lib-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
