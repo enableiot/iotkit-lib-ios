@@ -176,21 +176,23 @@
 		FCEBA86E1A440D9400F040DB /* IoTKitLib */ = {
 			isa = PBXGroup;
 			children = (
-				FCEBA8DB1A440E5500F040DB /* LibUtils */,
+				FCEBA8DB1A440E5500F040DB /* utils */,
 				FCEBA8DA1A440E4A00F040DB /* LibModules */,
-				FCEBA8D91A440E4100F040DB /* LibHttp */,
+				FCEBA8D91A440E4100F040DB /* http */,
 			);
 			path = IoTKitLib;
 			sourceTree = "<group>";
 		};
-		FCEBA8D91A440E4100F040DB /* LibHttp */ = {
+		FCEBA8D91A440E4100F040DB /* http */ = {
 			isa = PBXGroup;
 			children = (
+				FCEBA8E61A440EC400F040DB /* HttpResponseDelegatee.h */,
+				FCEBA8E71A440EC400F040DB /* HttpResponseDelegatee.m */,
 				FCEBA8DC1A440E6800F040DB /* HttpRequestOperation.h */,
 				FCEBA8DD1A440E6800F040DB /* HttpRequestOperation.m */,
 				FCEBA8DE1A440E6800F040DB /* HttpResponseDelegateHandler.h */,
 			);
-			name = LibHttp;
+			path = http;
 			sourceTree = "<group>";
 		};
 		FCEBA8DA1A440E4A00F040DB /* LibModules */ = {
@@ -209,13 +211,11 @@
 				FCEBA8EA1A44109900F040DB /* AggregatedReportInterface */,
 				FCEBA8E41A440EC400F040DB /* DefaultConfiguration.h */,
 				FCEBA8E51A440EC400F040DB /* DefaultConfiguration.m */,
-				FCEBA8E61A440EC400F040DB /* HttpResponseDelegatee.h */,
-				FCEBA8E71A440EC400F040DB /* HttpResponseDelegatee.m */,
 			);
 			name = LibModules;
 			sourceTree = "<group>";
 		};
-		FCEBA8DB1A440E5500F040DB /* LibUtils */ = {
+		FCEBA8DB1A440E5500F040DB /* utils */ = {
 			isa = PBXGroup;
 			children = (
 				FCFC55781A47FF5E000C54BF /* HttpUrlMacros.h */,
@@ -223,7 +223,7 @@
 				FCEBA8E11A440EA100F040DB /* HttpUrlBuilder.m */,
 				FCEBA8E21A440EA100F040DB /* HttpResponseMacros.h */,
 			);
-			name = LibUtils;
+			path = utils;
 			sourceTree = "<group>";
 		};
 		FCEBA8EA1A44109900F040DB /* AggregatedReportInterface */ = {
