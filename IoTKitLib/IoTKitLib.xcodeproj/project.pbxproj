@@ -23,34 +23,21 @@
 		FCEBA91D1A4411E900F040DB /* AuthorizationManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA91C1A4411E900F040DB /* AuthorizationManagement.m */; };
 		FCEBA9211A44121300F040DB /* DeviceManagament.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9201A44121300F040DB /* DeviceManagament.m */; };
 		FCEBA9241A4415D200F040DB /* HttpUrlBuilder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8E01A440EA100F040DB /* HttpUrlBuilder.h */; };
-		FCEBA9251A4415D200F040DB /* CreateDevice.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA91E1A44121300F040DB /* CreateDevice.h */; };
 		FCEBA9261A4415D200F040DB /* DeviceManagament.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA91F1A44121300F040DB /* DeviceManagament.h */; };
 		FCEBA9271A4415D200F040DB /* AuthorizationManagement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA91B1A4411E900F040DB /* AuthorizationManagement.h */; };
 		FCEBA9281A4415D200F040DB /* ComponentTypesCatalog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9151A4411BB00F040DB /* ComponentTypesCatalog.h */; };
 		FCEBA9291A4415D200F040DB /* AccountManagement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9181A4411D000F040DB /* AccountManagement.h */; };
 		FCEBA92A1A4415D200F040DB /* DataManagement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9111A4411AC00F040DB /* DataManagement.h */; };
-		FCEBA92B1A4415D200F040DB /* ConfigureRetrieveData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9131A4411AC00F040DB /* ConfigureRetrieveData.h */; };
 		FCEBA92C1A4415D200F040DB /* UserManagement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA90E1A44119E00F040DB /* UserManagement.h */; };
 		FCEBA92D1A4415D200F040DB /* InvitationManagement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA90B1A44119300F040DB /* InvitationManagement.h */; };
 		FCEBA92E1A4415D200F040DB /* RuleManagement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9051A44118600F040DB /* RuleManagement.h */; };
-		FCEBA92F1A4415D200F040DB /* CreateRule.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9071A44118600F040DB /* CreateRule.h */; };
-		FCEBA9301A4415D200F040DB /* CreateRuleActions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9081A44118600F040DB /* CreateRuleActions.h */; };
-		FCEBA9311A4415D200F040DB /* CreateRuleConditionValues.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9091A44118600F040DB /* CreateRuleConditionValues.h */; };
 		FCEBA9321A4415D200F040DB /* AlertManagement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8FD1A44117900F040DB /* AlertManagement.h */; };
-		FCEBA9331A4415D200F040DB /* CreateNewAlert.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8FF1A44117900F040DB /* CreateNewAlert.h */; };
-		FCEBA9341A4415D200F040DB /* CreateNewAlertData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9001A44117900F040DB /* CreateNewAlertData.h */; };
-		FCEBA9351A4415D200F040DB /* CreateNewAlertDataConditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9011A44117900F040DB /* CreateNewAlertDataConditions.h */; };
-		FCEBA9361A4415D200F040DB /* CreateNewAlertDataConditionComponents.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9021A44117900F040DB /* CreateNewAlertDataConditionComponents.h */; };
 		FCEBA9371A4415F500F040DB /* AdvancedDataEnquiry.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8F81A44116C00F040DB /* AdvancedDataEnquiry.h */; };
-		FCEBA9381A4415F500F040DB /* AttributeFilter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8FA1A44116C00F040DB /* AttributeFilter.h */; };
 		FCEBA9391A4415F500F040DB /* AggregatedReportInterface.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8F51A44115B00F040DB /* AggregatedReportInterface.h */; };
 		FCEBA93A1A4415F500F040DB /* DefaultConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8E41A440EC400F040DB /* DefaultConfiguration.h */; };
 		FCEBA93B1A4415F500F040DB /* HttpResponseDelegatee.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8E61A440EC400F040DB /* HttpResponseDelegatee.h */; };
 		FCEBA95D1A44340700F040DB /* HttpRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8DC1A440E6800F040DB /* HttpRequestOperation.h */; };
 		FCEBA95E1A44344100F040DB /* HttpResponseMacros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8E21A440EA100F040DB /* HttpResponseMacros.h */; };
-		FCEBA95F1A44344100F040DB /* CreateOrUpdateComponentCatalog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA93E1A4418F700F040DB /* CreateOrUpdateComponentCatalog.h */; };
-		FCEBA9601A44344100F040DB /* ConditionCmpsValuePoints.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9031A44117900F040DB /* ConditionCmpsValuePoints.h */; };
-		FCEBA9611A44344100F040DB /* AttributeFilterList.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8FB1A44116C00F040DB /* AttributeFilterList.h */; };
 		FCEBA9621A44344100F040DB /* HttpResponseDelegateHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8DE1A440E6800F040DB /* HttpResponseDelegateHandler.h */; };
 /* End PBXBuildFile section */
 
@@ -62,41 +49,41 @@
 			dstSubfolderSpec = 16;
 			files = (
 				FCEBA95E1A44344100F040DB /* HttpResponseMacros.h in CopyFiles */,
-				FCEBA95F1A44344100F040DB /* CreateOrUpdateComponentCatalog.h in CopyFiles */,
-				FCEBA9601A44344100F040DB /* ConditionCmpsValuePoints.h in CopyFiles */,
-				FCEBA9611A44344100F040DB /* AttributeFilterList.h in CopyFiles */,
 				FCEBA9621A44344100F040DB /* HttpResponseDelegateHandler.h in CopyFiles */,
 				FCEBA95D1A44340700F040DB /* HttpRequestOperation.h in CopyFiles */,
 				FCEBA9371A4415F500F040DB /* AdvancedDataEnquiry.h in CopyFiles */,
-				FCEBA9381A4415F500F040DB /* AttributeFilter.h in CopyFiles */,
 				FCEBA9391A4415F500F040DB /* AggregatedReportInterface.h in CopyFiles */,
 				FCEBA93A1A4415F500F040DB /* DefaultConfiguration.h in CopyFiles */,
 				FCEBA93B1A4415F500F040DB /* HttpResponseDelegatee.h in CopyFiles */,
 				FCEBA9241A4415D200F040DB /* HttpUrlBuilder.h in CopyFiles */,
-				FCEBA9251A4415D200F040DB /* CreateDevice.h in CopyFiles */,
 				FCEBA9261A4415D200F040DB /* DeviceManagament.h in CopyFiles */,
 				FCEBA9271A4415D200F040DB /* AuthorizationManagement.h in CopyFiles */,
 				FCEBA9281A4415D200F040DB /* ComponentTypesCatalog.h in CopyFiles */,
 				FCEBA9291A4415D200F040DB /* AccountManagement.h in CopyFiles */,
 				FCEBA92A1A4415D200F040DB /* DataManagement.h in CopyFiles */,
-				FCEBA92B1A4415D200F040DB /* ConfigureRetrieveData.h in CopyFiles */,
 				FCEBA92C1A4415D200F040DB /* UserManagement.h in CopyFiles */,
 				FCEBA92D1A4415D200F040DB /* InvitationManagement.h in CopyFiles */,
 				FCEBA92E1A4415D200F040DB /* RuleManagement.h in CopyFiles */,
-				FCEBA92F1A4415D200F040DB /* CreateRule.h in CopyFiles */,
-				FCEBA9301A4415D200F040DB /* CreateRuleActions.h in CopyFiles */,
-				FCEBA9311A4415D200F040DB /* CreateRuleConditionValues.h in CopyFiles */,
 				FCEBA9321A4415D200F040DB /* AlertManagement.h in CopyFiles */,
-				FCEBA9331A4415D200F040DB /* CreateNewAlert.h in CopyFiles */,
-				FCEBA9341A4415D200F040DB /* CreateNewAlertData.h in CopyFiles */,
-				FCEBA9351A4415D200F040DB /* CreateNewAlertDataConditions.h in CopyFiles */,
-				FCEBA9361A4415D200F040DB /* CreateNewAlertDataConditionComponents.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F5ED8CC81AA6660F0029F272 /* AttributeFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttributeFilter.h; sourceTree = "<group>"; };
+		F5ED8CC91AA6660F0029F272 /* AttributeFilterList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttributeFilterList.h; sourceTree = "<group>"; };
+		F5ED8CCA1AA6660F0029F272 /* ConditionCmpsValuePoints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConditionCmpsValuePoints.h; sourceTree = "<group>"; };
+		F5ED8CCB1AA6660F0029F272 /* ConfigureRetrieveData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigureRetrieveData.h; sourceTree = "<group>"; };
+		F5ED8CCC1AA6660F0029F272 /* CreateDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateDevice.h; sourceTree = "<group>"; };
+		F5ED8CCD1AA6660F0029F272 /* CreateNewAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateNewAlert.h; sourceTree = "<group>"; };
+		F5ED8CCE1AA6660F0029F272 /* CreateNewAlertData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateNewAlertData.h; sourceTree = "<group>"; };
+		F5ED8CCF1AA6660F0029F272 /* CreateNewAlertDataConditionComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateNewAlertDataConditionComponents.h; sourceTree = "<group>"; };
+		F5ED8CD01AA6660F0029F272 /* CreateNewAlertDataConditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateNewAlertDataConditions.h; sourceTree = "<group>"; };
+		F5ED8CD11AA6660F0029F272 /* CreateOrUpdateComponentCatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateOrUpdateComponentCatalog.h; sourceTree = "<group>"; };
+		F5ED8CD21AA6660F0029F272 /* CreateRule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateRule.h; sourceTree = "<group>"; };
+		F5ED8CD31AA6660F0029F272 /* CreateRuleActions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateRuleActions.h; sourceTree = "<group>"; };
+		F5ED8CD41AA6660F0029F272 /* CreateRuleConditionValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateRuleConditionValues.h; sourceTree = "<group>"; };
 		FCEBA86C1A440D9400F040DB /* libIoTKitLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIoTKitLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEBA8DC1A440E6800F040DB /* HttpRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequestOperation.h; sourceTree = "<group>"; };
 		FCEBA8DD1A440E6800F040DB /* HttpRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequestOperation.m; sourceTree = "<group>"; };
@@ -112,37 +99,24 @@
 		FCEBA8F61A44115B00F040DB /* AggregatedReportInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AggregatedReportInterface.m; sourceTree = "<group>"; };
 		FCEBA8F81A44116C00F040DB /* AdvancedDataEnquiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedDataEnquiry.h; sourceTree = "<group>"; };
 		FCEBA8F91A44116C00F040DB /* AdvancedDataEnquiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedDataEnquiry.m; sourceTree = "<group>"; };
-		FCEBA8FA1A44116C00F040DB /* AttributeFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeFilter.h; sourceTree = "<group>"; };
-		FCEBA8FB1A44116C00F040DB /* AttributeFilterList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeFilterList.h; sourceTree = "<group>"; };
 		FCEBA8FD1A44117900F040DB /* AlertManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertManagement.h; sourceTree = "<group>"; };
 		FCEBA8FE1A44117900F040DB /* AlertManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertManagement.m; sourceTree = "<group>"; };
-		FCEBA8FF1A44117900F040DB /* CreateNewAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewAlert.h; sourceTree = "<group>"; };
-		FCEBA9001A44117900F040DB /* CreateNewAlertData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewAlertData.h; sourceTree = "<group>"; };
-		FCEBA9011A44117900F040DB /* CreateNewAlertDataConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewAlertDataConditions.h; sourceTree = "<group>"; };
-		FCEBA9021A44117900F040DB /* CreateNewAlertDataConditionComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewAlertDataConditionComponents.h; sourceTree = "<group>"; };
-		FCEBA9031A44117900F040DB /* ConditionCmpsValuePoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionCmpsValuePoints.h; sourceTree = "<group>"; };
 		FCEBA9051A44118600F040DB /* RuleManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleManagement.h; sourceTree = "<group>"; };
 		FCEBA9061A44118600F040DB /* RuleManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleManagement.m; sourceTree = "<group>"; };
-		FCEBA9071A44118600F040DB /* CreateRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRule.h; sourceTree = "<group>"; };
-		FCEBA9081A44118600F040DB /* CreateRuleActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRuleActions.h; sourceTree = "<group>"; };
-		FCEBA9091A44118600F040DB /* CreateRuleConditionValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRuleConditionValues.h; sourceTree = "<group>"; };
 		FCEBA90B1A44119300F040DB /* InvitationManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManagement.h; sourceTree = "<group>"; };
 		FCEBA90C1A44119300F040DB /* InvitationManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManagement.m; sourceTree = "<group>"; };
 		FCEBA90E1A44119E00F040DB /* UserManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagement.h; sourceTree = "<group>"; };
 		FCEBA90F1A44119E00F040DB /* UserManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagement.m; sourceTree = "<group>"; };
 		FCEBA9111A4411AC00F040DB /* DataManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManagement.h; sourceTree = "<group>"; };
 		FCEBA9121A4411AC00F040DB /* DataManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManagement.m; sourceTree = "<group>"; };
-		FCEBA9131A4411AC00F040DB /* ConfigureRetrieveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigureRetrieveData.h; sourceTree = "<group>"; };
 		FCEBA9151A4411BB00F040DB /* ComponentTypesCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentTypesCatalog.h; sourceTree = "<group>"; };
 		FCEBA9161A4411BB00F040DB /* ComponentTypesCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentTypesCatalog.m; sourceTree = "<group>"; };
 		FCEBA9181A4411D000F040DB /* AccountManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManagement.h; sourceTree = "<group>"; };
 		FCEBA9191A4411D000F040DB /* AccountManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManagement.m; sourceTree = "<group>"; };
 		FCEBA91B1A4411E900F040DB /* AuthorizationManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationManagement.h; sourceTree = "<group>"; };
 		FCEBA91C1A4411E900F040DB /* AuthorizationManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizationManagement.m; sourceTree = "<group>"; };
-		FCEBA91E1A44121300F040DB /* CreateDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDevice.h; sourceTree = "<group>"; };
 		FCEBA91F1A44121300F040DB /* DeviceManagament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceManagament.h; sourceTree = "<group>"; };
 		FCEBA9201A44121300F040DB /* DeviceManagament.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceManagament.m; sourceTree = "<group>"; };
-		FCEBA93E1A4418F700F040DB /* CreateOrUpdateComponentCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateOrUpdateComponentCatalog.h; sourceTree = "<group>"; };
 		FCFC55781A47FF5E000C54BF /* HttpUrlMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpUrlMacros.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +131,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F5ED8CC71AA665890029F272 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				F5ED8CC81AA6660F0029F272 /* AttributeFilter.h */,
+				F5ED8CC91AA6660F0029F272 /* AttributeFilterList.h */,
+				F5ED8CCA1AA6660F0029F272 /* ConditionCmpsValuePoints.h */,
+				F5ED8CCB1AA6660F0029F272 /* ConfigureRetrieveData.h */,
+				F5ED8CCC1AA6660F0029F272 /* CreateDevice.h */,
+				F5ED8CCD1AA6660F0029F272 /* CreateNewAlert.h */,
+				F5ED8CCE1AA6660F0029F272 /* CreateNewAlertData.h */,
+				F5ED8CCF1AA6660F0029F272 /* CreateNewAlertDataConditionComponents.h */,
+				F5ED8CD01AA6660F0029F272 /* CreateNewAlertDataConditions.h */,
+				F5ED8CD11AA6660F0029F272 /* CreateOrUpdateComponentCatalog.h */,
+				F5ED8CD21AA6660F0029F272 /* CreateRule.h */,
+				F5ED8CD31AA6660F0029F272 /* CreateRuleActions.h */,
+				F5ED8CD41AA6660F0029F272 /* CreateRuleConditionValues.h */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		FCEBA8631A440D9400F040DB = {
 			isa = PBXGroup;
 			children = (
@@ -176,8 +170,32 @@
 		FCEBA86E1A440D9400F040DB /* IoTKitLib */ = {
 			isa = PBXGroup;
 			children = (
+				F5ED8CC71AA665890029F272 /* models */,
+				FCEBA91F1A44121300F040DB /* DeviceManagament.h */,
+				FCEBA9201A44121300F040DB /* DeviceManagament.m */,
+				FCEBA91B1A4411E900F040DB /* AuthorizationManagement.h */,
+				FCEBA91C1A4411E900F040DB /* AuthorizationManagement.m */,
+				FCEBA9151A4411BB00F040DB /* ComponentTypesCatalog.h */,
+				FCEBA9161A4411BB00F040DB /* ComponentTypesCatalog.m */,
+				FCEBA9181A4411D000F040DB /* AccountManagement.h */,
+				FCEBA9191A4411D000F040DB /* AccountManagement.m */,
+				FCEBA9111A4411AC00F040DB /* DataManagement.h */,
+				FCEBA9121A4411AC00F040DB /* DataManagement.m */,
+				FCEBA90E1A44119E00F040DB /* UserManagement.h */,
+				FCEBA90F1A44119E00F040DB /* UserManagement.m */,
+				FCEBA90B1A44119300F040DB /* InvitationManagement.h */,
+				FCEBA90C1A44119300F040DB /* InvitationManagement.m */,
+				FCEBA9051A44118600F040DB /* RuleManagement.h */,
+				FCEBA9061A44118600F040DB /* RuleManagement.m */,
+				FCEBA8FD1A44117900F040DB /* AlertManagement.h */,
+				FCEBA8FE1A44117900F040DB /* AlertManagement.m */,
+				FCEBA8F81A44116C00F040DB /* AdvancedDataEnquiry.h */,
+				FCEBA8F91A44116C00F040DB /* AdvancedDataEnquiry.m */,
+				FCEBA8F51A44115B00F040DB /* AggregatedReportInterface.h */,
+				FCEBA8F61A44115B00F040DB /* AggregatedReportInterface.m */,
+				FCEBA8E41A440EC400F040DB /* DefaultConfiguration.h */,
+				FCEBA8E51A440EC400F040DB /* DefaultConfiguration.m */,
 				FCEBA8DB1A440E5500F040DB /* utils */,
-				FCEBA8DA1A440E4A00F040DB /* LibModules */,
 				FCEBA8D91A440E4100F040DB /* http */,
 			);
 			path = IoTKitLib;
@@ -195,26 +213,6 @@
 			path = http;
 			sourceTree = "<group>";
 		};
-		FCEBA8DA1A440E4A00F040DB /* LibModules */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA8F41A44111600F040DB /* DeviceManagement */,
-				FCEBA8F31A44110A00F040DB /* Authorization */,
-				FCEBA8F21A4410FD00F040DB /* ComponentTypesCatalog */,
-				FCEBA8F11A4410EE00F040DB /* AccountMangement */,
-				FCEBA8F01A4410E500F040DB /* DataManagement */,
-				FCEBA8EF1A4410DA00F040DB /* UserManagement */,
-				FCEBA8EE1A4410CF00F040DB /* InvitationManagement */,
-				FCEBA8ED1A4410C100F040DB /* RuleManagement */,
-				FCEBA8EC1A4410B800F040DB /* AlertManagement */,
-				FCEBA8EB1A4410A700F040DB /* AdvancedDataInquiry */,
-				FCEBA8EA1A44109900F040DB /* AggregatedReportInterface */,
-				FCEBA8E41A440EC400F040DB /* DefaultConfiguration.h */,
-				FCEBA8E51A440EC400F040DB /* DefaultConfiguration.m */,
-			);
-			name = LibModules;
-			sourceTree = "<group>";
-		};
 		FCEBA8DB1A440E5500F040DB /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,118 +222,6 @@
 				FCEBA8E21A440EA100F040DB /* HttpResponseMacros.h */,
 			);
 			path = utils;
-			sourceTree = "<group>";
-		};
-		FCEBA8EA1A44109900F040DB /* AggregatedReportInterface */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA8F51A44115B00F040DB /* AggregatedReportInterface.h */,
-				FCEBA8F61A44115B00F040DB /* AggregatedReportInterface.m */,
-			);
-			name = AggregatedReportInterface;
-			sourceTree = "<group>";
-		};
-		FCEBA8EB1A4410A700F040DB /* AdvancedDataInquiry */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA8F81A44116C00F040DB /* AdvancedDataEnquiry.h */,
-				FCEBA8F91A44116C00F040DB /* AdvancedDataEnquiry.m */,
-				FCEBA8FA1A44116C00F040DB /* AttributeFilter.h */,
-				FCEBA8FB1A44116C00F040DB /* AttributeFilterList.h */,
-			);
-			name = AdvancedDataInquiry;
-			sourceTree = "<group>";
-		};
-		FCEBA8EC1A4410B800F040DB /* AlertManagement */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA8FD1A44117900F040DB /* AlertManagement.h */,
-				FCEBA8FE1A44117900F040DB /* AlertManagement.m */,
-				FCEBA8FF1A44117900F040DB /* CreateNewAlert.h */,
-				FCEBA9001A44117900F040DB /* CreateNewAlertData.h */,
-				FCEBA9011A44117900F040DB /* CreateNewAlertDataConditions.h */,
-				FCEBA9021A44117900F040DB /* CreateNewAlertDataConditionComponents.h */,
-				FCEBA9031A44117900F040DB /* ConditionCmpsValuePoints.h */,
-			);
-			name = AlertManagement;
-			sourceTree = "<group>";
-		};
-		FCEBA8ED1A4410C100F040DB /* RuleManagement */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA9051A44118600F040DB /* RuleManagement.h */,
-				FCEBA9061A44118600F040DB /* RuleManagement.m */,
-				FCEBA9071A44118600F040DB /* CreateRule.h */,
-				FCEBA9081A44118600F040DB /* CreateRuleActions.h */,
-				FCEBA9091A44118600F040DB /* CreateRuleConditionValues.h */,
-			);
-			name = RuleManagement;
-			sourceTree = "<group>";
-		};
-		FCEBA8EE1A4410CF00F040DB /* InvitationManagement */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA90B1A44119300F040DB /* InvitationManagement.h */,
-				FCEBA90C1A44119300F040DB /* InvitationManagement.m */,
-			);
-			name = InvitationManagement;
-			sourceTree = "<group>";
-		};
-		FCEBA8EF1A4410DA00F040DB /* UserManagement */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA90E1A44119E00F040DB /* UserManagement.h */,
-				FCEBA90F1A44119E00F040DB /* UserManagement.m */,
-			);
-			name = UserManagement;
-			sourceTree = "<group>";
-		};
-		FCEBA8F01A4410E500F040DB /* DataManagement */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA9111A4411AC00F040DB /* DataManagement.h */,
-				FCEBA9121A4411AC00F040DB /* DataManagement.m */,
-				FCEBA9131A4411AC00F040DB /* ConfigureRetrieveData.h */,
-			);
-			name = DataManagement;
-			sourceTree = "<group>";
-		};
-		FCEBA8F11A4410EE00F040DB /* AccountMangement */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA9181A4411D000F040DB /* AccountManagement.h */,
-				FCEBA9191A4411D000F040DB /* AccountManagement.m */,
-			);
-			name = AccountMangement;
-			sourceTree = "<group>";
-		};
-		FCEBA8F21A4410FD00F040DB /* ComponentTypesCatalog */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA93E1A4418F700F040DB /* CreateOrUpdateComponentCatalog.h */,
-				FCEBA9151A4411BB00F040DB /* ComponentTypesCatalog.h */,
-				FCEBA9161A4411BB00F040DB /* ComponentTypesCatalog.m */,
-			);
-			name = ComponentTypesCatalog;
-			sourceTree = "<group>";
-		};
-		FCEBA8F31A44110A00F040DB /* Authorization */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA91B1A4411E900F040DB /* AuthorizationManagement.h */,
-				FCEBA91C1A4411E900F040DB /* AuthorizationManagement.m */,
-			);
-			name = Authorization;
-			sourceTree = "<group>";
-		};
-		FCEBA8F41A44111600F040DB /* DeviceManagement */ = {
-			isa = PBXGroup;
-			children = (
-				FCEBA91E1A44121300F040DB /* CreateDevice.h */,
-				FCEBA91F1A44121300F040DB /* DeviceManagament.h */,
-				FCEBA9201A44121300F040DB /* DeviceManagament.m */,
-			);
-			name = DeviceManagement;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
