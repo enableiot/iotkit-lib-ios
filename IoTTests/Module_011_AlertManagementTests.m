@@ -42,51 +42,6 @@
     [super tearDown];
 }
 
-- (void)test_1101_CreateAlert {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    CreateNewAlert *newAlert = [[CreateNewAlert alloc] init];
-    CreateNewAlertData *newAlertData = [[CreateNewAlertData alloc] initCreateNewAlertData];
-    CreateNewAlertDataConditions *newAlertDataConditions = [[CreateNewAlertDataConditions alloc]initCreateNewAlertDataConditions];
-    CreateNewAlertDataConditionComponents *newAlertDataConditionComponents = [[CreateNewAlertDataConditionComponents alloc] init];
-    
-    //setting new alert props
-    [newAlertData alertSetAlertId:[self getRandomAlertId]];
-    [newAlertData alertSetRuleId:[[[NSUserDefaults standardUserDefaults] objectForKey:RULEID] integerValue]];
-    [newAlertData alertSetDeviceId:[HttpUrlBuilder getDeviceId]];
-    [newAlertData alertSetAccountId:[HttpUrlBuilder getAccountId]];
-    [newAlertData alertSetAlertStatus:@"Open"];
-    [newAlertData alertSetTimestamp:[self getCurrentTimeInMillis]];
-    [newAlertData alertSetResetTimestamp:[self getCurrentTimeInMillis]];
-    [newAlertData alertSetResetType:@"Automatic"];
-    [newAlertData alertSetLastUpdateDate:[self getCurrentTimeInMillis]];
-    [newAlertData alertSetRuleName:[[NSUserDefaults standardUserDefaults] objectForKey:@"DemoIoTRule"]];
-    [newAlertData alertSetRulePriority:@"Low"];
-    [newAlertData alertSetNaturalLangAlert:@"temperature > 0"];
-    [newAlertData alertSetRuleExecutionTimestamp:[self getCurrentTimeInMillis]];
-    
-    //adding alert data to alert list
-    [newAlert addNewAlertDataObject:newAlertData];
-    
-    //setting new alert condition props
-    [newAlertDataConditions alertSetConditionSequence:1];
-    [newAlertDataConditions alertSetNaturalLanguageCondition:@"temperature > 0"];
-    
-    //adding conditions to alert condition list
-    [newAlertData alertAddNewAlertConditions:newAlertDataConditions];
-    
-    //setting new alert condition component props
-    [newAlertDataConditionComponents alertSetComponentId:[HttpUrlBuilder getComponentId:
-                                                          [HttpUrlBuilder getComponentName]]];
-    [newAlertDataConditionComponents alertSetDataType:@"Number"];
-    [newAlertDataConditionComponents alertSetComponentName:@"temper"];
-    [newAlertDataConditionComponents alertAddValuePointsAt:[self getCurrentTimeInMillis] With:[self getRandomValue]];
-    
-    //adding condition components to component list
-    [newAlertDataConditions alertAddComponents:newAlertDataConditionComponents];
-    
-    XCTAssertTrue([_alertObject createAlert:newAlert]);
-    [self waitForServerResponse];
-}
 - (void)test_1102_GetListOfAlerts {
     [self configureResponseDelegateWithExpectedResponseCode:200];
     XCTAssertTrue([_alertObject getListOfAlerts]);

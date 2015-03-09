@@ -22,7 +22,6 @@
  */
 
 #import "DefaultConfiguration.h"
-#import "CreateNewAlert.h"
 
 @interface AlertManagement : DefaultConfiguration
 
@@ -32,5 +31,4 @@
 -(BOOL)updateAlertStatus:(NSString*)alertId WithStatus:(NSString*)status;
 -(BOOL)addCommentsToTheAlert:(NSString*)alertId OnUser:(NSString*)user
                       AtTime:(long)timeStamp WithComment:(NSString*)comment;
--(BOOL)createAlert:(CreateNewAlert*)newAlert;
 @end
