@@ -21,13 +21,13 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_CreateOrUpdateComponentCatalog_h
-#define IoT_CreateOrUpdateComponentCatalog_h
+#ifndef IoT_ComponentCatalog_h
+#define IoT_ComponentCatalog_h
 
-@interface CreateOrUpdateComponentCatalog : NSObject
+@interface ComponentCatalog : NSObject
 
--(id) init __attribute__((unavailable("Must create object using \"CreateOrUpdateComponentCatalog\" method")));
-+(id) CreateOrUpdateComponentCatalogWith:(NSString*) componentName AndVersion: (NSString*) componentVersion
+-(id) init __attribute__((unavailable("Must create object using \"ComponentCatalog\" method")));
++(id) ComponentCatalogWith:(NSString*) componentName AndVersion: (NSString*) componentVersion
                                  AndType:(NSString*) componentType AndDataType:(NSString*) componentDataType
                                AndFormat:(NSString*) componentFormat AndUnit:(NSString*) componentUnit
                               AndDisplay:(NSString*) componentDisplay;

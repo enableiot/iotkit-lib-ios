@@ -58,7 +58,7 @@
 }
 - (void)test_404_CreateCustomComponent{
     [self configureResponseDelegateWithExpectedResponseCode:201];
-    CreateOrUpdateComponentCatalog *createComponentCatalog = [CreateOrUpdateComponentCatalog CreateOrUpdateComponentCatalogWith:[self getRandomCustomComponentName] AndVersion:@"1.0" AndType:@"actuator" AndDataType:@"Number" AndFormat:@"float" AndUnit:@"Degrees Celsius" AndDisplay:@"timeSeries"];
+    ComponentCatalog *createComponentCatalog = [ComponentCatalog ComponentCatalogWith:[self getRandomCustomComponentName] AndVersion:@"1.0" AndType:@"actuator" AndDataType:@"Number" AndFormat:@"float" AndUnit:@"Degrees Celsius" AndDisplay:@"timeSeries"];
     [createComponentCatalog setMinValue:5.0];
     [createComponentCatalog setMaxValue:100.0];
     [createComponentCatalog setCommandString:@"Intel actuator"];
@@ -72,7 +72,7 @@
 }
 - (void)test_405_UpdateAComponent{
     [self configureResponseDelegateWithExpectedResponseCode:201];
-    CreateOrUpdateComponentCatalog *updateComponentCatalog = [CreateOrUpdateComponentCatalog CreateOrUpdateComponentCatalogWith:nil AndVersion:nil AndType:@"actuator" AndDataType:@"Number" AndFormat:@"integer" AndUnit:@"Degrees Celsius" AndDisplay:@"timeSeries"];
+    ComponentCatalog *updateComponentCatalog = [ComponentCatalog ComponentCatalogWith:nil AndVersion:nil AndType:@"actuator" AndDataType:@"Number" AndFormat:@"integer" AndUnit:@"Degrees Celsius" AndDisplay:@"timeSeries"];
     [updateComponentCatalog setMinValue:5.0];
     [updateComponentCatalog setMaxValue:100.0];
     [updateComponentCatalog setCommandString:@"Intel actuator"];

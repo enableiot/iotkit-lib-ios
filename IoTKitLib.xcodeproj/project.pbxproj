@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5E9275D1AAE6592002F32E2 /* libIoTKitLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEBA99C1A444CE700F040DB /* libIoTKitLib.a */; };
 		FC5ED78C1A23531400D2F281 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5ED78B1A23531400D2F281 /* main.m */; };
 		FC5ED78F1A23531400D2F281 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5ED78E1A23531400D2F281 /* AppDelegate.m */; };
 		FC5ED7921A23531400D2F281 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5ED7911A23531400D2F281 /* ViewController.m */; };
@@ -25,7 +26,6 @@
 		FCEBA9791A443F5300F040DB /* Module_009_AdvancedDataEnquiryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96D1A443F5300F040DB /* Module_009_AdvancedDataEnquiryTests.m */; };
 		FCEBA97A1A443F5300F040DB /* Module_010_AggregatedReportInterfaceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96E1A443F5300F040DB /* Module_010_AggregatedReportInterfaceTests.m */; };
 		FCEBA97B1A443F5300F040DB /* Module_011_AlertManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96F1A443F5300F040DB /* Module_011_AlertManagementTests.m */; };
-		FCEBA99F1A444D7C00F040DB /* libIoTKitLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEBA99C1A444CE700F040DB /* libIoTKitLib.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCEBA99F1A444D7C00F040DB /* libIoTKitLib.a in Frameworks */,
+				F5E9275D1AAE6592002F32E2 /* libIoTKitLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

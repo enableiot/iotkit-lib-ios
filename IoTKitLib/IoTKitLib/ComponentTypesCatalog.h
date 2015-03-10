@@ -22,15 +22,15 @@
  */
 
 #import "DefaultConfiguration.h"
-#import "CreateOrUpdateComponentCatalog.h"
+#import "ComponentCatalog.h"
 
 @interface ComponentTypesCatalog : DefaultConfiguration
 
 -(BOOL)listAllComponentTypesCatalog;
 -(BOOL)listAllDetailsOfComponentTypesCatalog;
 -(BOOL)listComponentTypeDetails:(NSString*)componentId;
--(BOOL)createCustomComponent:(CreateOrUpdateComponentCatalog*) createComponentCatalog;
--(BOOL)updateAComponent:(CreateOrUpdateComponentCatalog*) createComponentCatalog OnComponent:(NSString*)componentId;
+-(BOOL)createCustomComponent:(ComponentCatalog*) createComponentCatalog;
+-(BOOL)updateAComponent:(ComponentCatalog*) createComponentCatalog OnComponent:(NSString*)componentId;
 
 
 @end
