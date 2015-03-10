@@ -21,18 +21,25 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_CreateDevice_h
-#define IoT_CreateDevice_h
+#ifndef IoT_Rule_h
+#define IoT_Rule_h
 
-@interface CreateDevice : NSObject
+#import "RuleActions.h"
+#import "RuleConditionValues.h"
 
--(id) init __attribute__((unavailable("Must create object using \"createDevice\" method")));
+@interface Rule:NSObject
 
-+(id)createDeviceWithDeviceName:(NSString*)deviceName andDeviceId:(NSString*) deviceId andGatewayId:(NSString*) gatewayId;
-
--(void)addLocationInfo:(double)latitude AndLongitude:(double) longitude ANdHeight:(double) height;
--(void)addTagName:(NSString*)tagName ;
--(void)addAttributeName:(NSString*)attributeName  andValue:(NSString*)attributeValue;
+-(void)setRuleName:(NSString*)ruleName;
+-(void)setRuleDescription:(NSString*)description;
+-(void)setRulePriority:(NSString*)priority;
+-(void)setRuleType:(NSString*)ruleType;
+-(void)setRuleStatus:(NSString*)status;
+-(void)setRuleResetType:(NSString*)resetType;
+-(void)setRulePopulationAttributes:(NSString*)attributes;
+-(void)setRuleOperatorName:(NSString*)operatorName;
+-(void)addRuleActions:(RuleActions*)ruleActionsObj;
+-(void)addRulePopulationId:(NSString*)populationId;
+-(void)addRuleConditionValues:(RuleConditionValues*)ruleConditionValuesObj;
 
 
 @end

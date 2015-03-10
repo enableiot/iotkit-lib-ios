@@ -32,9 +32,9 @@
 #define DEVICELOCATION @"loc"
 #define ACTIVATIONCODE @"activationCode"
 
-//#####CreateDevice########
+//#####Device########
 
-@interface CreateDevice ()
+@interface Device ()
 
 @property(nonatomic,retain) NSString *deviceName;
 @property(nonatomic,retain) NSString *deviceId;
@@ -45,13 +45,13 @@
 
 @end
 
-@implementation CreateDevice
+@implementation Device
 /***************************************************************************************************************************
  * FUNCTION NAME: createDeviceWithDeviceName
  *
- * DESCRIPTION: Creates custom instance of the class CreateDevice
+ * DESCRIPTION: Creates custom instance of the class Device
  *
- * RETURNS: instance of the class CreateDevice
+ * RETURNS: instance of the class Device
  *
  * PARAMETERS : 1)deviceName
                 2)deviceId
@@ -59,7 +59,7 @@
  **************************************************************************************************************************/
 +(id)createDeviceWithDeviceName:(NSString*)deviceName andDeviceId:(NSString*) deviceId andGatewayId:(NSString*) gatewayId
 {
-    CreateDevice *deviceObj = [[CreateDevice alloc] initDevice];
+    Device *deviceObj = [[Device alloc] initDevice];
     deviceObj.deviceName = deviceName;
     deviceObj.deviceId = deviceId;
     deviceObj.gatewayId = gatewayId;
@@ -68,9 +68,9 @@
 /***************************************************************************************************************************
  * FUNCTION NAME: initDevice
  *
- * DESCRIPTION: Creates instance of the class CreateDevice
+ * DESCRIPTION: Creates instance of the class Device
  *
- * RETURNS: instance of the class CreateDevice
+ * RETURNS: instance of the class Device
  *
  * PARAMETERS :nil
  **************************************************************************************************************************/
@@ -175,9 +175,9 @@
  *
  * PARAMETERS : deviceCreationObj object
  **************************************************************************************************************************/
--(BOOL) createNewDevice:(CreateDevice*) deviceCreationObj{
+-(BOOL) createNewDevice:(Device*) deviceCreationObj{
     if(!deviceCreationObj){
-        NSLog(@"%@:Need to Initialize CreateDevice class",TAG);
+        NSLog(@"%@:Need to Initialize Device class",TAG);
         return false;
     }
     NSData *httpBody = [self createBodyForDeviceCreation:deviceCreationObj];
@@ -288,9 +288,9 @@
  *
  * PARAMETERS : update device object
  **************************************************************************************************************************/
--(BOOL) updateADevice:(CreateDevice*)deviceUpdationObj{
+-(BOOL) updateADevice:(Device*)deviceUpdationObj{
     if(!deviceUpdationObj){
-        NSLog(@"%@:Need to Initialize CreateDevice class",TAG);
+        NSLog(@"%@:Need to Initialize Device class",TAG);
         return false;
     }
     NSData *httpBody = [self createBodyForDeviceUpdation:deviceUpdationObj];
@@ -446,9 +446,9 @@
  *
  * RETURNS: data stream of request body
  *
- * PARAMETERS : CreateDevice object
+ * PARAMETERS : Device object
  **************************************************************************************************************************/
--(NSData*) createBodyForDeviceUpdation:(CreateDevice*)deviceUpdationObj{
+-(NSData*) createBodyForDeviceUpdation:(Device*)deviceUpdationObj{
     
     NSMutableDictionary *jsonDictionary = [[NSMutableDictionary alloc] init];
     
@@ -466,9 +466,9 @@
  *
  * RETURNS: data stream of request body
  *
- * PARAMETERS : CreateDevice object
+ * PARAMETERS : Device object
  **************************************************************************************************************************/
--(NSData*) createBodyForDeviceCreation:(CreateDevice*)deviceCreationObj{
+-(NSData*) createBodyForDeviceCreation:(Device*)deviceCreationObj{
     if(!deviceCreationObj.deviceId){
         NSLog(@"%@:deviceId cannot be nil",TAG);
         return nil;
@@ -490,9 +490,9 @@
  * RETURNS: data stream of request body
  *
  * PARAMETERS : 1)jsonDictionary
-                2)CreateDevice object
+                2)Device object
  **************************************************************************************************************************/
--(NSMutableDictionary*)createOrUpdateDeviceBodyWith:(NSMutableDictionary*)jsonDictionary OnDevice:(CreateDevice*)createOrUpdateDeviceObj{
+-(NSMutableDictionary*)createOrUpdateDeviceBodyWith:(NSMutableDictionary*)jsonDictionary OnDevice:(Device*)createOrUpdateDeviceObj{
     if(!createOrUpdateDeviceObj.gatewayId || !createOrUpdateDeviceObj.deviceName){
         NSLog(@"%@:gatewayId or deviceName cannot be nil",TAG);
         return nil;

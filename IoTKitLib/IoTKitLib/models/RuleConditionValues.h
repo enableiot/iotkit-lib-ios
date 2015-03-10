@@ -21,12 +21,14 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_ConditionCmpsValuePoints_h
-#define IoT_ConditionCmpsValuePoints_h
+#ifndef IoT_RuleConditionValues_h
+#define IoT_RuleConditionValues_h
+@interface RuleConditionValues:NSObject
 
-@interface ConditionCmpsValuePoints : NSObject
-
--(id) init __attribute__((unavailable("Must create object using \"initConditionCmpsValuePoints\" method")));
+-(void)addConditionComponentWithKey:(NSString*)keyName AndValue:(NSString*)keyValue;
+-(void)setConditionType:(NSString*)ruleConditionType;
+-(void)addConditionValues:(NSString*)value;
+-(void)setConditionOperator:(NSString*)ruleConditionValuesOperatorName;
 
 @end
 

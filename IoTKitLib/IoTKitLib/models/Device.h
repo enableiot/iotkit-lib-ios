@@ -21,12 +21,19 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_CreateRuleActions_h
-#define IoT_CreateRuleActions_h
-@interface CreateRuleActions:NSObject
+#ifndef IoT_Device_h
+#define IoT_Device_h
 
--(void)setRuleActionType:(NSString*)ruleActionType;
--(void)addRuleActionTarget:(NSString*)target;
+@interface Device : NSObject
+
+-(id) init __attribute__((unavailable("Must create object using \"Device\" method")));
+
++(id)createDeviceWithDeviceName:(NSString*)deviceName andDeviceId:(NSString*) deviceId andGatewayId:(NSString*) gatewayId;
+
+-(void)addLocationInfo:(double)latitude AndLongitude:(double) longitude ANdHeight:(double) height;
+-(void)addTagName:(NSString*)tagName ;
+-(void)addAttributeName:(NSString*)attributeName  andValue:(NSString*)attributeValue;
+
 
 @end
 

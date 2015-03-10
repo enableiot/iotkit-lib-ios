@@ -23,13 +23,13 @@
 #import <Foundation/Foundation.h>
 
 #import "DefaultConfiguration.h"
-#import "CreateDevice.h"
+#import "Device.h"
 
 @interface DeviceManagament : DefaultConfiguration
 
 -(BOOL) listAllDevices;
--(BOOL) createNewDevice:(CreateDevice*) deviceCreateObj;
--(BOOL) updateADevice:(CreateDevice*)deviceUpdationObj;
+-(BOOL) createNewDevice:(Device*) deviceCreateObj;
+-(BOOL) updateADevice:(Device*)deviceUpdationObj;
 -(BOOL) getMyDeviceInfo;
 -(BOOL) getInfoOnDevice:(NSString*)deviceId;
 -(BOOL) listAllDeviceTags;

@@ -24,7 +24,6 @@
 #import "AlertManagement.h"
 #import "HttpRequestOperation.h"
 #import "HttpResponseMacros.h"
-#import "ConditionCmpsValuePoints.h"
 
 #define TAG @"AlertManagement"
 

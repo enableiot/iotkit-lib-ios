@@ -45,21 +45,21 @@
 - (void)test_301_CreateNewDevice{
     [self configureResponseDelegateWithExpectedResponseCode:201];
     NSString *devId = [self getRandomDeviceId];
-    CreateDevice *createDevice = [CreateDevice createDeviceWithDeviceName:[self getRandomDeviceName]
+    Device *device = [Device createDeviceWithDeviceName:[self getRandomDeviceName]
                                                               andDeviceId:devId andGatewayId:devId];
-    [createDevice addLocationInfo:12.0 AndLongitude:25.0 ANdHeight:15.0];
-    [createDevice addTagName:@"created from MAC book pro"];
-    [createDevice addTagName:@"Intel ODC test dev"];
-    [createDevice addAttributeName:@"Processor" andValue:@"AMD"];
-    [createDevice addAttributeName:@"Camera" andValue:@"8MP"];
-    [createDevice addAttributeName:@"Wifi" andValue:@"YES"];
-    [createDevice addAttributeName:@"Retina Display" andValue:@"NO"];
-    XCTAssertTrue([_deviceObject createNewDevice:createDevice]);
+    [device addLocationInfo:12.0 AndLongitude:25.0 ANdHeight:15.0];
+    [device addTagName:@"created from MAC book pro"];
+    [device addTagName:@"Intel ODC test dev"];
+    [device addAttributeName:@"Processor" andValue:@"AMD"];
+    [device addAttributeName:@"Camera" andValue:@"8MP"];
+    [device addAttributeName:@"Wifi" andValue:@"YES"];
+    [device addAttributeName:@"Retina Display" andValue:@"NO"];
+    XCTAssertTrue([_deviceObject createNewDevice:device]);
     [self waitForServerResponse];
 }
 - (void)test_302_UpdateADevice{
     [self configureResponseDelegateWithExpectedResponseCode:200];
-    CreateDevice *updateDevice = [CreateDevice createDeviceWithDeviceName:[self getRandomDeviceName]
+    Device *updateDevice = [Device createDeviceWithDeviceName:[self getRandomDeviceName]
                                                               andDeviceId:nil andGatewayId:[HttpUrlBuilder getDeviceId]];
     [updateDevice addLocationInfo:15.0 AndLongitude:25.0 ANdHeight:20.0];
     [updateDevice addTagName:@"created from MAC book pro"];

@@ -22,7 +22,7 @@
  */
 
 #import "DefaultConfiguration.h"
-#import "CreateRule.h"
+#import "Rule.h"
 
 @interface RuleManagement : DefaultConfiguration
 
@@ -31,7 +31,7 @@
 -(BOOL)deleteADraftRule:(NSString*)ruleId;
 -(BOOL)updateStatusOfRule:(NSString*)ruleId WithStatus:(NSString*)status;
 -(BOOL)createRuleAsDraftUsing:(NSString*)ruleName;
--(BOOL)createRule:(CreateRule*)createRuleObj;
--(BOOL)updateARule:(CreateRule*)updateRuleObj OnRule:(NSString*)ruleId;
+-(BOOL)createRule:(Rule*)RuleObj;
+-(BOOL)updateARule:(Rule*)updateRuleObj OnRule:(NSString*)ruleId;
 
 @end

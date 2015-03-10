@@ -21,26 +21,12 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_CreateRule_h
-#define IoT_CreateRule_h
+#ifndef IoT_RuleActions_h
+#define IoT_RuleActions_h
+@interface RuleActions:NSObject
 
-#import "CreateRuleActions.h"
-#import "CreateRuleConditionValues.h"
-
-@interface CreateRule:NSObject
-
--(void)setRuleName:(NSString*)ruleName;
--(void)setRuleDescription:(NSString*)description;
--(void)setRulePriority:(NSString*)priority;
--(void)setRuleType:(NSString*)ruleType;
--(void)setRuleStatus:(NSString*)status;
--(void)setRuleResetType:(NSString*)resetType;
--(void)setRulePopulationAttributes:(NSString*)attributes;
--(void)setRuleOperatorName:(NSString*)operatorName;
--(void)addRuleActions:(CreateRuleActions*)createRuleActionsObj;
--(void)addRulePopulationId:(NSString*)populationId;
--(void)addRuleConditionValues:(CreateRuleConditionValues*)createRuleConditionValuesObj;
-
+-(void)setRuleActionType:(NSString*)ruleActionType;
+-(void)addRuleActionTarget:(NSString*)target;
 
 @end
 

@@ -40,8 +40,8 @@
 #define DATATYPE @"dataType"
 #define POPULATION @"population"
 
-//#####CreateRule#######
-@interface CreateRule ()
+//#####Rule#######
+@interface Rule ()
 
 @property (nonatomic,retain)NSString* name;
 @property (nonatomic,retain)NSString* ruleDescription;
@@ -59,7 +59,7 @@
 
 @end
 
-@implementation CreateRule
+@implementation Rule
 /***************************************************************************************************************************
  * FUNCTION NAME: setRuleName
  *
@@ -165,11 +165,11 @@
  *
  * PARAMETERS : rule action object
  **************************************************************************************************************************/
--(void)addRuleActions:(CreateRuleActions*)createRuleActionsObj{
+-(void)addRuleActions:(RuleActions*)ruleActionsObj{
     if(!_ruleActionsList){
         _ruleActionsList = [NSMutableArray array];
     }
-    [_ruleActionsList addObject:createRuleActionsObj];
+    [_ruleActionsList addObject:ruleActionsObj];
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addRulePopulationId
@@ -193,18 +193,18 @@
  * RETURNS: nothing
  *
  * PARAMETERS : rule condition values object **************************************************************************************************************************/
--(void)addRuleConditionValues:(CreateRuleConditionValues*)createRuleConditionValuesObj{
+-(void)addRuleConditionValues:(RuleConditionValues*)RuleConditionValuesObj{
     if(!_ruleConditionValuesList){
         _ruleConditionValuesList = [NSMutableArray array];
     }
-    [_ruleConditionValuesList addObject:createRuleConditionValuesObj];
+    [_ruleConditionValuesList addObject:RuleConditionValuesObj];
 }
 
 @end
 
 
-//#####CreateRuleActions#######
-@interface CreateRuleActions ()
+//#####RuleActions#######
+@interface RuleActions ()
 
 @property (nonatomic,retain)NSString* ruleActionType;
 @property (nonatomic,retain)NSMutableArray* targetList;
@@ -212,7 +212,7 @@
 @end
 
 
-@implementation CreateRuleActions
+@implementation RuleActions
 /***************************************************************************************************************************
  * FUNCTION NAME: setRuleActionType
  *
@@ -242,8 +242,8 @@
 
 @end
 
-//#####CreateRuleConditionValues#######
-@interface CreateRuleConditionValues ()
+//#####RuleConditionValues#######
+@interface RuleConditionValues ()
 
 @property (nonatomic,retain)NSMutableDictionary* component;
 @property (nonatomic,retain)NSString* ruleConditionType;
@@ -253,7 +253,7 @@
 @end
 
 
-@implementation CreateRuleConditionValues
+@implementation RuleConditionValues
 /***************************************************************************************************************************
  * FUNCTION NAME: addConditionComponentWithKey
  *
@@ -443,12 +443,12 @@
  *
  * PARAMETERS : create rule object
  **************************************************************************************************************************/
--(BOOL)createRule:(CreateRule*)createRuleObj{
-    if(!createRuleObj){
+-(BOOL)createRule:(Rule*)ruleObj{
+    if(!ruleObj){
         NSLog(@"%@:create rule object cannot null",TAG);
         return false;
     }
-    NSData *data = [self createHttpBodyToCreateRule:createRuleObj];
+    NSData *data = [self createHttpBodyToCreateRule:ruleObj];
     NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.createRule urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -470,7 +470,7 @@
  * PARAMETERS : 1)updateRule object
                 2)ruleId
  **************************************************************************************************************************/
--(BOOL)updateARule:(CreateRule *)updateRuleObj OnRule:(NSString *)ruleId{
+-(BOOL)updateARule:(Rule *)updateRuleObj OnRule:(NSString *)ruleId{
     if(!updateRuleObj || !ruleId){
         NSLog(@"%@:create rule object or rule Id cannot null",TAG);
         return false;
@@ -495,36 +495,38 @@
  *
  * PARAMETERS : create rule object
  **************************************************************************************************************************/
--(NSData*)createHttpBodyToCreateRule:(CreateRule*)createRuleObj{
+-(NSData*)createHttpBodyToCreateRule:(Rule*)ruleObj{
     
     NSMutableDictionary *createRuleDictionary = [NSMutableDictionary dictionary];
-    [createRuleDictionary setObject:createRuleObj.name forKey:NAME];
-    [createRuleDictionary setObject:createRuleObj.ruleDescription forKey:DESCRIPTION];
-    [createRuleDictionary setObject:createRuleObj.priority forKey:PRIORITY];
-    [createRuleDictionary setObject:createRuleObj.ruleType forKey:TYPE];
-    [createRuleDictionary setObject:createRuleObj.status forKey:STATUS];
-    [createRuleDictionary setObject:createRuleObj.resetType forKey:RESETTYPE];
+    [createRuleDictionary setObject:ruleObj.name forKey:NAME];
+    [createRuleDictionary setObject:ruleObj.ruleDescription forKey:DESCRIPTION];
+    [createRuleDictionary setObject:ruleObj.priority forKey:PRIORITY];
+    [createRuleDictionary setObject:ruleObj.ruleType forKey:TYPE];
+    [createRuleDictionary setObject:ruleObj.status forKey:STATUS];
+    [createRuleDictionary setObject:ruleObj.resetType forKey:RESETTYPE];
     //adding actions
     NSMutableArray *ruleActionsArray = [NSMutableArray array];
-    for(CreateRuleActions *createRuleActionsObj in createRuleObj.ruleActionsList){
-        NSDictionary *actionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:createRuleActionsObj.ruleActionType,TYPE,createRuleActionsObj.targetList,TARGET, nil];
+    for(RuleActions *ruleActionsObj in ruleObj.ruleActionsList){
+        NSDictionary *actionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:ruleActionsObj.ruleActionType,TYPE,ruleActionsObj.targetList,TARGET, nil];
         [ruleActionsArray addObject:actionDictionary];
     }
     [createRuleDictionary setObject:ruleActionsArray forKey:ACTIONS];
     NSDictionary *populationDictionary;
     //adding population
-    if(!createRuleObj.populationAttributes){
-        populationDictionary  = [NSDictionary dictionaryWithObjectsAndKeys:[NSNull null],ATTRIBUTES,createRuleObj.populationIds,IDS,nil];
+    if(!ruleObj.populationAttributes){
+        populationDictionary  = [NSDictionary dictionaryWithObjectsAndKeys:[NSNull null],ATTRIBUTES,ruleObj.populationIds,IDS,nil];
     }
     else{
-        populationDictionary = [NSDictionary dictionaryWithObjectsAndKeys:createRuleObj.populationAttributes,ATTRIBUTES,createRuleObj.populationIds,IDS,nil];
+        populationDictionary = [NSDictionary dictionaryWithObjectsAndKeys:ruleObj.populationAttributes,ATTRIBUTES,ruleObj.populationIds,IDS,nil];
     }
     [createRuleDictionary setObject:populationDictionary forKey:POPULATION];
     //adding conditions
-    NSMutableDictionary *conditionsDictionary = [NSMutableDictionary dictionaryWithObject:createRuleObj.operatorName forKey:OPERATOR];
+    NSMutableDictionary *conditionsDictionary = [NSMutableDictionary dictionaryWithObject:ruleObj.operatorName forKey:OPERATOR];
     NSMutableArray *valuesArray = [NSMutableArray array];
-    for (CreateRuleConditionValues *createRuleConditionValuesObj in createRuleObj.ruleConditionValuesList) {
-        NSDictionary *valuesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:createRuleConditionValuesObj.ruleConditionType,TYPE,createRuleConditionValuesObj.ruleConditionValuesOperatorName,OPERATOR,createRuleConditionValuesObj.values,VALUES,createRuleConditionValuesObj.component,COMPONENT,nil];
+    for (RuleConditionValues *ruleConditionValuesObj in ruleObj.ruleConditionValuesList) {
+        NSDictionary *valuesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:ruleConditionValuesObj.ruleConditionType,
+                                          TYPE,ruleConditionValuesObj.ruleConditionValuesOperatorName,OPERATOR,
+                                          ruleConditionValuesObj.values,VALUES,ruleConditionValuesObj.component,COMPONENT,nil];
         [valuesArray addObject:valuesDictionary];
     }
     [conditionsDictionary setObject:valuesArray forKey:VALUES];

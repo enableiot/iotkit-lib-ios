@@ -44,41 +44,41 @@
 
 - (void)test_801_CreateARule{
     [self configureResponseDelegateWithExpectedResponseCode:201];
-    CreateRule *createRuleObj = [[CreateRule alloc] init];
-    CreateRuleActions *createRuleActionObj = [[CreateRuleActions alloc] init];
-    CreateRuleConditionValues *createRuleConditionValuesObj = [[CreateRuleConditionValues alloc] init];
+    Rule *ruleObj = [[Rule alloc] init];
+    RuleActions *ruleActionObj = [[RuleActions alloc] init];
+    RuleConditionValues *ruleConditionValuesObj = [[RuleConditionValues alloc] init];
     
-    [createRuleObj setRuleName:[self getRandomRuleName]];
-    [createRuleObj setRuleDescription:@"This is a iotkit_wrapper rule"];
-    [createRuleObj setRulePriority:@"Medium"];
-    [createRuleObj setRuleType:@"Regular"];
-    [createRuleObj setRuleStatus:@"Active"];
-    [createRuleObj setRuleResetType:@"Automatic"];
+    [ruleObj setRuleName:[self getRandomRuleName]];
+    [ruleObj setRuleDescription:@"This is a iotkit_wrapper rule"];
+    [ruleObj setRulePriority:@"Medium"];
+    [ruleObj setRuleType:@"Regular"];
+    [ruleObj setRuleStatus:@"Active"];
+    [ruleObj setRuleResetType:@"Automatic"];
     
-    [createRuleActionObj setRuleActionType:@"mail"];
-    [createRuleActionObj addRuleActionTarget:@"gutha.raghu@gmail.com"];
-    [createRuleActionObj addRuleActionTarget:@"intel.aricent.iot1@gmail.com"];
+    [ruleActionObj setRuleActionType:@"mail"];
+    [ruleActionObj addRuleActionTarget:@"gutha.raghu@gmail.com"];
+    [ruleActionObj addRuleActionTarget:@"intel.aricent.iot1@gmail.com"];
     
-    [createRuleObj addRuleActions:createRuleActionObj];
-    [createRuleObj addRulePopulationId:@"685.1.1.1"];
+    [ruleObj addRuleActions:ruleActionObj];
+    [ruleObj addRulePopulationId:@"685.1.1.1"];
     
-    [createRuleConditionValuesObj addConditionComponentWithKey:@"dataType" AndValue:@"Number"];
-    [createRuleConditionValuesObj addConditionComponentWithKey:@"name" AndValue:@"Temp.01.1"];
-    [createRuleConditionValuesObj setConditionType:@"basic"];
-    [createRuleConditionValuesObj addConditionValues:@"25"];
-    [createRuleConditionValuesObj setConditionOperator:@">"];
+    [ruleConditionValuesObj addConditionComponentWithKey:@"dataType" AndValue:@"Number"];
+    [ruleConditionValuesObj addConditionComponentWithKey:@"name" AndValue:@"Temp.01.1"];
+    [ruleConditionValuesObj setConditionType:@"basic"];
+    [ruleConditionValuesObj addConditionValues:@"25"];
+    [ruleConditionValuesObj setConditionOperator:@">"];
     
-    [createRuleObj setRuleOperatorName:@"OR"];
-    [createRuleObj addRuleConditionValues:createRuleConditionValuesObj];
+    [ruleObj setRuleOperatorName:@"OR"];
+    [ruleObj addRuleConditionValues:ruleConditionValuesObj];
     
-    XCTAssertTrue([_ruleObject createRule:createRuleObj]);
+    XCTAssertTrue([_ruleObject createRule:ruleObj]);
     [self waitForServerResponse];
 }
 - (void)test_802_UpdateRule{
     [self configureResponseDelegateWithExpectedResponseCode:201];
-    CreateRule *updateRuleObj = [[CreateRule alloc] init];
-    CreateRuleActions *updateRuleActionObj = [[CreateRuleActions alloc] init];
-    CreateRuleConditionValues *updateRuleConditionValuesObj = [[CreateRuleConditionValues alloc] init];
+    Rule *updateRuleObj = [[Rule alloc] init];
+    RuleActions *updateRuleActionObj = [[RuleActions alloc] init];
+    RuleConditionValues *updateRuleConditionValuesObj = [[RuleConditionValues alloc] init];
     
     [updateRuleObj setRuleName:[self getRandomRuleName]];
     [updateRuleObj setRuleDescription:@"This is a iotkit_wrapper rule update"];
