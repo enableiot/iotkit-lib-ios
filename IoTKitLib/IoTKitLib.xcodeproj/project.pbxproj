@@ -12,7 +12,7 @@
 		FCEBA8E81A440EC400F040DB /* DefaultConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA8E51A440EC400F040DB /* DefaultConfiguration.m */; };
 		FCEBA8E91A440EC400F040DB /* HttpResponseDelegatee.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA8E71A440EC400F040DB /* HttpResponseDelegatee.m */; };
 		FCEBA8F71A44115B00F040DB /* AggregatedReportInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA8F61A44115B00F040DB /* AggregatedReportInterface.m */; };
-		FCEBA8FC1A44116C00F040DB /* AdvancedDataEnquiry.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA8F91A44116C00F040DB /* AdvancedDataEnquiry.m */; };
+		FCEBA8FC1A44116C00F040DB /* AdvancedDataInquiry.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA8F91A44116C00F040DB /* AdvancedDataInquiry.m */; };
 		FCEBA9041A44117900F040DB /* AlertManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA8FE1A44117900F040DB /* AlertManagement.m */; };
 		FCEBA90A1A44118600F040DB /* RuleManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9061A44118600F040DB /* RuleManagement.m */; };
 		FCEBA90D1A44119300F040DB /* InvitationManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA90C1A44119300F040DB /* InvitationManagement.m */; };
@@ -32,7 +32,7 @@
 		FCEBA92D1A4415D200F040DB /* InvitationManagement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA90B1A44119300F040DB /* InvitationManagement.h */; };
 		FCEBA92E1A4415D200F040DB /* RuleManagement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA9051A44118600F040DB /* RuleManagement.h */; };
 		FCEBA9321A4415D200F040DB /* AlertManagement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8FD1A44117900F040DB /* AlertManagement.h */; };
-		FCEBA9371A4415F500F040DB /* AdvancedDataEnquiry.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8F81A44116C00F040DB /* AdvancedDataEnquiry.h */; };
+		FCEBA9371A4415F500F040DB /* AdvancedDataInquiry.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8F81A44116C00F040DB /* AdvancedDataInquiry.h */; };
 		FCEBA9391A4415F500F040DB /* AggregatedReportInterface.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8F51A44115B00F040DB /* AggregatedReportInterface.h */; };
 		FCEBA93A1A4415F500F040DB /* DefaultConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8E41A440EC400F040DB /* DefaultConfiguration.h */; };
 		FCEBA93B1A4415F500F040DB /* HttpResponseDelegatee.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEBA8E61A440EC400F040DB /* HttpResponseDelegatee.h */; };
@@ -51,7 +51,7 @@
 				FCEBA95E1A44344100F040DB /* HttpResponseMacros.h in CopyFiles */,
 				FCEBA9621A44344100F040DB /* HttpResponseDelegateHandler.h in CopyFiles */,
 				FCEBA95D1A44340700F040DB /* HttpRequestOperation.h in CopyFiles */,
-				FCEBA9371A4415F500F040DB /* AdvancedDataEnquiry.h in CopyFiles */,
+				FCEBA9371A4415F500F040DB /* AdvancedDataInquiry.h in CopyFiles */,
 				FCEBA9391A4415F500F040DB /* AggregatedReportInterface.h in CopyFiles */,
 				FCEBA93A1A4415F500F040DB /* DefaultConfiguration.h in CopyFiles */,
 				FCEBA93B1A4415F500F040DB /* HttpResponseDelegatee.h in CopyFiles */,
@@ -72,7 +72,6 @@
 
 /* Begin PBXFileReference section */
 		F5ED8CC81AA6660F0029F272 /* AttributeFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttributeFilter.h; sourceTree = "<group>"; };
-		F5ED8CC91AA6660F0029F272 /* AttributeFilterList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttributeFilterList.h; sourceTree = "<group>"; };
 		F5ED8CCB1AA6660F0029F272 /* ConfigureRetrieveData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigureRetrieveData.h; sourceTree = "<group>"; };
 		F5ED8CCC1AA6660F0029F272 /* Device.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
 		F5ED8CD11AA6660F0029F272 /* ComponentCatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComponentCatalog.h; sourceTree = "<group>"; };
@@ -92,8 +91,8 @@
 		FCEBA8E71A440EC400F040DB /* HttpResponseDelegatee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpResponseDelegatee.m; sourceTree = "<group>"; };
 		FCEBA8F51A44115B00F040DB /* AggregatedReportInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AggregatedReportInterface.h; sourceTree = "<group>"; };
 		FCEBA8F61A44115B00F040DB /* AggregatedReportInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AggregatedReportInterface.m; sourceTree = "<group>"; };
-		FCEBA8F81A44116C00F040DB /* AdvancedDataEnquiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedDataEnquiry.h; sourceTree = "<group>"; };
-		FCEBA8F91A44116C00F040DB /* AdvancedDataEnquiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedDataEnquiry.m; sourceTree = "<group>"; };
+		FCEBA8F81A44116C00F040DB /* AdvancedDataInquiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedDataInquiry.h; sourceTree = "<group>"; };
+		FCEBA8F91A44116C00F040DB /* AdvancedDataInquiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedDataInquiry.m; sourceTree = "<group>"; };
 		FCEBA8FD1A44117900F040DB /* AlertManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertManagement.h; sourceTree = "<group>"; };
 		FCEBA8FE1A44117900F040DB /* AlertManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertManagement.m; sourceTree = "<group>"; };
 		FCEBA9051A44118600F040DB /* RuleManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleManagement.h; sourceTree = "<group>"; };
@@ -130,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				F5ED8CC81AA6660F0029F272 /* AttributeFilter.h */,
-				F5ED8CC91AA6660F0029F272 /* AttributeFilterList.h */,
 				F5ED8CCB1AA6660F0029F272 /* ConfigureRetrieveData.h */,
 				F5ED8CCC1AA6660F0029F272 /* Device.h */,
 				F5ED8CD11AA6660F0029F272 /* ComponentCatalog.h */,
@@ -179,8 +177,8 @@
 				FCEBA9061A44118600F040DB /* RuleManagement.m */,
 				FCEBA8FD1A44117900F040DB /* AlertManagement.h */,
 				FCEBA8FE1A44117900F040DB /* AlertManagement.m */,
-				FCEBA8F81A44116C00F040DB /* AdvancedDataEnquiry.h */,
-				FCEBA8F91A44116C00F040DB /* AdvancedDataEnquiry.m */,
+				FCEBA8F81A44116C00F040DB /* AdvancedDataInquiry.h */,
+				FCEBA8F91A44116C00F040DB /* AdvancedDataInquiry.m */,
 				FCEBA8F51A44115B00F040DB /* AggregatedReportInterface.h */,
 				FCEBA8F61A44115B00F040DB /* AggregatedReportInterface.m */,
 				FCEBA8E41A440EC400F040DB /* DefaultConfiguration.h */,
@@ -283,7 +281,7 @@
 				FCEBA9141A4411AC00F040DB /* DataManagement.m in Sources */,
 				FCEBA9171A4411BB00F040DB /* ComponentTypesCatalog.m in Sources */,
 				FCEBA8E31A440EA100F040DB /* HttpUrlBuilder.m in Sources */,
-				FCEBA8FC1A44116C00F040DB /* AdvancedDataEnquiry.m in Sources */,
+				FCEBA8FC1A44116C00F040DB /* AdvancedDataInquiry.m in Sources */,
 				FCEBA9211A44121300F040DB /* DeviceManagament.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

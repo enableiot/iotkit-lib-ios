@@ -9,19 +9,18 @@
 #import "AggregatedReportInterface.h"
 #import "HttpRequestOperation.h"
 #import "HttpResponseMacros.h"
-#import "AttributeFilterList.h"
 #define TAG @"AggregatedReportInterface"
 
 @interface AggregatedReportInterface ()
 
 @property (nonatomic,retain)NSString *msgType;
 @property (nonatomic,retain)NSString *outputType;
+@property (nonatomic,retain)NSMutableArray *filters;
 @property (nonatomic,retain)NSMutableArray *aggregationMethods;
 @property (nonatomic,retain)NSMutableArray *dimensions;
 @property (nonatomic,retain)NSMutableArray *gatewayIds;
 @property (nonatomic,retain)NSMutableArray *deviceIds;
 @property (nonatomic,retain)NSMutableArray *componentIds;
-@property (nonatomic,retain)AttributeFilterList *filters;
 @property (nonatomic,retain)NSMutableDictionary *sort;
 @property (nonatomic,assign)long startTimestamp;
 @property (nonatomic,assign)long endTimestamp;
@@ -237,9 +236,9 @@
  **************************************************************************************************************************/
 -(void)addFilters:(AttributeFilter*) attributeFilter{
     if (!_filters) {
-        _filters.filterData = [NSMutableArray array];
+        _filters = [NSMutableArray array];
     }
-    [_filters.filterData addObject:attributeFilter];
+    [_filters addObject:attributeFilter];
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: getAggregatedReportInterface
@@ -285,32 +284,16 @@
         [reportInterfaceJson setObject:_outputType forKey:@"outputType"];
     }
     if (_aggregationMethods) {
-        NSMutableArray *aggregationArray = [NSMutableArray array];
-        for (NSString *aggregationMethod in _aggregationMethods) {
-            [aggregationArray addObject:aggregationMethod];
-        }
-        [reportInterfaceJson setObject:aggregationArray forKey:@"aggregationMethods"];
+        [reportInterfaceJson setObject:_aggregationMethods forKey:@"aggregationMethods"];
     }
     if (_dimensions) {
-        NSMutableArray *dimensionArray = [NSMutableArray array];
-        for (NSString *dimension in _dimensions) {
-            [dimensionArray addObject:dimension];
-        }
-        [reportInterfaceJson setObject:dimensionArray forKey:@"dimensions"];
+        [reportInterfaceJson setObject:_dimensions forKey:@"dimensions"];
     }
     if (_gatewayIds) {
-        NSMutableArray *gatewayArray = [NSMutableArray array];
-        for (NSString *gatewayId in _gatewayIds) {
-            [gatewayArray addObject:gatewayId];
-        }
-        [reportInterfaceJson setObject:gatewayArray forKey:@"gatewayIds"];
+        [reportInterfaceJson setObject:_gatewayIds forKey:@"gatewayIds"];
     }
     if (_deviceIds) {
-        NSMutableArray *deviceIdArray = [NSMutableArray array];
-        for (NSString *deviceId in _deviceIds) {
-            [deviceIdArray addObject:deviceId];
-        }
-        [reportInterfaceJson setObject:deviceIdArray forKey:@"deviceIds"];
+        [reportInterfaceJson setObject:_deviceIds forKey:@"deviceIds"];
     }
     if (_componentIds) {
         NSMutableArray *componentIdArray = [NSMutableArray array];
@@ -331,7 +314,7 @@
     }
     if (_filters) {
         NSMutableDictionary *filterJson = [NSMutableDictionary dictionary];
-        for (AttributeFilter *attributeFilter in _filters.filterData) {
+        for (AttributeFilter *attributeFilter in _filters) {
             NSMutableArray *filterValuesArray = [NSMutableArray array];
             for (NSString *filterValue in attributeFilter.filterValues) {
                 [filterValuesArray addObject:filterValue];

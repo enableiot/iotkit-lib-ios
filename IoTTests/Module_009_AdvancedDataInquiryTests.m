@@ -22,46 +22,46 @@
  */
 
 #import "BasicSetup.h"
-#import "IoTKitLib/AdvancedDataEnquiry.h"
+#import "IoTKitLib/AdvancedDataInquiry.h"
 
-@interface Module_009_AdvancedDataEnquiryTests : BasicSetup
+@interface Module_009_AdvancedDataInquiryTests : BasicSetup
 
-@property(nonatomic,retain)AdvancedDataEnquiry *objAdvancedDataEnquiry;
+@property(nonatomic,retain)AdvancedDataInquiry *objAdvancedDataInquiry;
 
 @end
 
-@implementation Module_009_AdvancedDataEnquiryTests
+@implementation Module_009_AdvancedDataInquiryTests
 
 - (void)setUp {
     [super setUp];
-    _objAdvancedDataEnquiry = [[AdvancedDataEnquiry alloc]initAdvancedDataEnquiryWithDefaults];
+    _objAdvancedDataInquiry = [[AdvancedDataInquiry alloc]initAdvancedDataInquiryWithDefaults];
 }
 
 - (void)tearDown {
-    _objAdvancedDataEnquiry = nil;
+    _objAdvancedDataInquiry = nil;
     [super tearDown];
 }
 
-- (void)test_901_AdvancedDataEnquiry {
+- (void)test_901_AdvancedDataInquiry {
     [self configureResponseDelegateWithExpectedResponseCode:200];
-    [_objAdvancedDataEnquiry addGatewayIds:[HttpUrlBuilder getDeviceId]];
-    //[objAdvancedDataEnquiry addGatewayIds:@"devTest"];
+    [_objAdvancedDataInquiry addGatewayId:[HttpUrlBuilder getDeviceId]];
+    //[objAdvancedDataInquiry addGatewayId:@"devTest"];
     
-    [_objAdvancedDataEnquiry addDeviceIds:[HttpUrlBuilder getDeviceId]];
-    //[objAdvancedDataEnquiry addDeviceIds:@"devTest"];
+    [_objAdvancedDataInquiry addDeviceId:[HttpUrlBuilder getDeviceId]];
+    //[objAdvancedDataInquiry addDeviceId:@"devTest"];
     
-    [_objAdvancedDataEnquiry addComponentIds:[HttpUrlBuilder getComponentId:[HttpUrlBuilder getComponentName]]];
-    //[_objAdvancedDataEnquiry addComponentIds:@"42A9690E-C837-4E46-ADA9-88A7E77D0760"];
-    //[objAdvancedDataEnquiry addComponentIds:@"b780757a-4a45-40f3-9804-60eee953e8d2"];
+    [_objAdvancedDataInquiry addComponentId:[HttpUrlBuilder getComponentId:[HttpUrlBuilder getComponentName]]];
+    //[_objAdvancedDataInquiry addComponentId:@"42A9690E-C837-4E46-ADA9-88A7E77D0760"];
+    //[objAdvancedDataInquiry addComponentId:@"b780757a-4a45-40f3-9804-60eee953e8d2"];
     
-    [_objAdvancedDataEnquiry setStartTimestamp:0L];
-    [_objAdvancedDataEnquiry setEndTimestamp:[self getCurrentTimeInMillis]];
+    [_objAdvancedDataInquiry setStartTimestamp:0L];
+    [_objAdvancedDataInquiry setEndTimestamp:[self getCurrentTimeInMillis]];
     
-    //[_objAdvancedDataEnquiry addReturnedMeasureAttributes:@"Processor"];
-    //[_objAdvancedDataEnquiry addReturnedMeasureAttributes:@"Camera"];
-    //[_objAdvancedDataEnquiry addReturnedMeasureAttributes:@"attr_3"];
+    //[_objAdvancedDataInquiry addReturnedMeasureAttributes:@"Processor"];
+    //[_objAdvancedDataInquiry addReturnedMeasureAttributes:@"Camera"];
+    //[_objAdvancedDataInquiry addReturnedMeasureAttributes:@"attr_3"];
     
-    //[_objAdvancedDataEnquiry setShowMeasureLocation:true];
+    //[_objAdvancedDataInquiry setShowMeasureLocation:true];
     //dev comp attrs
     AttributeFilter *devCompAttributeFilter1 = [[AttributeFilter alloc] initAttributeFilter:@"Tags"];
     [devCompAttributeFilter1 addAttributeFilterValues:@"created from MAC book pro"];
@@ -70,8 +70,8 @@
     AttributeFilter *devCompAttributeFilter2 = [[AttributeFilter alloc] initAttributeFilter:@"componentType"];
     [devCompAttributeFilter2 addAttributeFilterValues:@"temperature.v1.0"];
     
-    [_objAdvancedDataEnquiry addDevCompAttributeFilter:devCompAttributeFilter1];
-    [_objAdvancedDataEnquiry addDevCompAttributeFilter:devCompAttributeFilter2];
+    [_objAdvancedDataInquiry addDevCompAttributeFilter:devCompAttributeFilter1];
+    [_objAdvancedDataInquiry addDevCompAttributeFilter:devCompAttributeFilter2];
     //measure comp attrs
     //    AttributeFilter *measurementAttributeFilter1 = [[AttributeFilter alloc] initAttributeFilter:@"mfilter_1"];
     //    [measurementAttributeFilter1 addAttributeFilterValues:@"mValue1"];
@@ -83,23 +83,23 @@
     //    [measurementAttributeFilter1 addAttributeFilterValues:@"mValue22"];
     //    [measurementAttributeFilter1 addAttributeFilterValues:@"mValue33"];
     //
-    //    [_objAdvancedDataEnquiry addMeasurementAttributeFilter:measurementAttributeFilter1];
-    //    [_objAdvancedDataEnquiry addMeasurementAttributeFilter:measurementAttributeFilter2];
+    //    [_objAdvancedDataInquiry addMeasurementAttributeFilter:measurementAttributeFilter1];
+    //    [_objAdvancedDataInquiry addMeasurementAttributeFilter:measurementAttributeFilter2];
     //
     //    //value filter
     //    AttributeFilter *valueFilter = [[AttributeFilter alloc] initAttributeFilter:@"value"];
     //    [valueFilter addAttributeFilterValues:@"filter_value1"];
     //    [valueFilter addAttributeFilterValues:@"filter_value2"];
     //    [valueFilter addAttributeFilterValues:@"filter_value3"];
-    //    [_objAdvancedDataEnquiry addValueFilter:valueFilter];
+    //    [_objAdvancedDataInquiry addValueFilter:valueFilter];
     
-    [_objAdvancedDataEnquiry setComponentRowLimit:5];
-    //[_objAdvancedDataEnquiry setCountOnly:true];
+    [_objAdvancedDataInquiry setComponentRowLimit:5];
+    //[_objAdvancedDataInquiry setCountOnly:true];
     //sort
-    [_objAdvancedDataEnquiry addSortInfo:@"Timestamp" WithValue:@"Asc"];
-    [_objAdvancedDataEnquiry addSortInfo:@"Value" WithValue:@"Desc"];
+    [_objAdvancedDataInquiry addSortInfo:@"Timestamp" WithValue:@"Asc"];
+    [_objAdvancedDataInquiry addSortInfo:@"Value" WithValue:@"Desc"];
     
-    [_objAdvancedDataEnquiry advancedDataEnquiry];
+    [_objAdvancedDataInquiry request];
     [self waitForServerResponse];
 }
 
