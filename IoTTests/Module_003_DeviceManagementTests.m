@@ -73,7 +73,7 @@
 }
 - (void)test_303_GetDeviceList{
     [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_deviceObject listAllDevices]);
+    XCTAssertTrue([_deviceObject getDeviceList]);
     [self waitForServerResponse];
 }
 - (void)test_304_GetMyDeviceInfo{
@@ -98,12 +98,12 @@
 }
 - (void)test_308_GetAllAttributes{
     [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_deviceObject listAllDeviceAttributes]);
+    XCTAssertTrue([_deviceObject getAllAttributes]);
     [self waitForServerResponse];
 }
 - (void)test_309_GetAllTags{
     [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_deviceObject listAllDeviceTags]);
+    XCTAssertTrue([_deviceObject getAllTags]);
     [self waitForServerResponse];
 }
 - (void)test_310_DeleteAComponent{

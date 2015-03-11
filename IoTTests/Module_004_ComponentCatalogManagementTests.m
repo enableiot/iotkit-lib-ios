@@ -22,19 +22,19 @@
  */
 
 #import "BasicSetup.h"
-#import "IoTKitLib/ComponentTypesCatalog.h"
+#import "IoTKitLib/ComponentCatalogManagement.h"
 
-@interface Module_004_ComponentTypesCatalogTests : BasicSetup
+@interface Module_004_ComponentCatalogManagementTests : BasicSetup
 
-@property(nonatomic,retain)ComponentTypesCatalog *componentCatalogObject;
+@property(nonatomic,retain)ComponentCatalogManagement *componentCatalogObject;
 
 @end
 
-@implementation Module_004_ComponentTypesCatalogTests
+@implementation Module_004_ComponentCatalogManagementTests
 
 - (void)setUp {
     [super setUp];
-    _componentCatalogObject = [[ComponentTypesCatalog alloc]init];
+    _componentCatalogObject = [[ComponentCatalogManagement alloc]init];
 }
 
 - (void)tearDown {

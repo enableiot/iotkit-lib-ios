@@ -27,13 +27,13 @@
 
 @interface DeviceManagament : DefaultConfiguration
 
--(BOOL) listAllDevices;
+-(BOOL) getDeviceList;
 -(BOOL) createNewDevice:(Device*) deviceCreateObj;
 -(BOOL) updateADevice:(Device*)deviceUpdationObj;
 -(BOOL) getMyDeviceInfo;
 -(BOOL) getInfoOnDevice:(NSString*)deviceId;
--(BOOL) listAllDeviceTags;
--(BOOL) listAllDeviceAttributes;
+-(BOOL) getAllTags;
+-(BOOL) getAllAttributes;
 -(BOOL) activateADevice:(NSString*)activationCode;
 -(BOOL) addComponentToDevice:(NSString*)componentName WithType:(NSString*)componentType;
 -(BOOL) deleteAComponent:(NSString*)componentName;

@@ -45,51 +45,50 @@
 
 - (void)test_1001_AggregatedReportInterface {
     [self configureResponseDelegateWithExpectedResponseCode:200];
-    //[_aggregatedReportInterfaceObject setReportMessageType:@"aggregatedReportRequest"];
-    [_aggregatedReportInterfaceObject addReportGatewayIds:[HttpUrlBuilder getDeviceId]];
-    //[_aggregatedReportInterfaceObject addReportGatewayIds:@"qwertyPAD1"];
-    //[_aggregatedReportInterfaceObject addReportGatewayIds:@"devTest"];
+    [_aggregatedReportInterfaceObject addGatewayId:[HttpUrlBuilder getDeviceId]];
+    //[_aggregatedReportInterfaceObject addGatewayId:@"qwertyPAD1"];
+    //[_aggregatedReportInterfaceObject addGatewayId:@"devTest"];
    
-    [_aggregatedReportInterfaceObject addReportDeviceIds:[HttpUrlBuilder getDeviceId]];
-    //[_aggregatedReportInterfaceObject addReportDeviceIds:@"qwertyPAD1"];
-    //[_aggregatedReportInterfaceObject addReportDeviceIds:@"devTest"];
+    [_aggregatedReportInterfaceObject addDeviceId:[HttpUrlBuilder getDeviceId]];
+    //[_aggregatedReportInterfaceObject addDeviceId:@"qwertyPAD1"];
+    //[_aggregatedReportInterfaceObject addDeviceId:@"devTest"];
     
-    [_aggregatedReportInterfaceObject addReportComponentIds:[HttpUrlBuilder getComponentId:
+    [_aggregatedReportInterfaceObject addComponentId:[HttpUrlBuilder getComponentId:
                                                              [HttpUrlBuilder getComponentName]]];
-    /*[_aggregatedReportInterfaceObject addReportComponentIds:@"42A9690E-C837-4E46-ADA9-88A7E77D0760"];
-    [_aggregatedReportInterfaceObject addReportComponentIds:@"b780757a-4a45-40f3-9804-60eee953e8d2"];
-    [_aggregatedReportInterfaceObject addReportComponentIds:@"5C09B9F0-E06B-404A-A882-EAC64675A63E"];
-    [_aggregatedReportInterfaceObject addReportComponentIds:@"BB9E347D-7895-437E-9ECA-8069879090B7"];*/
+    /*[_aggregatedReportInterfaceObject addComponentId:@"42A9690E-C837-4E46-ADA9-88A7E77D0760"];
+    [_aggregatedReportInterfaceObject addComponentId:@"b780757a-4a45-40f3-9804-60eee953e8d2"];
+    [_aggregatedReportInterfaceObject addComponentId:@"5C09B9F0-E06B-404A-A882-EAC64675A63E"];
+    [_aggregatedReportInterfaceObject addComponentId:@"BB9E347D-7895-437E-9ECA-8069879090B7"];*/
     
     
     
-    [_aggregatedReportInterfaceObject setReportStartTimestamp:0L];
-    [_aggregatedReportInterfaceObject setReportEndTimestamp:[self getCurrentTimeInMillis]];
+    [_aggregatedReportInterfaceObject setStartTimestamp:0L];
+    [_aggregatedReportInterfaceObject setEndTimestamp:[self getCurrentTimeInMillis]];
     
     //report filters
     AttributeFilter *filter1 = [[AttributeFilter alloc] initAttributeFilter:@"Tags"];
     [filter1 addAttributeFilterValues:@"created from MAC book pro"];
     [filter1 addAttributeFilterValues:@"Intel ODC test dev"];
     
-    [_aggregatedReportInterfaceObject addFilters:filter1];
+    [_aggregatedReportInterfaceObject addFilter:filter1];
     
     [_aggregatedReportInterfaceObject setOutputType:@"json"];
     [_aggregatedReportInterfaceObject setLimit:100];
     [_aggregatedReportInterfaceObject setOffset:0];
     
-    [_aggregatedReportInterfaceObject addAggregationMethods:@"average"];
-    [_aggregatedReportInterfaceObject addAggregationMethods:@"min"];
-    [_aggregatedReportInterfaceObject addAggregationMethods:@"max"];
-    [_aggregatedReportInterfaceObject addAggregationMethods:@"sum"];
+    [_aggregatedReportInterfaceObject addAggregationMethod:@"average"];
+    [_aggregatedReportInterfaceObject addAggregationMethod:@"min"];
+    [_aggregatedReportInterfaceObject addAggregationMethod:@"max"];
+    [_aggregatedReportInterfaceObject addAggregationMethod:@"sum"];
     
-    /*[_aggregatedReportInterfaceObject addDimensions:@"dim1"];
-    [_aggregatedReportInterfaceObject addDimensions:@"dim2"];*/
+    /*[_aggregatedReportInterfaceObject addDimension:@"dim1"];
+    [_aggregatedReportInterfaceObject addDimension:@"dim2"];*/
 
     //[_aggregatedReportInterfaceObject setReportCountOnly:true];
     //sort
-    [_aggregatedReportInterfaceObject addReportSortInfo:@"timeHour" AndValue:@"Asc"];
-    //[_aggregatedReportInterfaceObject addReportSortInfo:@"sortField2" AndValue:@"Desc"];
-    XCTAssertTrue([_aggregatedReportInterfaceObject getAggregatedReportInterface]);
+    [_aggregatedReportInterfaceObject addSortInfo:@"timeHour" AndValue:@"Asc"];
+    //[_aggregatedReportInterfaceObject addSortInfo:@"sortField2" AndValue:@"Desc"];
+    XCTAssertTrue([_aggregatedReportInterfaceObject request]);
     [self waitForServerResponse];
 }
 

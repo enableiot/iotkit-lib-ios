@@ -15,10 +15,10 @@
 		FC5ED7971A23531400D2F281 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC5ED7961A23531400D2F281 /* Images.xcassets */; };
 		FC5ED79A1A23531400D2F281 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5ED7981A23531400D2F281 /* LaunchScreen.xib */; };
 		FCEBA9701A443F5300F040DB /* BasicSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9641A443F5300F040DB /* BasicSetup.m */; };
-		FCEBA9711A443F5300F040DB /* Module_001_AuthorizationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9651A443F5300F040DB /* Module_001_AuthorizationTests.m */; };
+		FCEBA9711A443F5300F040DB /* Module_001_AuthorizationManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9651A443F5300F040DB /* Module_001_AuthorizationManagementTests.m */; };
 		FCEBA9721A443F5300F040DB /* Module_002_AccountManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9661A443F5300F040DB /* Module_002_AccountManagementTests.m */; };
 		FCEBA9731A443F5300F040DB /* Module_003_DeviceManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9671A443F5300F040DB /* Module_003_DeviceManagementTests.m */; };
-		FCEBA9741A443F5300F040DB /* Module_004_ComponentTypesCatalogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9681A443F5300F040DB /* Module_004_ComponentTypesCatalogTests.m */; };
+		FCEBA9741A443F5300F040DB /* Module_004_ComponentCatalogManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9681A443F5300F040DB /* Module_004_ComponentCatalogManagementTests.m */; };
 		FCEBA9751A443F5300F040DB /* Module_005_DataManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9691A443F5300F040DB /* Module_005_DataManagementTests.m */; };
 		FCEBA9761A443F5300F040DB /* Module_006_UserManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96A1A443F5300F040DB /* Module_006_UserManagementTests.m */; };
 		FCEBA9771A443F5300F040DB /* Module_007_InvitationManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96B1A443F5300F040DB /* Module_007_InvitationManagementTests.m */; };
@@ -67,10 +67,10 @@
 		FC5ED79F1A23531400D2F281 /* IoTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IoTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEBA9631A443F5300F040DB /* BasicSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicSetup.h; sourceTree = "<group>"; };
 		FCEBA9641A443F5300F040DB /* BasicSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicSetup.m; sourceTree = "<group>"; };
-		FCEBA9651A443F5300F040DB /* Module_001_AuthorizationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_001_AuthorizationTests.m; sourceTree = "<group>"; };
+		FCEBA9651A443F5300F040DB /* Module_001_AuthorizationManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_001_AuthorizationManagementTests.m; sourceTree = "<group>"; };
 		FCEBA9661A443F5300F040DB /* Module_002_AccountManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_002_AccountManagementTests.m; sourceTree = "<group>"; };
 		FCEBA9671A443F5300F040DB /* Module_003_DeviceManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_003_DeviceManagementTests.m; sourceTree = "<group>"; };
-		FCEBA9681A443F5300F040DB /* Module_004_ComponentTypesCatalogTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_004_ComponentTypesCatalogTests.m; sourceTree = "<group>"; };
+		FCEBA9681A443F5300F040DB /* Module_004_ComponentCatalogManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_004_ComponentCatalogManagementTests.m; sourceTree = "<group>"; };
 		FCEBA9691A443F5300F040DB /* Module_005_DataManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_005_DataManagementTests.m; sourceTree = "<group>"; };
 		FCEBA96A1A443F5300F040DB /* Module_006_UserManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_006_UserManagementTests.m; sourceTree = "<group>"; };
 		FCEBA96B1A443F5300F040DB /* Module_007_InvitationManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_007_InvitationManagementTests.m; sourceTree = "<group>"; };
@@ -105,10 +105,10 @@
 			children = (
 				FCEBA9631A443F5300F040DB /* BasicSetup.h */,
 				FCEBA9641A443F5300F040DB /* BasicSetup.m */,
-				FCEBA9651A443F5300F040DB /* Module_001_AuthorizationTests.m */,
+				FCEBA9651A443F5300F040DB /* Module_001_AuthorizationManagementTests.m */,
 				FCEBA9661A443F5300F040DB /* Module_002_AccountManagementTests.m */,
 				FCEBA9671A443F5300F040DB /* Module_003_DeviceManagementTests.m */,
-				FCEBA9681A443F5300F040DB /* Module_004_ComponentTypesCatalogTests.m */,
+				FCEBA9681A443F5300F040DB /* Module_004_ComponentCatalogManagementTests.m */,
 				FCEBA9691A443F5300F040DB /* Module_005_DataManagementTests.m */,
 				FCEBA96A1A443F5300F040DB /* Module_006_UserManagementTests.m */,
 				FCEBA96B1A443F5300F040DB /* Module_007_InvitationManagementTests.m */,
@@ -310,14 +310,14 @@
 				FCEBA9731A443F5300F040DB /* Module_003_DeviceManagementTests.m in Sources */,
 				FCEBA9771A443F5300F040DB /* Module_007_InvitationManagementTests.m in Sources */,
 				FCEBA9721A443F5300F040DB /* Module_002_AccountManagementTests.m in Sources */,
-				FCEBA9741A443F5300F040DB /* Module_004_ComponentTypesCatalogTests.m in Sources */,
+				FCEBA9741A443F5300F040DB /* Module_004_ComponentCatalogManagementTests.m in Sources */,
 				FCEBA9701A443F5300F040DB /* BasicSetup.m in Sources */,
 				FCEBA9781A443F5300F040DB /* Module_008_RuleManagementTests.m in Sources */,
 				FCEBA97B1A443F5300F040DB /* Module_011_AlertManagementTests.m in Sources */,
 				FCEBA9761A443F5300F040DB /* Module_006_UserManagementTests.m in Sources */,
 				FCEBA97A1A443F5300F040DB /* Module_010_AggregatedReportInterfaceTests.m in Sources */,
 				FCEBA9751A443F5300F040DB /* Module_005_DataManagementTests.m in Sources */,
-				FCEBA9711A443F5300F040DB /* Module_001_AuthorizationTests.m in Sources */,
+				FCEBA9711A443F5300F040DB /* Module_001_AuthorizationManagementTests.m in Sources */,
 				FCEBA9791A443F5300F040DB /* Module_009_AdvancedDataInquiryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

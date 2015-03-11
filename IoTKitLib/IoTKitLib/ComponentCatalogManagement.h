@@ -24,7 +24,7 @@
 #import "DefaultConfiguration.h"
 #import "ComponentCatalog.h"
 
-@interface ComponentTypesCatalog : DefaultConfiguration
+@interface ComponentCatalogManagement : DefaultConfiguration
 
 -(BOOL)listAllComponentTypesCatalog;
 -(BOOL)listAllDetailsOfComponentTypesCatalog;

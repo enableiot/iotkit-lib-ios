@@ -52,19 +52,7 @@
     return self;
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: setReportMessageType
- *
- * DESCRIPTION: set report message type
- *
- * RETURNS: nothing
- *
- * PARAMETERS : msgType
- **************************************************************************************************************************/
--(void)setReportMessageType:(NSString*) msgType {
-    _msgType = msgType;
-}
-/***************************************************************************************************************************
- * FUNCTION NAME: setReportStartTimestamp
+ * FUNCTION NAME: setStartTimestamp
  *
  * DESCRIPTION: set start time stamp
  *
@@ -72,11 +60,11 @@
  *
  * PARAMETERS : startTimestamp
  **************************************************************************************************************************/
--(void)setReportStartTimestamp:(long) startTimestamp{
+-(void)setStartTimestamp:(long) startTimestamp{
     _startTimestamp = startTimestamp;
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: setReportEndTimestamp
+ * FUNCTION NAME: setEndTimestamp
  *
  * DESCRIPTION: set end time stamp
  *
@@ -84,11 +72,11 @@
  *
  * PARAMETERS : endTimestamp
  **************************************************************************************************************************/
--(void)setReportEndTimestamp:(long) endTimestamp{
+-(void)setEndTimestamp:(long) endTimestamp{
     _endTimestamp = endTimestamp;
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: addAggregationMethods
+ * FUNCTION NAME: addAggregationMethod
  *
  * DESCRIPTION: append aggregated method to list
  *
@@ -96,14 +84,14 @@
  *
  * PARAMETERS : aggregation type
  **************************************************************************************************************************/
--(void)addAggregationMethods:(NSString*) aggregation{
+-(void)addAggregationMethod:(NSString*) aggregation{
     if (!_aggregationMethods) {
         _aggregationMethods = [NSMutableArray array];
     }
     [_aggregationMethods addObject:aggregation];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: addDimensions
+ * FUNCTION NAME: addDimension
  *
  * DESCRIPTION: append dimension to list
  *
@@ -111,7 +99,7 @@
  *
  * PARAMETERS : dimension type
  **************************************************************************************************************************/
--(void)addDimensions:(NSString*) dimension{
+-(void)addDimension:(NSString*) dimension{
     if (!_dimensions) {
         _dimensions = [NSMutableArray array];
     }
@@ -142,7 +130,7 @@
     _limit = limit;
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: setReportCountOnly
+ * FUNCTION NAME: setCountOnly
  *
  * DESCRIPTION: sets to return number of results only
  *
@@ -150,7 +138,7 @@
  *
  * PARAMETERS : countOnly(true/false)
  **************************************************************************************************************************/
--(void)setReportCountOnly:(BOOL) countOnly{
+-(void)setCountOnly:(BOOL) countOnly{
     _countOnly = countOnly;
 }
 /***************************************************************************************************************************
@@ -166,7 +154,7 @@
     _outputType = outputType;
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: addReportDeviceIds
+ * FUNCTION NAME: addDeviceId
  *
  * DESCRIPTION: append deviceId to query list
  *
@@ -174,14 +162,14 @@
  *
  * PARAMETERS : deviceId
  **************************************************************************************************************************/
--(void)addReportDeviceIds:(NSString*) deviceId{
+-(void)addDeviceId:(NSString*) deviceId{
     if (!_deviceIds) {
         _deviceIds = [NSMutableArray array];
     }
     [_deviceIds addObject:deviceId];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: addReportGatewayIds
+ * FUNCTION NAME: addGatewayId
  *
  * DESCRIPTION: append gatewayId to list
  *
@@ -189,14 +177,14 @@
  *
  * PARAMETERS : gatewayId
  **************************************************************************************************************************/
--(void)addReportGatewayIds:(NSString*) gatewayId{
+-(void)addGatewayId:(NSString*) gatewayId{
     if (!_gatewayIds) {
         _gatewayIds = [NSMutableArray array];
     }
     [_gatewayIds addObject:gatewayId];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: addReportComponentIds
+ * FUNCTION NAME: addComponentId
  *
  * DESCRIPTION: append componentId to list
  *
@@ -204,14 +192,14 @@
  *
  * PARAMETERS : componentId
  **************************************************************************************************************************/
--(void)addReportComponentIds:(NSString*) componentId{
+-(void)addComponentId:(NSString*) componentId{
     if (!_componentIds) {
         _componentIds = [NSMutableArray array];
     }
     [_componentIds addObject:componentId];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: addReportSortInfo
+ * FUNCTION NAME: addSortInfo
  *
  * DESCRIPTION: append sort key-value pair to list
  *
@@ -219,14 +207,14 @@
  *
  * PARAMETERS : name & value of sort type
  **************************************************************************************************************************/
--(void)addReportSortInfo:(NSString*) name AndValue:(NSString*)value{
+-(void)addSortInfo:(NSString*) name AndValue:(NSString*)value{
     if (!_sort) {
         _sort = [NSMutableDictionary dictionary];
     }
     [_sort setObject:value forKey:name];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: addDimensions
+ * FUNCTION NAME: addDimension
  *
  * DESCRIPTION: append filter object to list
  *
@@ -234,14 +222,14 @@
  *
  * PARAMETERS : attributeFilter object
  **************************************************************************************************************************/
--(void)addFilters:(AttributeFilter*) attributeFilter{
+-(void)addFilter:(AttributeFilter*) attributeFilter{
     if (!_filters) {
         _filters = [NSMutableArray array];
     }
     [_filters addObject:attributeFilter];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: getAggregatedReportInterface
+ * FUNCTION NAME: request
  *
  * DESCRIPTION: method to create request on aggreagted report
  *
@@ -249,7 +237,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL)getAggregatedReportInterface{
+-(BOOL)request{
     NSData *data = [self createHttpBodyToGetAggregatedReport];
     NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"DATA:%@",myString);

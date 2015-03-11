@@ -32,7 +32,7 @@
 @implementation AuthorizationManagement
 
 /***************************************************************************************************************************
- * FUNCTION NAME: getNewAuthorizationTokenWithUsername
+ * FUNCTION NAME: getNewAuthorizationToken
  *
  * DESCRIPTION: requests to get new auth-token using given username&password
  *

@@ -20,7 +20,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-#import "ComponentTypesCatalog.h"
+#import "ComponentCatalogManagement.h"
 #import "HttpRequestOperation.h"
 #import "HttpResponseMacros.h"
 
@@ -168,8 +168,8 @@
 
 @end
 
-//#####ComponentTypesCatalog#########
-@implementation ComponentTypesCatalog
+//#####ComponentCatalogManagement#########
+@implementation ComponentCatalogManagement
 
 /***************************************************************************************************************************
  * FUNCTION NAME: listAllComponentTypesCatalog

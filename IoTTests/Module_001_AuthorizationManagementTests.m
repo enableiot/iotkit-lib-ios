@@ -25,13 +25,13 @@
 #import "BasicSetup.h"
 #import "IoTKitLib/AuthorizationManagement.h"
 
-@interface Module_001_AuthorizationTests : BasicSetup
+@interface Module_001_AuthorizationManagementTests : BasicSetup
 
 @property(nonatomic,retain)AuthorizationManagement *authorizationObject;
 
 @end
 
-@implementation Module_001_AuthorizationTests
+@implementation Module_001_AuthorizationManagementTests
 
 - (void)setUp {
     [super setUp];

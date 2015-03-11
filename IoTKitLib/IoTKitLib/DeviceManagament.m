@@ -147,7 +147,7 @@
 @implementation DeviceManagament
 
 /***************************************************************************************************************************
- * FUNCTION NAME: listAllDevices
+ * FUNCTION NAME: getDeviceList
  *
  * DESCRIPTION: requests to list all devices
  *
@@ -155,7 +155,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL) listAllDevices{
+-(BOOL) getDeviceList{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listDevices urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:LISTDEVICES
@@ -240,7 +240,7 @@
     return [self initiateHttpOperation:httpOperation];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: listAllDeviceTags
+ * FUNCTION NAME: getAllTags
  *
  * DESCRIPTION: requests to list device tags
  *
@@ -248,7 +248,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL) listAllDeviceTags{
+-(BOOL) getAllTags{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllTags urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:LISTALLTAGS
@@ -260,7 +260,7 @@
     return [self initiateHttpOperation:httpOperation];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: listAllDeviceAttributes
+ * FUNCTION NAME: getAllAttributes
  *
  * DESCRIPTION: requests to list device attributes
  *
@@ -268,7 +268,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL) listAllDeviceAttributes{
+-(BOOL) getAllAttributes{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllAttributes urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:LISTALLATTRIBUTES
