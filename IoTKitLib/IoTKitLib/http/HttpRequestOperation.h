@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HttpResponseDelegateHandler.h"
+#import "CloudResponse.h"
 
 @interface HttpRequestOperation:NSObject
 
@@ -32,7 +33,7 @@
                             AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
                             AuthToken:(NSString*)authToken DeviceToken:(NSString*)deviceToken;
 - (id) init __attribute__((unavailable("Must create object using \"initWithUrl\" method")));
-- (void)completeHandler:(NSURLResponse *)response onData:(NSData *)data AndError:(NSError *)error;
-- (BOOL)initiateAsyncRequest ;
-- (BOOL)initiateSyncRequest ;
+- (CloudResponse *)completeHandler:(NSURLResponse *)response onData:(NSData *)data AndError:(NSError *)error;
+- (CloudResponse *)initiateAsyncRequest ;
+- (CloudResponse *)initiateSyncRequest ;
 @end

@@ -24,13 +24,13 @@
 
 @interface AccountManagement : DefaultConfiguration
 
--(BOOL) createAnAccount:(NSString*)accountName;
--(BOOL) getAccountInformation;
--(BOOL) getAccountActivationCode;
--(BOOL) renewAccountActivationCode;
--(BOOL) updateAnAccount:(NSString*)accountNameToUpdate andOptionalAttributesWithSimpleKeyValues:(NSDictionary*)attributes;
--(BOOL) addAnotherUserToAccount:(NSString*)accountId UserGettingInvited:(NSString*)inviteeUserId
+-(CloudResponse *) createAnAccount:(NSString*)accountName;
+-(CloudResponse *) getAccountInformation;
+-(CloudResponse *) getAccountActivationCode;
+-(CloudResponse *) renewAccountActivationCode;
+-(CloudResponse *) updateAnAccount:(NSString*)accountNameToUpdate andOptionalAttributesWithSimpleKeyValues:(NSDictionary*)attributes;
+-(CloudResponse *) addAnotherUserToAccount:(NSString*)accountId UserGettingInvited:(NSString*)inviteeUserId
                            Admin:(BOOL)isAdmin;
--(BOOL) deleteAnAccount;
+-(CloudResponse *) deleteAnAccount;
 
 @end

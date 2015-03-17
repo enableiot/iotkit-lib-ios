@@ -22,12 +22,12 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import "CloudResponse.h"
 
 @interface HttpResponseDelegatee : NSObject
 
 +(id) sharedInstance;
 
-@property (atomic,copy) void (^cloudResponse)(NSInteger,NSString*);
+@property (atomic,copy) void (^readResponse)(CloudResponse *);
 - (id) init __attribute__((unavailable("Must create singleton using \"sharedInstance\" method")));
 @end

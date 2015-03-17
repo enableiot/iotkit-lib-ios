@@ -25,14 +25,14 @@
 
 @interface UserManagement : DefaultConfiguration
 
--(BOOL) createNewUserWith:(NSString*)emailId AndPassword:(NSString*)password;
--(BOOL) deleteUser:(NSString*)userId;
--(BOOL) getUserInfo:(NSString*)userId;
--(BOOL) updateUserAttributesOn:(NSString*) userId AndListOfAttributes:(NSDictionary*)listOfUserAttributes;
--(BOOL) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted;
--(BOOL) requestChangePasswordOn:(NSString*)emailId;
--(BOOL) updateForgotPassword:(NSString*)mailToken AndNewPassword:(NSString*)newPassword;
--(BOOL) changePasswordOn:(NSString*)emailId AndCurrentPassword:(NSString*)currentPassword
+-(CloudResponse *) createNewUserWith:(NSString*)emailId AndPassword:(NSString*)password;
+-(CloudResponse *) deleteUser:(NSString*)userId;
+-(CloudResponse *) getUserInfo:(NSString*)userId;
+-(CloudResponse *) updateUserAttributesOn:(NSString*) userId AndListOfAttributes:(NSDictionary*)listOfUserAttributes;
+-(CloudResponse *) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted;
+-(CloudResponse *) requestChangePasswordOn:(NSString*)emailId;
+-(CloudResponse *) updateForgotPassword:(NSString*)mailToken AndNewPassword:(NSString*)newPassword;
+-(CloudResponse *) changePasswordOn:(NSString*)emailId AndCurrentPassword:(NSString*)currentPassword
           AndNewPassword:(NSString*)newPassword;
 
 @end

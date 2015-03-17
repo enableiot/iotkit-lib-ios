@@ -26,8 +26,9 @@
 
 @interface AuthorizationManagement : DefaultConfiguration
 
--(BOOL) getNewAuthorizationTokenWithUsername:(NSString*)username andPassword:(NSString*)password;
--(BOOL) getAuthorizationTokenInfo;
--(BOOL) validateAuthorizationToken;
+-(CloudResponse *) getNewAuthorizationTokenWithUsername:(NSString*)username andPassword:(NSString*)password;
+-(CloudResponse *) getAuthorizationTokenInfo;
+-(CloudResponse *) validateAuthorizationToken;
 
 @end
+ 

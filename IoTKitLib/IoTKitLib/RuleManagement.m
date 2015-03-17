@@ -324,7 +324,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL)getListOfRules{
+-(CloudResponse *)getListOfRules{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getListOfRules urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:GETLISTOFRULES
@@ -344,7 +344,7 @@
  *
  * PARAMETERS : ruleId
  **************************************************************************************************************************/
--(BOOL)getInformationOnRule:(NSString*)ruleId{
+-(CloudResponse *)getInformationOnRule:(NSString*)ruleId{
     if(!ruleId){
         NSLog(@"%@:Rule Id cannot be null",TAG);
         return false;
@@ -368,7 +368,7 @@
  *
  * PARAMETERS : ruleId
  **************************************************************************************************************************/
--(BOOL)deleteADraftRule:(NSString*)ruleId{
+-(CloudResponse *)deleteADraftRule:(NSString*)ruleId{
     if(!ruleId){
         NSLog(@"%@:Rule Id cannot be null",TAG);
         return false;
@@ -393,7 +393,7 @@
  * PARAMETERS : 1)ruleId
                 2)status
  **************************************************************************************************************************/
--(BOOL)updateStatusOfRule:(NSString*)ruleId WithStatus:(NSString*)status{
+-(CloudResponse *)updateStatusOfRule:(NSString*)ruleId WithStatus:(NSString*)status{
     if(!ruleId || !status){
         NSLog(@"%@:Rule Id or status cannot be null",TAG);
         return false;
@@ -418,7 +418,7 @@
  *
  * PARAMETERS : ruleName
  **************************************************************************************************************************/
--(BOOL)createRuleAsDraftUsing:(NSString*)ruleName{
+-(CloudResponse *)createRuleAsDraftUsing:(NSString*)ruleName{
     if(!ruleName){
         NSLog(@"%@:Rule name cannot be null",TAG);
         return false;
@@ -443,7 +443,7 @@
  *
  * PARAMETERS : create rule object
  **************************************************************************************************************************/
--(BOOL)createRule:(Rule*)ruleObj{
+-(CloudResponse *)createRule:(Rule*)ruleObj{
     if(!ruleObj){
         NSLog(@"%@:create rule object cannot null",TAG);
         return false;
@@ -470,7 +470,7 @@
  * PARAMETERS : 1)updateRule object
                 2)ruleId
  **************************************************************************************************************************/
--(BOOL)updateARule:(Rule *)updateRuleObj OnRule:(NSString *)ruleId{
+-(CloudResponse *)updateARule:(Rule *)updateRuleObj OnRule:(NSString *)ruleId{
     if(!updateRuleObj || !ruleId){
         NSLog(@"%@:create rule object or rule Id cannot null",TAG);
         return false;

@@ -41,7 +41,7 @@
  * PARAMETERS : 1)userName
                 2)password
  **************************************************************************************************************************/
--(BOOL) getNewAuthorizationTokenWithUsername:(NSString*)username andPassword:(NSString*)password{
+-(CloudResponse *) getNewAuthorizationTokenWithUsername:(NSString*)username andPassword:(NSString*)password{
     if(!username || !password){
         NSLog(@"%@:username or password cannot be nil",TAG);
         return false;
@@ -67,7 +67,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL) getAuthorizationTokenInfo{
+-(CloudResponse *) getAuthorizationTokenInfo{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.authTokenInfo urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:GETAUTHTOKENINFO
@@ -87,7 +87,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL) validateAuthorizationToken{
+-(CloudResponse *) validateAuthorizationToken{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.authTokenInfo urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:VALIDATEAUTHTOKEN

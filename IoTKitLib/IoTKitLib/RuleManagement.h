@@ -26,12 +26,12 @@
 
 @interface RuleManagement : DefaultConfiguration
 
--(BOOL)getListOfRules;
--(BOOL)getInformationOnRule:(NSString*)ruleId;
--(BOOL)deleteADraftRule:(NSString*)ruleId;
--(BOOL)updateStatusOfRule:(NSString*)ruleId WithStatus:(NSString*)status;
--(BOOL)createRuleAsDraftUsing:(NSString*)ruleName;
--(BOOL)createRule:(Rule*)RuleObj;
--(BOOL)updateARule:(Rule*)updateRuleObj OnRule:(NSString*)ruleId;
+-(CloudResponse *)getListOfRules;
+-(CloudResponse *)getInformationOnRule:(NSString*)ruleId;
+-(CloudResponse *)deleteADraftRule:(NSString*)ruleId;
+-(CloudResponse *)updateStatusOfRule:(NSString*)ruleId WithStatus:(NSString*)status;
+-(CloudResponse *)createRuleAsDraftUsing:(NSString*)ruleName;
+-(CloudResponse *)createRule:(Rule*)RuleObj;
+-(CloudResponse *)updateARule:(Rule*)updateRuleObj OnRule:(NSString*)ruleId;
 
 @end

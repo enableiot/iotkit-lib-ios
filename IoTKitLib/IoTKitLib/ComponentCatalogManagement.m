@@ -180,7 +180,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL)listAllComponentTypesCatalog{
+-(CloudResponse *)listAllComponentTypesCatalog{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllComponentTypesCatalog urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:LISTALLCOMPONENTTYPESCATALOG
@@ -200,7 +200,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL)listAllDetailsOfComponentTypesCatalog{
+-(CloudResponse *)listAllDetailsOfComponentTypesCatalog{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllComponentTypesCatalogDetailed urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:LISTALLCOMPONENTTYPESCATALOGDETAILED
@@ -220,7 +220,7 @@
  *
  * PARAMETERS : componentId
  **************************************************************************************************************************/
--(BOOL)listComponentTypeDetails:(NSString *)componentId{
+-(CloudResponse *)listComponentTypeDetails:(NSString *)componentId{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.componentTypeCatalogDetails urlSlugValueList:[NSDictionary dictionaryWithObject:componentId forKey:COMPONENTCATALOGID]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:COMPONENTTYPECATALOGDETAILS
@@ -240,7 +240,7 @@
  *
  * PARAMETERS : ComponentCatalog object
  **************************************************************************************************************************/
--(BOOL)createCustomComponent:(ComponentCatalog *)createComponentCatalog{
+-(CloudResponse *)createCustomComponent:(ComponentCatalog *)createComponentCatalog{
     if(!createComponentCatalog){
         NSLog(@"%@:ComponentCatalog need to be initialized & configured to create component",TAG);
         return false;
@@ -274,7 +274,7 @@
  * PARAMETERS : 1)ComponentCatalog object
                 2)componentId
  **************************************************************************************************************************/
--(BOOL)updateAComponent:(ComponentCatalog *)updateComponentCatalog
+-(CloudResponse *)updateAComponent:(ComponentCatalog *)updateComponentCatalog
             OnComponent:(NSString *)componentId{
     if(!updateComponentCatalog){
         NSLog(@"%@:ComponentCatalog need to be initialized & configured to update component",TAG);

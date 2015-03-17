@@ -113,7 +113,7 @@
                 6)attributes
  
 **************************************************************************************************************************/
--(BOOL) submitDataOn:(NSString*) componentName AndValue:(NSString*) componentValue
+-(CloudResponse *) submitDataOn:(NSString*) componentName AndValue:(NSString*) componentValue
          AndLatitide:(double) latitude AndLongitude:(double) longitude AndHeight:(double) height
        AndAttributes:(NSDictionary*)attributes{
     NSString *componentId = [self validateRequestBodyParametersAndGetcomponentIdOn:componentName AndValue:componentValue];
@@ -144,7 +144,7 @@
  *
  * PARAMETERS : retrieve object data
  **************************************************************************************************************************/
--(BOOL)retrieveDataOn:(ConfigureRetrieveData *)objRetrieveData{
+-(CloudResponse *)retrieveDataOn:(ConfigureRetrieveData *)objRetrieveData{
     if(![self validateRetrieveDataValues:objRetrieveData]){
         return false;
     }

@@ -40,7 +40,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL)getListOfAlerts{
+-(CloudResponse *)getListOfAlerts{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getListOfAlerts urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:GETLISTOFALERTS
@@ -60,7 +60,7 @@
  *
  * PARAMETERS : alertId
  **************************************************************************************************************************/
--(BOOL)getInfoOnAlert:(NSString *)alertId{
+-(CloudResponse *)getInfoOnAlert:(NSString *)alertId{
     if(!alertId){
         NSLog(@"%@:Alert ID cannot be null",TAG);
         return false;
@@ -85,7 +85,7 @@
  *
  * PARAMETERS : alertId
  **************************************************************************************************************************/
--(BOOL)resetAlert:(NSString *)alertId{
+-(CloudResponse *)resetAlert:(NSString *)alertId{
     if(!alertId){
         NSLog(@"%@:Alert ID cannot be null",TAG);
         return false;
@@ -110,7 +110,7 @@
  * PARAMETERS : 1)alertId
                 2)status
  **************************************************************************************************************************/
--(BOOL)updateAlertStatus:(NSString *)alertId WithStatus:(NSString *)status{
+-(CloudResponse *)updateAlertStatus:(NSString *)alertId WithStatus:(NSString *)status{
     if(!alertId || !status){
         NSLog(@"%@:Alert ID or status cannot be null",TAG);
         return false;
@@ -137,7 +137,7 @@
                 3)timeStamp
                 4)comment
  **************************************************************************************************************************/
--(BOOL)addCommentsToTheAlert:(NSString *)alertId OnUser:(NSString *)user AtTime:(long)timeStamp
+-(CloudResponse *)addCommentsToTheAlert:(NSString *)alertId OnUser:(NSString *)user AtTime:(long)timeStamp
                  WithComment:(NSString *)comment{
     if(!alertId || !user || !comment){
         NSLog(@"%@:Alert ID or user or comment cannot be null",TAG);

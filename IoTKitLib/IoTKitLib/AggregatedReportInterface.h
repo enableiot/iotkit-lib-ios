@@ -27,6 +27,6 @@
 -(void)addComponentId:(NSString*) componentId;
 -(void)addSortInfo:(NSString*) name AndValue:(NSString*)value;
 -(void)addFilter:(AttributeFilter*) attributeFilter;
--(BOOL)request;
+-(CloudResponse *)request;
 
 @end

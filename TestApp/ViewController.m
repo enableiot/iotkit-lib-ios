@@ -71,12 +71,12 @@
     self.responseTextView.text = @"";
     
     HttpResponseDelegatee *obj = [HttpResponseDelegatee sharedInstance];
-    obj.cloudResponse = ^(NSInteger responseCode, NSString* responseContent)
+    obj.readResponse = ^(CloudResponse* cloudResponse)
     {
-        NSLog(@"ViewController:responseCode:%ld,responseContent:%@",(long)responseCode,responseContent);
+        NSLog(@"ViewController:responseCode:%ld,responseContent:%@",(long)cloudResponse.responseCode,cloudResponse.responseString);
         dispatch_async(dispatch_get_main_queue(), ^{//Executing on UI thread
-            self.responseCodeTextField.text = [NSString stringWithFormat:@"%ld",(long)responseCode];
-            self.responseTextView.text = responseContent;
+            self.responseCodeTextField.text = [NSString stringWithFormat:@"%ld",(long)cloudResponse.responseCode];
+            self.responseTextView.text = cloudResponse.responseString;
         });
         CFRunLoopStop(CFRunLoopGetCurrent());//stopping background thread
     };

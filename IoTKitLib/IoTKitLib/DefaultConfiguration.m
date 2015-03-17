@@ -83,15 +83,10 @@
  *
  * PARAMETERS : httpOperation Object
  **************************************************************************************************************************/
--(BOOL)initiateHttpOperation:(HttpRequestOperation*)httpOperation{
+-(CloudResponse *)initiateHttpOperation:(HttpRequestOperation*)httpOperation{
     [httpOperation setHttpDelegate:(id)self.objHttpResponseDelegatee];
 
-    if([httpOperation initiateAsyncRequest]){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return [httpOperation initiateAsyncRequest];
 }
 
 /***************************************************************************************************************************

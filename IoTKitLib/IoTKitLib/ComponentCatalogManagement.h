@@ -26,11 +26,11 @@
 
 @interface ComponentCatalogManagement : DefaultConfiguration
 
--(BOOL)listAllComponentTypesCatalog;
--(BOOL)listAllDetailsOfComponentTypesCatalog;
--(BOOL)listComponentTypeDetails:(NSString*)componentId;
--(BOOL)createCustomComponent:(ComponentCatalog*) createComponentCatalog;
--(BOOL)updateAComponent:(ComponentCatalog*) createComponentCatalog OnComponent:(NSString*)componentId;
+-(CloudResponse *)listAllComponentTypesCatalog;
+-(CloudResponse *)listAllDetailsOfComponentTypesCatalog;
+-(CloudResponse *)listComponentTypeDetails:(NSString*)componentId;
+-(CloudResponse *)createCustomComponent:(ComponentCatalog*) createComponentCatalog;
+-(CloudResponse *)updateAComponent:(ComponentCatalog*) createComponentCatalog OnComponent:(NSString*)componentId;
 
 
 @end

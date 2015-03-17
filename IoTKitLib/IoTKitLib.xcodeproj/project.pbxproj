@@ -78,6 +78,7 @@
 		F5ED8CD21AA6660F0029F272 /* Rule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rule.h; sourceTree = "<group>"; };
 		F5ED8CD31AA6660F0029F272 /* RuleActions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleActions.h; sourceTree = "<group>"; };
 		F5ED8CD41AA6660F0029F272 /* RuleConditionValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleConditionValues.h; sourceTree = "<group>"; };
+		F5FCE05A1AB8B7A10081C05C /* CloudResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudResponse.h; sourceTree = "<group>"; };
 		FCEBA86C1A440D9400F040DB /* libIoTKitLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIoTKitLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEBA8DC1A440E6800F040DB /* HttpRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequestOperation.h; sourceTree = "<group>"; };
 		FCEBA8DD1A440E6800F040DB /* HttpRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequestOperation.m; sourceTree = "<group>"; };
@@ -197,6 +198,7 @@
 				FCEBA8DC1A440E6800F040DB /* HttpRequestOperation.h */,
 				FCEBA8DD1A440E6800F040DB /* HttpRequestOperation.m */,
 				FCEBA8DE1A440E6800F040DB /* HttpResponseDelegateHandler.h */,
+				F5FCE05A1AB8B7A10081C05C /* CloudResponse.h */,
 			);
 			path = http;
 			sourceTree = "<group>";

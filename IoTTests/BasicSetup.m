@@ -110,11 +110,11 @@
 -(void)configureResponseDelegateWithExpectedResponseCode:(NSInteger)expectedResponseCode{
     __block BasicSetup *blockTest = self;
     __block HttpResponseDelegatee *blockResponseDelegate = _responseDelegate;
-    blockResponseDelegate.cloudResponse = ^(NSInteger responseCode, NSString* responseContent)
+    blockResponseDelegate.readResponse = ^(CloudResponse *cloudResponse)
     {
         _expectedResponseCode = expectedResponseCode;
-        _serverResponseCode = responseCode;
-        _serverResponseContent = responseContent;
+        _serverResponseCode = cloudResponse.responseCode;
+        _serverResponseContent = cloudResponse.responseString;
         [blockTest notifyServerResponse];
     };
 }

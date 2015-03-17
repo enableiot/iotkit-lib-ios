@@ -24,10 +24,11 @@
 #ifndef IoT_HttpResponseDelegateHandler_h
 #define IoT_HttpResponseDelegateHandler_h
 #import <Foundation/Foundation.h>
+#import "CloudResponse.h"
 
 @protocol HttpResponseDelegateHandler <NSObject>
 
--(void)cloudResponseOnOperation:(NSInteger)operationName WithCode:(NSInteger)responseCode response:(NSString*)responseContent;
+-(void)cloudResponseOnOperation:(NSInteger)operationName WithCloudResponse:(CloudResponse *)cloudResponse;
 
 @end
 

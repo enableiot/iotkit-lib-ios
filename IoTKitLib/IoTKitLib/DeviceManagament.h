@@ -27,17 +27,17 @@
 
 @interface DeviceManagament : DefaultConfiguration
 
--(BOOL) getDeviceList;
--(BOOL) createNewDevice:(Device*) deviceCreateObj;
--(BOOL) updateADevice:(Device*)deviceUpdationObj;
--(BOOL) getMyDeviceInfo;
--(BOOL) getInfoOnDevice:(NSString*)deviceId;
--(BOOL) getAllTags;
--(BOOL) getAllAttributes;
--(BOOL) activateADevice:(NSString*)activationCode;
--(BOOL) addComponentToDevice:(NSString*)componentName WithType:(NSString*)componentType;
--(BOOL) deleteAComponent:(NSString*)componentName;
--(BOOL) deleteADevice:(NSString*)deviceId;
+-(CloudResponse *) getDeviceList;
+-(CloudResponse *) createNewDevice:(Device*) deviceCreateObj;
+-(CloudResponse *) updateADevice:(Device*)deviceUpdationObj;
+-(CloudResponse *) getMyDeviceInfo;
+-(CloudResponse *) getInfoOnDevice:(NSString*)deviceId;
+-(CloudResponse *) getAllTags;
+-(CloudResponse *) getAllAttributes;
+-(CloudResponse *) activateADevice:(NSString*)activationCode;
+-(CloudResponse *) addComponentToDevice:(NSString*)componentName WithType:(NSString*)componentType;
+-(CloudResponse *) deleteAComponent:(NSString*)componentName;
+-(CloudResponse *) deleteADevice:(NSString*)deviceId;
 
 
 @end

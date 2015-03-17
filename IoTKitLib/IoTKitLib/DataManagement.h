@@ -27,10 +27,10 @@
 
 @interface DataManagement : DefaultConfiguration
 
--(BOOL) submitDataOn:(NSString*) componentName AndValue:(NSString*) componentValue
+-(CloudResponse *) submitDataOn:(NSString*) componentName AndValue:(NSString*) componentValue
          AndLatitide:(double) latitude AndLongitude:(double) longitude AndHeight:(double) height
        AndAttributes:(NSDictionary*)attributes;
 
--(BOOL) retrieveDataOn:(ConfigureRetrieveData*)objRetrieveData;
+-(CloudResponse *) retrieveDataOn:(ConfigureRetrieveData*)objRetrieveData;
 
 @end

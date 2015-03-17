@@ -42,7 +42,7 @@
  * PARAMETERS : 1)mailId
                 2)password
  **************************************************************************************************************************/
--(BOOL) createNewUserWith:(NSString*)emailId AndPassword:(NSString*)password{
+-(CloudResponse *) createNewUserWith:(NSString*)emailId AndPassword:(NSString*)password{
     NSData *data = [self validateAndCreateHttpBodyForNewUser:emailId AndPassword:password];
     if(!data){
         return false;
@@ -65,7 +65,7 @@
  * RETURNS: true/false
  *
  * PARAMETERS : userId **************************************************************************************************************************/
--(BOOL) deleteUser:(NSString*)userId{
+-(CloudResponse *) deleteUser:(NSString*)userId{
     NSString *tempUserId = [self validateAndGetUserId:userId];
     if(!tempUserId){
         NSLog(@"%@:userID empty and cannot find from user defaults",TAG);
@@ -89,7 +89,7 @@
  * RETURNS: true/false
  *
  * PARAMETERS : userId **************************************************************************************************************************/
--(BOOL) getUserInfo:(NSString*)userId{
+-(CloudResponse *) getUserInfo:(NSString*)userId{
     NSString *tempUserId = [self validateAndGetUserId:userId];
     if(!tempUserId){
         NSLog(@"%@:userID empty and cannot find from user defaults",TAG);
@@ -115,7 +115,7 @@
  * PARAMETERS : 1)userId
                 2)listOfUserAttributes
  **************************************************************************************************************************/
--(BOOL) updateUserAttributesOn:(NSString*) userId AndListOfAttributes:(NSDictionary*)listOfUserAttributes{
+-(CloudResponse *) updateUserAttributesOn:(NSString*) userId AndListOfAttributes:(NSDictionary*)listOfUserAttributes{
     NSString *tempUserId = [self validateAndGetUserId:userId];
     if(!tempUserId){
         NSLog(@"%@:userID empty and cannot find from user defaults",TAG);
@@ -146,7 +146,7 @@
  * PARAMETERS : 1)userId
                 2)isAccepted(true/false)
  **************************************************************************************************************************/
--(BOOL) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted{
+-(CloudResponse *) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted{
     NSString *tempUserId = [self validateAndGetUserId:userId];
     if(!tempUserId){
         NSLog(@"%@:userID empty and cannot find from user defaults",TAG);
@@ -171,7 +171,7 @@
  * RETURNS: true/false
  *
  * PARAMETERS : mail Id **************************************************************************************************************************/
--(BOOL) requestChangePasswordOn:(NSString*)emailId{
+-(CloudResponse *) requestChangePasswordOn:(NSString*)emailId{
     if(!emailId){
         NSLog(@"%@:email Id cannot be empty",TAG);
         return false;
@@ -197,7 +197,7 @@
  * PARAMETERS : 1)mailToken
                 2)newPassword
  **************************************************************************************************************************/
--(BOOL) updateForgotPassword:(NSString*)mailToken AndNewPassword:(NSString*)newPassword{
+-(CloudResponse *) updateForgotPassword:(NSString*)mailToken AndNewPassword:(NSString*)newPassword{
     if(!mailToken || !newPassword){
         NSLog(@"%@:neither token nor newPassword cannot be empty",TAG);
         return false;
@@ -225,7 +225,7 @@
                 2)currentPassword
                 3)newPassword
  **************************************************************************************************************************/
--(BOOL) changePasswordOn:(NSString*)emailId AndCurrentPassword:(NSString*)currentPassword
+-(CloudResponse *) changePasswordOn:(NSString*)emailId AndCurrentPassword:(NSString*)currentPassword
           AndNewPassword:(NSString*)newPassword{
     if(!emailId || !currentPassword || !newPassword){
         NSLog(@"%@:email or currentPassword or newPassword cannot be empty",TAG);

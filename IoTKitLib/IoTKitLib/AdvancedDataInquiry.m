@@ -301,7 +301,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL)request{
+-(CloudResponse *)request{
     NSData *data = [self createHttpBodyToEnquireData];
     NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"DATA:%@",myString);

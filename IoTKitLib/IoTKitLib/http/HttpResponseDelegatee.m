@@ -25,6 +25,7 @@
 #import "HttpResponseDelegatee.h"
 #import "HttpResponseMacros.h"
 #import "HttpUrlBuilder.h"
+#import "CloudResponse.h"
 
 @implementation HttpResponseDelegatee
 
@@ -72,50 +73,48 @@
  * RETURNS: nothing
  *
  * PARAMETERS : 1)operationName on which server responded
-                2)responseCode from server
-                3)responseContent from server
+                2)cloudResponse from server
  **************************************************************************************************************************/
--(void)cloudResponseOnOperation:(NSInteger)operationName WithCode:(NSInteger)responseCode
-                       response:(NSString*)responseContent{
-    NSLog(@"%@:operationName:%ld,responseCode:%ld,responseContent:%@",TAG,(long)operationName,(long)responseCode,responseContent);
+-(void)cloudResponseOnOperation:(NSInteger)operationName WithCloudResponse:(CloudResponse *)cloudResponse {
+    NSLog(@"%@:operationName:%ld,responseCode:%ld,responseContent:%@",TAG,(long)operationName,(long)cloudResponse.responseCode,cloudResponse.responseString);
     switch (operationName) {
         case NEWAUTHTOKEN:
-            [HttpUrlBuilder parseAndStoreAuthorizationToken:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreAuthorizationToken:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
             
         case GETAUTHTOKENINFO:
-            [HttpUrlBuilder parseAndStoreTokenRelatedInfo:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreTokenRelatedInfo:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
         case VALIDATEAUTHTOKEN:
             NSLog(@"%@:validated auth token!!",TAG);
             break;
         case CREATEANACCOUNT:
-            [HttpUrlBuilder parseAndStoreAccountDetails:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreAccountDetails:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
         case GETACCOUNTINFO:
             NSLog(@"%@:got account info response!!",TAG);
             break;
         case GETACTIVATIONCODE:
-            [HttpUrlBuilder parseAndStoreActivationCode:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreActivationCode:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
         case RENEWACTIVATIONCODE:
-            [HttpUrlBuilder parseAndStoreActivationCode:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreActivationCode:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
         case UPDATEACCOUNT:
-            [HttpUrlBuilder parseAndStoreAccountName:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreAccountName:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
         case ADDUSERTOACCOUNT:
             NSLog(@"%@:got add another user to account response!!",TAG);
             break;
         case DELETEACCOUNT:
             NSLog(@"%@:got delete an account response!!",TAG);
-            [HttpUrlBuilder deleteAccountInUserDefaults:responseCode];
+            [HttpUrlBuilder deleteAccountInUserDefaults:cloudResponse.responseCode];
             break;
         case LISTDEVICES:
             NSLog(@"%@:got list of devices response!!",TAG);
             break;
         case CREATEDEVICE:
-            [HttpUrlBuilder parseAndStoreDeviceId:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreDeviceId:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
         case GETMYDEVICEINFO:
             NSLog(@"%@:got my device info response!!",TAG);
@@ -133,16 +132,16 @@
             NSLog(@"%@:got  update device response!!",TAG);
             break;
         case ACTIVATEDEVICE:
-            [HttpUrlBuilder parseAndStoreDeviceToken:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreDeviceToken:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
         case ADDCOMPONENT:
-            [HttpUrlBuilder parseAndStoreComponentDetails:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreComponentDetails:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
         case DELETECOMPONENT:
-            [[HttpUrlBuilder sharedInstance] deleteComponentFromUserDefaults:responseCode];
+            [[HttpUrlBuilder sharedInstance] deleteComponentFromUserDefaults:cloudResponse.responseCode];
             break;
         case DELETEDEVICE:
-            [[HttpUrlBuilder sharedInstance] cleanUpDeviceFromDefaults:responseCode];
+            [[HttpUrlBuilder sharedInstance] cleanUpDeviceFromDefaults:cloudResponse.responseCode];
             NSLog(@"%@:got delete device response!!",TAG);
             break;
         case LISTALLCOMPONENTTYPESCATALOG:
@@ -167,7 +166,7 @@
             NSLog(@"%@:got retrieve data response!!",TAG);
             break;
         case CREATEUSER:
-            [HttpUrlBuilder parseAndStoreUserDetails:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreUserDetails:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
         case GETUSERINFO:
             NSLog(@"%@:got get user info response!!",TAG);
@@ -179,7 +178,7 @@
             NSLog(@"%@:got accept terms and conditions response!!",TAG);
             break;
         case DELETEUSER:
-            [HttpUrlBuilder parseAndResetDefaults:responseCode];
+            [HttpUrlBuilder parseAndResetDefaults:cloudResponse.responseCode];
             break;
         case REQUESTCHANGEPASSWORD:
             NSLog(@"%@:got request change password response!!",TAG);
@@ -203,16 +202,16 @@
             NSLog(@"%@:got delete invitation response!!",TAG);
             break;
         case CREATERULE:
-            [HttpUrlBuilder parseAndStoreRuleId:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreRuleId:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
         case DELETEDRAFTRULE:
-            [HttpUrlBuilder parseAndDeleteDraftRuleId:responseCode];
+            [HttpUrlBuilder parseAndDeleteDraftRuleId:cloudResponse.responseCode];
             break;
         case UPDATERULE:
             NSLog(@"%@:got update rule response!!",TAG);
             break;
         case CREATERULEASDRAFT:
-            [HttpUrlBuilder parseAndStoreDraftRuleId:responseCode content:responseContent];
+            [HttpUrlBuilder parseAndStoreDraftRuleId:cloudResponse.responseCode content:cloudResponse.responseString];
             break;
         case UPDATESTATUSOFRULE:
             NSLog(@"%@:got update rule status response!!",TAG);
@@ -253,8 +252,8 @@
     }
     NSLog(@"%@:user Default dictionary:%@",TAG,[[NSUserDefaults standardUserDefaults] objectForKey:IOTPREFERENCES]);
 
-    if (self.cloudResponse != nil)
-        self.cloudResponse(responseCode,responseContent);
+    if (self.readResponse != nil)
+        self.readResponse(cloudResponse);
     
 }
 

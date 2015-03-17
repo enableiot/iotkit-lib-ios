@@ -41,7 +41,7 @@
 -(void)setComponentRowLimit:(NSInteger)componentRowLimit;
 -(void)setCountOnly:(BOOL)countOnly;
 -(void)addSortInfo:(NSString*)name WithValue:(NSString*)value;
--(BOOL)request;
+-(CloudResponse *)request;
 
 
 @end
