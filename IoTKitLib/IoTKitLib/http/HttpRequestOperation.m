@@ -29,12 +29,14 @@
 #define CONTENTLENGTH @"Content-Length"
 #define AUTHORIZATION @"Authorization"
 
+
 @interface HttpRequestOperation()
 {
     NSString *responseString;
     NSInteger responseCode;
     
 }
+
 @property(nonatomic,retain) NSString* url;
 @property(nonatomic,retain) NSString *httpMethod;
 @property(nonatomic,retain) NSString *contentType;
@@ -81,8 +83,32 @@ AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
     }
     return self;
 }
+
+- (void)completeHandler:(NSURLResponse *)response onData:(NSData *)data AndError:(NSError *)error {
+    if ([data length] > 0 && error == nil) {
+        _responseData = [NSMutableData data];
+        [_responseData setData:data];
+        responseString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
+        [self.httpDelegate cloudResponseOnOperation:_operationName WithCode:responseCode response:responseString];
+    }
+    else if ([data length] == 0 && error == nil) {
+        _responseData = [NSMutableData data];
+        [_responseData setLength:0];
+        NSLog(@"%@:empty data from server",TAG);
+        responseString = @"empty data from server";
+        [self.httpDelegate cloudResponseOnOperation:_operationName WithCode:responseCode response:responseString];
+    }
+    else if (error != nil) {
+        responseCode = [error code];
+        responseString = [error localizedDescription];
+        NSLog(@"%@:ERROR:: %@", TAG,responseString);
+        NSLog(@"%@:ERROR code %ld",TAG,(long)responseCode);
+        [self.httpDelegate cloudResponseOnOperation:_operationName WithCode:responseCode response:responseString];
+    }
+}
+
 /***************************************************************************************************************************
- * FUNCTION NAME: initiateRequest
+ * FUNCTION NAME: initiateAsyncRequest
  *
  * DESCRIPTION:initiates Http Request to IoT server
  *
@@ -90,7 +116,7 @@ AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
-- (BOOL)initiateRequest {
+- (BOOL)initiateAsyncRequest {
     // Do the main work of the operation here.
     if(!_url || !_httpMethod || !_contentType || _operationName <= 0){
         NSLog(@"%@:url/http method/content type/operation name cannot be empty",TAG);
@@ -109,87 +135,54 @@ AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
     [requestUrl setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[_requestBody length]] forHTTPHeaderField : CONTENTLENGTH];
     [requestUrl setHTTPBody : _requestBody];
     
-    //initiate url connection
-    _urlConnection = [[NSURLConnection alloc] initWithRequest:requestUrl
-                                                     delegate:self startImmediately:YES];
-    if(!_urlConnection){
-        NSLog(@"%@:not able to create url connection",TAG);
+    [NSURLConnection sendAsynchronousRequest:requestUrl queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               [self completeHandler:response onData:data AndError:error];
+                           }];
+    
+    return true;
+}
+
+/***************************************************************************************************************************
+ * FUNCTION NAME: initiateSyncRequest
+ *
+ * DESCRIPTION:initiates Http Request to IoT server
+ *
+ * RETURNS:true/false
+ *
+ * PARAMETERS : nil
+ **************************************************************************************************************************/
+- (BOOL)initiateSyncRequest {
+    // Do the main work of the operation here.
+    if(!_url || !_httpMethod || !_contentType || _operationName <= 0){
+        NSLog(@"%@:url/http method/content type/operation name cannot be empty",TAG);
         return false;
     }
-    NSLog(@"%@:Url connection success:%@",TAG,_urlConnection);
-    return true;
-    
-}
-/***************************************************************************************************************************
- * FUNCTION NAME: didReceiveResponse
- *
- * DESCRIPTION:delegate method gets called when server responds
- *
- * RETURNS:nothing
- *
- * PARAMETERS : 1)connection object
-                2)response object
- **************************************************************************************************************************/
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    _responseData = [NSMutableData data];
-    [_responseData setLength:0];
-    responseCode = ((NSHTTPURLResponse*)response).statusCode;
-}
-/***************************************************************************************************************************
- * FUNCTION NAME: didReceiveData
- *
- * DESCRIPTION:delegate method gets called multiple times to collect data
- *
- * RETURNS:nothing
- *
- * PARAMETERS : 1)connection object
-                2)data object
- **************************************************************************************************************************/
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [_responseData appendData:data];
-}
-/***************************************************************************************************************************
- * FUNCTION NAME: didFailWithError
- *
- * DESCRIPTION:delegate method gets called when server/network error comes
- *
- * RETURNS:nothing
- *
- * PARAMETERS : 1)connection object
-                2)error object
- **************************************************************************************************************************/
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    responseCode = [error code];
-    responseString = [error localizedDescription];
-    NSLog(@"%@:ERROR:: %@", TAG,responseString);
-    NSLog(@"%@:ERROR code %ld",TAG,(long)responseCode);
-    [self.httpDelegate cloudResponseOnOperation:_operationName WithCode:responseCode response:responseString];
-}
-/***************************************************************************************************************************
- * FUNCTION NAME: connectionDidFinishLoading
- *
- * DESCRIPTION:delegate method gets called after collecting all data
- *
- * RETURNS:nothing
- *
- * PARAMETERS : 1)connection object
- **************************************************************************************************************************/
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if(_responseData && _responseData.length){
-        responseString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
+    NSMutableURLRequest *requestUrl = nil;
+    requestUrl = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_url]];
+    [requestUrl setHTTPMethod :_httpMethod];
+    [requestUrl setValue:_contentType forHTTPHeaderField:CONTENTTYPE];
+    //gets auth/device token based on existence
+    NSString *token = [self getHeaderToken];
+    if(token){
+        [requestUrl setValue:token forHTTPHeaderField:AUTHORIZATION];
     }
-    else{
-        NSLog(@"%@:empty data from server",TAG);
-        responseString = @"empty data from server";
+    
+    [requestUrl setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[_requestBody length]] forHTTPHeaderField : CONTENTLENGTH];
+    [requestUrl setHTTPBody : _requestBody];
+    
+    NSError *error = nil;
+    NSURLResponse *response = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:requestUrl returningResponse:&response error:&error];
+    if (error == nil) {
         
     }
-    [self.httpDelegate cloudResponseOnOperation:_operationName WithCode:responseCode response:responseString];
-    
+    else {
+        
+    }
+    return true;
 }
+
 /***************************************************************************************************************************
  * FUNCTION NAME: getHeaderToken
  *
@@ -213,7 +206,5 @@ AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
     }
     return token;
 }
-
-
 
 @end

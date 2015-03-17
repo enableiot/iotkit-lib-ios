@@ -252,12 +252,9 @@
             
     }
     NSLog(@"%@:user Default dictionary:%@",TAG,[[NSUserDefaults standardUserDefaults] objectForKey:IOTPREFERENCES]);
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        self.cloudResponse(responseCode,responseContent);
-//    });
-//    CFRunLoopStop(CFRunLoopGetCurrent());
-    //handling over the response using background thread
-    self.cloudResponse(responseCode,responseContent);
+
+    if (self.cloudResponse != nil)
+        self.cloudResponse(responseCode,responseContent);
     
 }
 

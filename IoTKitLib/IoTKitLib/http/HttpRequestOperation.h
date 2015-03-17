@@ -32,5 +32,7 @@
                             AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
                             AuthToken:(NSString*)authToken DeviceToken:(NSString*)deviceToken;
 - (id) init __attribute__((unavailable("Must create object using \"initWithUrl\" method")));
-- (BOOL)initiateRequest ;
+- (void)completeHandler:(NSURLResponse *)response onData:(NSData *)data AndError:(NSError *)error;
+- (BOOL)initiateAsyncRequest ;
+- (BOOL)initiateSyncRequest ;
 @end
