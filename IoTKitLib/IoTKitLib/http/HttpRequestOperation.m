@@ -88,12 +88,14 @@ AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
     if ([data length] > 0 && error == nil) {
         _responseData = [NSMutableData data];
         [_responseData setData:data];
+        responseCode = ((NSHTTPURLResponse*)response).statusCode;
         responseString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
         [self.httpDelegate cloudResponseOnOperation:_operationName WithCode:responseCode response:responseString];
     }
     else if ([data length] == 0 && error == nil) {
         _responseData = [NSMutableData data];
         [_responseData setLength:0];
+        responseCode = ((NSHTTPURLResponse*)response).statusCode;
         NSLog(@"%@:empty data from server",TAG);
         responseString = @"empty data from server";
         [self.httpDelegate cloudResponseOnOperation:_operationName WithCode:responseCode response:responseString];
