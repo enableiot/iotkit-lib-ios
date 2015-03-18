@@ -62,8 +62,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *)getInfoOnAlert:(NSString *)alertId{
     if(!alertId){
-        NSLog(@"%@:Alert ID cannot be null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Alert ID cannot be null",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getAlertInformation urlSlugValueList:[NSDictionary dictionaryWithObjectsAndKeys:alertId,ALERTID,nil]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -87,8 +86,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *)resetAlert:(NSString *)alertId{
     if(!alertId){
-        NSLog(@"%@:Alert ID cannot be null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Alert ID cannot be null",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.resetAlert urlSlugValueList:[NSDictionary dictionaryWithObjectsAndKeys:alertId,ALERTID,nil]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -112,8 +110,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *)updateAlertStatus:(NSString *)alertId WithStatus:(NSString *)status{
     if(!alertId || !status){
-        NSLog(@"%@:Alert ID or status cannot be null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Alert ID or status cannot be null",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.updateAlertStatus urlSlugValueList:[NSDictionary dictionaryWithObjectsAndKeys:alertId,ALERTID,status,STATUSNAME,nil]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -140,8 +137,7 @@
 -(CloudResponse *)addCommentsToTheAlert:(NSString *)alertId OnUser:(NSString *)user AtTime:(long)timeStamp
                  WithComment:(NSString *)comment{
     if(!alertId || !user || !comment){
-        NSLog(@"%@:Alert ID or user or comment cannot be null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Alert ID or user or comment cannot be null",TAG]];
     }
     NSData *data = [self createHttpBodyToAddCommentsToAlertOnUser:user AtTime:timeStamp WithComment:comment];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.addCommentToAlert urlSlugValueList:[NSDictionary dictionaryWithObjectsAndKeys:alertId,ALERTID,nil]];

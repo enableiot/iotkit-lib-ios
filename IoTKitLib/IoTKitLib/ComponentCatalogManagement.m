@@ -242,15 +242,15 @@
  **************************************************************************************************************************/
 -(CloudResponse *)createCustomComponent:(ComponentCatalog *)createComponentCatalog{
     if(!createComponentCatalog){
-        NSLog(@"%@:ComponentCatalog need to be initialized & configured to create component",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:ComponentCatalog need to be initialized & configured to create component",TAG]];
     }
-    if(![self validateActuatorCommand:createComponentCatalog]){
-        return false;
+    NSString *msg = [self validateActuatorCommand:createComponentCatalog];
+    if (!msg) {
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:msg];
     }
     NSData *data = [self createBodyForCreationOfCustomComponent:createComponentCatalog];
     if(!data){
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Bad body for createCustomComponent",TAG]];
     }
     
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.createCustomComponent urlSlugValueList:nil];
@@ -277,15 +277,15 @@
 -(CloudResponse *)updateAComponent:(ComponentCatalog *)updateComponentCatalog
             OnComponent:(NSString *)componentId{
     if(!updateComponentCatalog){
-        NSLog(@"%@:ComponentCatalog need to be initialized & configured to update component",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:ComponentCatalog need to be initialized & configured to update component",TAG]];
     }
-    if(![self validateActuatorCommand:updateComponentCatalog]){
-        return false;
+    NSString *msg = [self validateActuatorCommand:updateComponentCatalog];
+    if (!msg) {
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:msg];
     }
     NSData *data = [self createBodyForUpdationOfCustomComponent:updateComponentCatalog];
     if(!data){
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Bad body for updateAComponent",TAG]];
     }
     
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.updateComponent urlSlugValueList:[NSDictionary dictionaryWithObject:componentId forKey:COMPONENTCATALOGID]];
@@ -369,19 +369,17 @@
  *
  * PARAMETERS : ComponentCatalog object
  **************************************************************************************************************************/
--(BOOL) validateActuatorCommand:(ComponentCatalog*) ComponentCatalog {
+-(NSString *) validateActuatorCommand:(ComponentCatalog*) ComponentCatalog {
     if ([ComponentCatalog.componentType isEqualToString:ACTUATOR] &&
         ComponentCatalog.actuatorCommandParams == nil) {
-        NSLog(@"%@:Command Parameters are mandatory for component catalog type \"actuator\"",TAG);
-        return false;
+        return [NSString stringWithFormat:@"%@:Command Parameters are mandatory for component catalog type \"actuator\"",TAG];
     }
     if (![ComponentCatalog.componentType isEqualToString:ACTUATOR] &&
         ComponentCatalog.commandString != nil) {
-        NSLog(@"%@:Command Json(command string and params) not required  for catalog type \"%@\""
-              ,TAG,ComponentCatalog.componentType);
-        return false;
+        return [NSString stringWithFormat:@"%@:Command Json(command string and params) not required  for catalog type \"%@\""
+              ,TAG,ComponentCatalog.componentType];
     }
-    return true;
+    return nil;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addActuatorCommandParametersToHttpBody

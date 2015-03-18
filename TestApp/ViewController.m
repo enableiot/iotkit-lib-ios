@@ -78,14 +78,13 @@
             self.responseCodeTextField.text = [NSString stringWithFormat:@"%ld",(long)cloudResponse.responseCode];
             self.responseTextView.text = cloudResponse.responseString;
         });
-        CFRunLoopStop(CFRunLoopGetCurrent());//stopping background thread
     };
     
     //Authorization
     
     AuthorizationManagement *auth = [[AuthorizationManagement alloc] init];
     [auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password2529"];
-    
+    NSLog(@"ViewController: done sending request for authorization token");
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: getCurrentTimeInMillis

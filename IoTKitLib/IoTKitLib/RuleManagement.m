@@ -178,7 +178,8 @@
  *
  * RETURNS: nothing
  *
- * PARAMETERS : populationId **************************************************************************************************************************/
+ * PARAMETERS : populationId 
+ **************************************************************************************************************************/
 -(void)addRulePopulationId:(NSString*)populationId{
     if(!_populationIds){
         _populationIds = [NSMutableArray array];
@@ -192,7 +193,8 @@
  *
  * RETURNS: nothing
  *
- * PARAMETERS : rule condition values object **************************************************************************************************************************/
+ * PARAMETERS : rule condition values object 
+ **************************************************************************************************************************/
 -(void)addRuleConditionValues:(RuleConditionValues*)RuleConditionValuesObj{
     if(!_ruleConditionValuesList){
         _ruleConditionValuesList = [NSMutableArray array];
@@ -232,7 +234,8 @@
  *
  * RETURNS: nothing
  *
- * PARAMETERS : target **************************************************************************************************************************/
+ * PARAMETERS : target 
+ **************************************************************************************************************************/
 -(void)addRuleActionTarget:(NSString*)target{
     if(!_targetList){
         _targetList = [NSMutableArray array];
@@ -289,7 +292,8 @@
  *
  * RETURNS: nothing
  *
- * PARAMETERS : component object **************************************************************************************************************************/
+ * PARAMETERS : component object 
+ **************************************************************************************************************************/
 -(void)addConditionValues:(NSString*)value{
     if(!_values){
         _values = [NSMutableArray array];
@@ -346,8 +350,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *)getInformationOnRule:(NSString*)ruleId{
     if(!ruleId){
-        NSLog(@"%@:Rule Id cannot be null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Rule Id cannot be null",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getInfoOfRule urlSlugValueList:[NSDictionary dictionaryWithObject:ruleId forKey:RULEID]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -370,8 +373,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *)deleteADraftRule:(NSString*)ruleId{
     if(!ruleId){
-        NSLog(@"%@:Rule Id cannot be null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Rule Id cannot be null",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.deleteDraftRule urlSlugValueList:[NSDictionary dictionaryWithObject:ruleId forKey:RULEID]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -395,8 +397,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *)updateStatusOfRule:(NSString*)ruleId WithStatus:(NSString*)status{
     if(!ruleId || !status){
-        NSLog(@"%@:Rule Id or status cannot be null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Rule Id or status cannot be null",TAG]];
     }
     NSData *data = [self createHttpBodyToUpdateRuleStatus:status];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.updateStatusOfRule urlSlugValueList:[NSDictionary dictionaryWithObject:ruleId forKey:RULEID]];
@@ -420,8 +421,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *)createRuleAsDraftUsing:(NSString*)ruleName{
     if(!ruleName){
-        NSLog(@"%@:Rule name cannot be null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Rule name cannot be null",TAG]];
     }
     NSData *data = [self createHttpBodyToCreateRuleAsDraft:ruleName];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.createRuleAsDraft urlSlugValueList:nil];
@@ -445,8 +445,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *)createRule:(Rule*)ruleObj{
     if(!ruleObj){
-        NSLog(@"%@:create rule object cannot null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:create rule object cannot null",TAG]];
     }
     NSData *data = [self createHttpBodyToCreateRule:ruleObj];
     NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -472,8 +471,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *)updateARule:(Rule *)updateRuleObj OnRule:(NSString *)ruleId{
     if(!updateRuleObj || !ruleId){
-        NSLog(@"%@:create rule object or rule Id cannot null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:create rule object or rule Id cannot null",TAG]];
     }
     NSData *data = [self createHttpBodyToCreateRule:updateRuleObj];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.updateRule urlSlugValueList:[NSDictionary dictionaryWithObject:ruleId forKey:RULEID]];

@@ -35,7 +35,8 @@
  *
  * RETURNS: true/false
  *
- * PARAMETERS : nil **************************************************************************************************************************/
+ * PARAMETERS : nil 
+ **************************************************************************************************************************/
 -(CloudResponse *) getListOfInvitation{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getInvitationList urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -54,11 +55,11 @@
  *
  * RETURNS: true/false
  *
- * PARAMETERS : emailId **************************************************************************************************************************/
+ * PARAMETERS : emailId 
+ **************************************************************************************************************************/
 -(CloudResponse *) getInvitationListSendToSpecificUser:(NSString*)emailId{
     if(!emailId){
-        NSLog(@"%@:email Id cannot be null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:email Id cannot be null",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getInvitationListSendToSpecificUser urlSlugValueList:[NSDictionary dictionaryWithObject:emailId
                                                                                          forKey:EMAIL]];
@@ -78,11 +79,11 @@
  *
  * RETURNS: true/false
  *
- * PARAMETERS :mailId **************************************************************************************************************************/
+ * PARAMETERS :mailId 
+ **************************************************************************************************************************/
 -(CloudResponse *) createInvitationTo:(NSString *)emailId{
     if(!emailId){
-        NSLog(@"%@:email Id cannot be null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:email Id cannot be null",TAG]];
     }
     NSData *data = [self createHttpBodyToCreateInvitation:emailId];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.createInvitation urlSlugValueList:nil];
@@ -102,11 +103,11 @@
  *
  * RETURNS: true/false
  *
- * PARAMETERS : mail Id **************************************************************************************************************************/
+ * PARAMETERS : mail Id 
+ **************************************************************************************************************************/
 -(CloudResponse *) deleteInvitationsTo:(NSString*)emailId{
     if(!emailId){
-        NSLog(@"%@:email Id cannot be null",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:email Id cannot be null",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.deleteInvitations urlSlugValueList:[NSDictionary dictionaryWithObject:emailId
                                                                                                                                                                              forKey:EMAIL]];

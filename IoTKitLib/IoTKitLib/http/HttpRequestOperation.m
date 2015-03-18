@@ -56,6 +56,7 @@
     CloudResponse *cloudResponse = [[CloudResponse alloc] init];
     cloudResponse.status = status;
     cloudResponse.responseString = message;
+    NSLog(@"status:%d message:%@", status, message);
     return cloudResponse;
 }
 

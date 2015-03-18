@@ -43,8 +43,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *) getNewAuthorizationTokenWithUsername:(NSString*)username andPassword:(NSString*)password{
     if(!username || !password){
-        NSLog(@"%@:username or password cannot be nil",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:username or password cannot be nil",TAG]];
     }
     //creating http body
     NSData *data = [self createBodyForNewAuthTokenRequestWithUsername:username andPassword:password];

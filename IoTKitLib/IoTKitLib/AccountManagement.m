@@ -57,8 +57,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *) createAnAccount:(NSString*)accountName{
     if(!accountName){
-        NSLog(@"%@:Account Name cannot be empty",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Account Name cannot be empty",TAG]];
     }
     NSData *data = [self createBodyForAccountCreation:accountName];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.createAnAccount urlSlugValueList:nil];
@@ -79,7 +78,8 @@
  *
  * RETURNS: true/false
  *
- * PARAMETERS : nil **************************************************************************************************************************/
+ * PARAMETERS : nil 
+ **************************************************************************************************************************/
 -(CloudResponse *) getAccountInformation {
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getAccountInfo urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -145,8 +145,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *) updateAnAccount:(NSString*)accountNameToUpdate andOptionalAttributesWithSimpleKeyValues:(NSDictionary*)attributes{
     if(!accountNameToUpdate){
-        NSLog(@"%@:Account Name mandatory,supply existing or new one",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Account Name mandatory,supply existing or new one",TAG]];
     }
     NSData *data = [self createBodyForAccountUpdation:accountNameToUpdate andOptionalAttributesWithSimpleKeyValues:attributes ];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.updateAccount urlSlugValueList:nil];
@@ -173,8 +172,7 @@
 -(CloudResponse *) addAnotherUserToAccount:(NSString*)accountId UserGettingInvited:(NSString*)inviteeUserId
                           Admin:(BOOL)isAdmin{
     if(!accountId || !inviteeUserId){
-        NSLog(@"%@:AccountId and InviteeUserId mandatory",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:AccountId and InviteeUserId mandatory",TAG]];
     }
     NSData *data = [self createBodyForAddingUserToAccount:accountId UserGettingInvited:inviteeUserId
                                                     Admin:isAdmin ];
