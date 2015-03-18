@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ym5-2M-wUY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ym5-2M-wUY">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -86,8 +86,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRP-zI-jSR">
-                                <rect key="frame" x="125" y="55" width="70" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="BRP-zI-jSR">
+                                <rect key="frame" x="29" y="55" width="168" height="33"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="ATK-Md-mVT"/>
@@ -95,7 +95,8 @@
                                     <constraint firstAttribute="width" constant="70" id="SoJ-lc-HDT"/>
                                     <constraint firstAttribute="width" constant="70" id="ZVR-x7-u14"/>
                                 </constraints>
-                                <state key="normal" title="Pull/Push">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Async Pull/Push">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -117,13 +118,48 @@
                                     <action selector="connectToIoTServerButtonClicked:" destination="ym5-2M-wUY" eventType="touchUpInside" id="ixa-Kr-AKV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="QJw-Ur-52G">
+                                <rect key="frame" x="231" y="55" width="168" height="33"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="0nm-bp-hNL"/>
+                                    <constraint firstAttribute="height" constant="33" id="0rv-AU-Fh6"/>
+                                    <constraint firstAttribute="width" constant="70" id="CnU-bf-6UK"/>
+                                    <constraint firstAttribute="height" constant="33" id="ZyU-F8-0s8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Sync Pull/Push">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ZyU-F8-0s8"/>
+                                        <exclude reference="CnU-bf-6UK"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="0rv-AU-Fh6"/>
+                                        <include reference="ZyU-F8-0s8"/>
+                                        <include reference="CnU-bf-6UK"/>
+                                        <exclude reference="0nm-bp-hNL"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="connectToIoTServerButtonClicked:" destination="ym5-2M-wUY" eventType="touchUpInside" id="StE-SJ-TXk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yXX-zi-NRI" firstAttribute="top" secondItem="Aft-Gx-Gk8" secondAttribute="bottom" constant="96" id="1cI-sB-2Dj"/>
+                            <constraint firstItem="QJw-Ur-52G" firstAttribute="leading" secondItem="BRP-zI-jSR" secondAttribute="trailing" constant="34" id="B1k-oL-g2D"/>
+                            <constraint firstItem="QJw-Ur-52G" firstAttribute="top" secondItem="tvw-IF-X6F" secondAttribute="bottom" constant="35" id="G5x-ZY-HtM"/>
                             <constraint firstItem="yXX-zi-NRI" firstAttribute="top" secondItem="yt3-0t-WwI" secondAttribute="bottom" constant="28" id="JmG-9o-JND"/>
                             <constraint firstItem="Aft-Gx-Gk8" firstAttribute="leading" secondItem="roL-4H-Wjs" secondAttribute="trailing" constant="8" symbolic="YES" id="Kfb-vz-cXO"/>
                             <constraint firstItem="roL-4H-Wjs" firstAttribute="leading" secondItem="pUu-M2-xWC" secondAttribute="leadingMargin" constant="13" id="Mxw-Te-bCO"/>
+                            <constraint firstItem="BRP-zI-jSR" firstAttribute="bottom" secondItem="QJw-Ur-52G" secondAttribute="bottom" id="NCt-CG-jM1"/>
                             <constraint firstItem="yXX-zi-NRI" firstAttribute="leading" secondItem="pUu-M2-xWC" secondAttribute="leadingMargin" constant="29" id="OKT-dA-5OG"/>
                             <constraint firstItem="yXX-zi-NRI" firstAttribute="leading" secondItem="pUu-M2-xWC" secondAttribute="leadingMargin" constant="29" id="OoH-ao-HI3"/>
                             <constraint firstItem="xje-X3-UXy" firstAttribute="top" secondItem="yXX-zi-NRI" secondAttribute="bottom" constant="40" id="Q8I-dr-RuG"/>

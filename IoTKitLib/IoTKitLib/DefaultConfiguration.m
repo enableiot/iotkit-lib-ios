@@ -86,7 +86,11 @@
 -(CloudResponse *)initiateHttpOperation:(HttpRequestOperation*)httpOperation{
     [httpOperation setHttpDelegate:(id)self.objHttpResponseDelegatee];
 
-    return [httpOperation initiateAsyncRequest];
+    if (self.objHttpResponseDelegatee.readResponse) {
+        return [httpOperation initiateAsyncRequest];
+    } else {
+        return [httpOperation initiateSyncRequest];
+    }
 }
 
 /***************************************************************************************************************************

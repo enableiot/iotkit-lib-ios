@@ -56,6 +56,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+- (IBAction)connectToIoTServerSyncButtonClicked:(id)sender {
+    self.responseCodeTextField.text = @"";
+    self.responseTextView.text = @"";
+    
+    //Authorization
+    dispatch_async(dispatch_get_main_queue(), ^{//Executing on UI thread
+        AuthorizationManagement *auth = [[AuthorizationManagement alloc] init];
+        CloudResponse *response = [auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password2529"];
+        self.responseCodeTextField.text = [NSString stringWithFormat:@"%ld",(long)response.responseCode];
+        self.responseTextView.text = response.responseString;
+        NSLog(@"ViewController: done sending request for authorization token code:%d msg:%@", response.status, response.responseString);
+    });
+}
+
 /***************************************************************************************************************************
  * FUNCTION NAME: connectToIoTServerButtonClicked
  *
@@ -83,9 +98,10 @@
     //Authorization
     
     AuthorizationManagement *auth = [[AuthorizationManagement alloc] init];
-    [auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password2529"];
-    NSLog(@"ViewController: done sending request for authorization token");
+    CloudResponse *response = [auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password2529"];
+    NSLog(@"ViewController: done sending request for authorization token code:%d msg:%@", response.status, response.responseString);
 }
+
 /***************************************************************************************************************************
  * FUNCTION NAME: getCurrentTimeInMillis
  *

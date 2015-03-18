@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DefaultConfiguration.h"
+#import "CloudResponse.h"
 
 @interface AuthorizationManagement : DefaultConfiguration
 
