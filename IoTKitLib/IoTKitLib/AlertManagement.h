@@ -22,15 +22,13 @@
  */
 
 #import "DefaultConfiguration.h"
-#import "CreateNewAlert.h"
 
 @interface AlertManagement : DefaultConfiguration
 
--(BOOL)getListOfAlerts;
--(BOOL)getInfoOnAlert:(NSString*)alertId;
--(BOOL)resetAlert:(NSString*)alertId;
--(BOOL)updateAlertStatus:(NSString*)alertId WithStatus:(NSString*)status;
--(BOOL)addCommentsToTheAlert:(NSString*)alertId OnUser:(NSString*)user
+-(CloudResponse *)getListOfAlerts;
+-(CloudResponse *)getInfoOnAlert:(NSString*)alertId;
+-(CloudResponse *)resetAlert:(NSString*)alertId;
+-(CloudResponse *)updateAlertStatus:(NSString*)alertId WithStatus:(NSString*)status;
+-(CloudResponse *)addCommentsToTheAlert:(NSString*)alertId OnUser:(NSString*)user
                       AtTime:(long)timeStamp WithComment:(NSString*)comment;
--(BOOL)createAlert:(CreateNewAlert*)newAlert;
 @end

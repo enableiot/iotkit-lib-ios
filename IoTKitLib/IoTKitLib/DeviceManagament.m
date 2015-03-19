@@ -32,9 +32,9 @@
 #define DEVICELOCATION @"loc"
 #define ACTIVATIONCODE @"activationCode"
 
-//#####CreateDevice########
+//#####Device########
 
-@interface CreateDevice ()
+@interface Device ()
 
 @property(nonatomic,retain) NSString *deviceName;
 @property(nonatomic,retain) NSString *deviceId;
@@ -45,13 +45,13 @@
 
 @end
 
-@implementation CreateDevice
+@implementation Device
 /***************************************************************************************************************************
  * FUNCTION NAME: createDeviceWithDeviceName
  *
- * DESCRIPTION: Creates custom instance of the class CreateDevice
+ * DESCRIPTION: Creates custom instance of the class Device
  *
- * RETURNS: instance of the class CreateDevice
+ * RETURNS: instance of the class Device
  *
  * PARAMETERS : 1)deviceName
                 2)deviceId
@@ -59,7 +59,7 @@
  **************************************************************************************************************************/
 +(id)createDeviceWithDeviceName:(NSString*)deviceName andDeviceId:(NSString*) deviceId andGatewayId:(NSString*) gatewayId
 {
-    CreateDevice *deviceObj = [[CreateDevice alloc] initDevice];
+    Device *deviceObj = [[Device alloc] initDevice];
     deviceObj.deviceName = deviceName;
     deviceObj.deviceId = deviceId;
     deviceObj.gatewayId = gatewayId;
@@ -68,9 +68,9 @@
 /***************************************************************************************************************************
  * FUNCTION NAME: initDevice
  *
- * DESCRIPTION: Creates instance of the class CreateDevice
+ * DESCRIPTION: Creates instance of the class Device
  *
- * RETURNS: instance of the class CreateDevice
+ * RETURNS: instance of the class Device
  *
  * PARAMETERS :nil
  **************************************************************************************************************************/
@@ -147,7 +147,7 @@
 @implementation DeviceManagament
 
 /***************************************************************************************************************************
- * FUNCTION NAME: listAllDevices
+ * FUNCTION NAME: getDeviceList
  *
  * DESCRIPTION: requests to list all devices
  *
@@ -155,7 +155,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL) listAllDevices{
+-(CloudResponse *) getDeviceList{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listDevices urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:LISTDEVICES
@@ -175,15 +175,14 @@
  *
  * PARAMETERS : deviceCreationObj object
  **************************************************************************************************************************/
--(BOOL) createNewDevice:(CreateDevice*) deviceCreationObj{
+-(CloudResponse *) createNewDevice:(Device*) deviceCreationObj{
     if(!deviceCreationObj){
-        NSLog(@"%@:Need to Initialize CreateDevice class",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Need to Initialize Device class",TAG]];
     }
     NSData *httpBody = [self createBodyForDeviceCreation:deviceCreationObj];
     NSLog(@"DEVICE CREATION JSON STRING:%@",[[NSString alloc] initWithData:httpBody encoding:NSUTF8StringEncoding]);
     if(!httpBody){
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Bad body for createNewDevice",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.createDevice urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -204,7 +203,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL) getMyDeviceInfo{
+-(CloudResponse *) getMyDeviceInfo{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getMyDeviceInfo urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:GETMYDEVICEINFO
@@ -224,10 +223,9 @@
  *
  * PARAMETERS : deviceID
  **************************************************************************************************************************/
--(BOOL) getInfoOnDevice:(NSString*)deviceId{
+-(CloudResponse *) getInfoOnDevice:(NSString*)deviceId{
     if(!deviceId){
-        NSLog(@"%@:provided deviceId is nil",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:provided deviceId is nil",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getOneDeviceInfo urlSlugValueList:[NSDictionary dictionaryWithObject:deviceId forKey:CONFIGOTHERDEVICEID]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -240,7 +238,7 @@
     return [self initiateHttpOperation:httpOperation];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: listAllDeviceTags
+ * FUNCTION NAME: getAllTags
  *
  * DESCRIPTION: requests to list device tags
  *
@@ -248,7 +246,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL) listAllDeviceTags{
+-(CloudResponse *) getAllTags{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllTags urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:LISTALLTAGS
@@ -260,7 +258,7 @@
     return [self initiateHttpOperation:httpOperation];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: listAllDeviceAttributes
+ * FUNCTION NAME: getAllAttributes
  *
  * DESCRIPTION: requests to list device attributes
  *
@@ -268,7 +266,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL) listAllDeviceAttributes{
+-(CloudResponse *) getAllAttributes{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllAttributes urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:LISTALLATTRIBUTES
@@ -288,14 +286,13 @@
  *
  * PARAMETERS : update device object
  **************************************************************************************************************************/
--(BOOL) updateADevice:(CreateDevice*)deviceUpdationObj{
+-(CloudResponse *) updateADevice:(Device*)deviceUpdationObj{
     if(!deviceUpdationObj){
-        NSLog(@"%@:Need to Initialize CreateDevice class",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Need to Initialize Device class",TAG]];
     }
     NSData *httpBody = [self createBodyForDeviceUpdation:deviceUpdationObj];
     if(!httpBody){
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Bad body for updateADevice",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.updateDevice urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -316,14 +313,13 @@
  *
  * PARAMETERS : activation code
  **************************************************************************************************************************/
--(BOOL) activateADevice:(NSString*)activationCode{
+-(CloudResponse *) activateADevice:(NSString*)activationCode{
     if(!activationCode){
-        NSLog(@"%@:Need activationCode to activate device",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Need activationCode to activate device",TAG]];
     }
     NSData *httpBody = [self createBodyForDeviceActivation:activationCode];
     if(!httpBody){
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Bad body for activateADevice",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.activateDevice urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -345,14 +341,13 @@
  * PARAMETERS : 1)componentName
                 2)componentType
  **************************************************************************************************************************/
--(BOOL) addComponentToDevice:(NSString*)componentName WithType:(NSString*)componentType{
+-(CloudResponse *) addComponentToDevice:(NSString*)componentName WithType:(NSString*)componentType{
     if(!componentName || !componentType){
-        NSLog(@"%@:Need componentName and componentType",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Need componentName and componentType",TAG]];
     }
     NSData *httpBody = [self createBodyForDeviceComponent:componentName WithType:componentType];
     if(!httpBody){
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Bad body for addComponentToDevice",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.addComponent urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -374,10 +369,9 @@
  *
  * PARAMETERS : componentName
  **************************************************************************************************************************/
--(BOOL)deleteAComponent:(NSString*)componentName{
+-(CloudResponse *)deleteAComponent:(NSString*)componentName{
     if(!componentName){
-        NSLog(@"%@:Need componentName to delete",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Need componentName to delete",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.deleteComponent urlSlugValueList:[NSDictionary dictionaryWithObject:componentName forKey:NAME]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -398,10 +392,9 @@
  *
  * PARAMETERS : deviceId
  **************************************************************************************************************************/
--(BOOL)deleteADevice:(NSString*)deviceId{
+-(CloudResponse *)deleteADevice:(NSString*)deviceId{
     if(!deviceId){
-        NSLog(@"%@:Need deviceId to delete",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Need deviceId to delete",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.deleteDevice urlSlugValueList:[NSDictionary dictionaryWithObject:deviceId forKey:CONFIGOTHERDEVICEID]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -446,13 +439,16 @@
  *
  * RETURNS: data stream of request body
  *
- * PARAMETERS : CreateDevice object
+ * PARAMETERS : Device object
  **************************************************************************************************************************/
--(NSData*) createBodyForDeviceUpdation:(CreateDevice*)deviceUpdationObj{
+-(NSData*) createBodyForDeviceUpdation:(Device*)deviceUpdationObj{
     
     NSMutableDictionary *jsonDictionary = [[NSMutableDictionary alloc] init];
     
     jsonDictionary = [self createOrUpdateDeviceBodyWith:jsonDictionary OnDevice:deviceUpdationObj];
+    if (!jsonDictionary) {
+        return nil;
+    }
     NSError *error;
     
     return [NSJSONSerialization dataWithJSONObject:jsonDictionary options:NSJSONWritingPrettyPrinted error:&error];
@@ -466,9 +462,9 @@
  *
  * RETURNS: data stream of request body
  *
- * PARAMETERS : CreateDevice object
+ * PARAMETERS : Device object
  **************************************************************************************************************************/
--(NSData*) createBodyForDeviceCreation:(CreateDevice*)deviceCreationObj{
+-(NSData*) createBodyForDeviceCreation:(Device*)deviceCreationObj{
     if(!deviceCreationObj.deviceId){
         NSLog(@"%@:deviceId cannot be nil",TAG);
         return nil;
@@ -476,6 +472,9 @@
     NSMutableDictionary *jsonDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:deviceCreationObj.deviceId,DEVICEID,nil];
     
     jsonDictionary = [self createOrUpdateDeviceBodyWith:jsonDictionary OnDevice:deviceCreationObj];
+    if (!jsonDictionary) {
+        return nil;
+    }
     
     NSError *error;
     
@@ -490,9 +489,9 @@
  * RETURNS: data stream of request body
  *
  * PARAMETERS : 1)jsonDictionary
-                2)CreateDevice object
+                2)Device object
  **************************************************************************************************************************/
--(NSMutableDictionary*)createOrUpdateDeviceBodyWith:(NSMutableDictionary*)jsonDictionary OnDevice:(CreateDevice*)createOrUpdateDeviceObj{
+-(NSMutableDictionary*)createOrUpdateDeviceBodyWith:(NSMutableDictionary*)jsonDictionary OnDevice:(Device*)createOrUpdateDeviceObj{
     if(!createOrUpdateDeviceObj.gatewayId || !createOrUpdateDeviceObj.deviceName){
         NSLog(@"%@:gatewayId or deviceName cannot be nil",TAG);
         return nil;

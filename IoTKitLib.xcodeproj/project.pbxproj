@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5E9275D1AAE6592002F32E2 /* libIoTKitLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEBA99C1A444CE700F040DB /* libIoTKitLib.a */; };
 		FC5ED78C1A23531400D2F281 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5ED78B1A23531400D2F281 /* main.m */; };
 		FC5ED78F1A23531400D2F281 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5ED78E1A23531400D2F281 /* AppDelegate.m */; };
 		FC5ED7921A23531400D2F281 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5ED7911A23531400D2F281 /* ViewController.m */; };
@@ -14,18 +15,17 @@
 		FC5ED7971A23531400D2F281 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC5ED7961A23531400D2F281 /* Images.xcassets */; };
 		FC5ED79A1A23531400D2F281 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5ED7981A23531400D2F281 /* LaunchScreen.xib */; };
 		FCEBA9701A443F5300F040DB /* BasicSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9641A443F5300F040DB /* BasicSetup.m */; };
-		FCEBA9711A443F5300F040DB /* Module_001_AuthorizationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9651A443F5300F040DB /* Module_001_AuthorizationTests.m */; };
+		FCEBA9711A443F5300F040DB /* Module_001_AuthorizationManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9651A443F5300F040DB /* Module_001_AuthorizationManagementTests.m */; };
 		FCEBA9721A443F5300F040DB /* Module_002_AccountManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9661A443F5300F040DB /* Module_002_AccountManagementTests.m */; };
 		FCEBA9731A443F5300F040DB /* Module_003_DeviceManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9671A443F5300F040DB /* Module_003_DeviceManagementTests.m */; };
-		FCEBA9741A443F5300F040DB /* Module_004_ComponentTypesCatalogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9681A443F5300F040DB /* Module_004_ComponentTypesCatalogTests.m */; };
+		FCEBA9741A443F5300F040DB /* Module_004_ComponentCatalogManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9681A443F5300F040DB /* Module_004_ComponentCatalogManagementTests.m */; };
 		FCEBA9751A443F5300F040DB /* Module_005_DataManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA9691A443F5300F040DB /* Module_005_DataManagementTests.m */; };
 		FCEBA9761A443F5300F040DB /* Module_006_UserManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96A1A443F5300F040DB /* Module_006_UserManagementTests.m */; };
 		FCEBA9771A443F5300F040DB /* Module_007_InvitationManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96B1A443F5300F040DB /* Module_007_InvitationManagementTests.m */; };
 		FCEBA9781A443F5300F040DB /* Module_008_RuleManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96C1A443F5300F040DB /* Module_008_RuleManagementTests.m */; };
-		FCEBA9791A443F5300F040DB /* Module_009_AdvancedDataEnquiryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96D1A443F5300F040DB /* Module_009_AdvancedDataEnquiryTests.m */; };
+		FCEBA9791A443F5300F040DB /* Module_009_AdvancedDataInquiryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96D1A443F5300F040DB /* Module_009_AdvancedDataInquiryTests.m */; };
 		FCEBA97A1A443F5300F040DB /* Module_010_AggregatedReportInterfaceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96E1A443F5300F040DB /* Module_010_AggregatedReportInterfaceTests.m */; };
 		FCEBA97B1A443F5300F040DB /* Module_011_AlertManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEBA96F1A443F5300F040DB /* Module_011_AlertManagementTests.m */; };
-		FCEBA99F1A444D7C00F040DB /* libIoTKitLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEBA99C1A444CE700F040DB /* libIoTKitLib.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,15 +67,15 @@
 		FC5ED79F1A23531400D2F281 /* IoTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IoTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEBA9631A443F5300F040DB /* BasicSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicSetup.h; sourceTree = "<group>"; };
 		FCEBA9641A443F5300F040DB /* BasicSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicSetup.m; sourceTree = "<group>"; };
-		FCEBA9651A443F5300F040DB /* Module_001_AuthorizationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_001_AuthorizationTests.m; sourceTree = "<group>"; };
+		FCEBA9651A443F5300F040DB /* Module_001_AuthorizationManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_001_AuthorizationManagementTests.m; sourceTree = "<group>"; };
 		FCEBA9661A443F5300F040DB /* Module_002_AccountManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_002_AccountManagementTests.m; sourceTree = "<group>"; };
 		FCEBA9671A443F5300F040DB /* Module_003_DeviceManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_003_DeviceManagementTests.m; sourceTree = "<group>"; };
-		FCEBA9681A443F5300F040DB /* Module_004_ComponentTypesCatalogTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_004_ComponentTypesCatalogTests.m; sourceTree = "<group>"; };
+		FCEBA9681A443F5300F040DB /* Module_004_ComponentCatalogManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_004_ComponentCatalogManagementTests.m; sourceTree = "<group>"; };
 		FCEBA9691A443F5300F040DB /* Module_005_DataManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_005_DataManagementTests.m; sourceTree = "<group>"; };
 		FCEBA96A1A443F5300F040DB /* Module_006_UserManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_006_UserManagementTests.m; sourceTree = "<group>"; };
 		FCEBA96B1A443F5300F040DB /* Module_007_InvitationManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_007_InvitationManagementTests.m; sourceTree = "<group>"; };
 		FCEBA96C1A443F5300F040DB /* Module_008_RuleManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_008_RuleManagementTests.m; sourceTree = "<group>"; };
-		FCEBA96D1A443F5300F040DB /* Module_009_AdvancedDataEnquiryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_009_AdvancedDataEnquiryTests.m; sourceTree = "<group>"; };
+		FCEBA96D1A443F5300F040DB /* Module_009_AdvancedDataInquiryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_009_AdvancedDataInquiryTests.m; sourceTree = "<group>"; };
 		FCEBA96E1A443F5300F040DB /* Module_010_AggregatedReportInterfaceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_010_AggregatedReportInterfaceTests.m; sourceTree = "<group>"; };
 		FCEBA96F1A443F5300F040DB /* Module_011_AlertManagementTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module_011_AlertManagementTests.m; sourceTree = "<group>"; };
 		FCEBA9971A444CE600F040DB /* IoTKitLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IoTKitLib.xcodeproj; path = IoTKitLib/IoTKitLib.xcodeproj; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCEBA99F1A444D7C00F040DB /* libIoTKitLib.a in Frameworks */,
+				F5E9275D1AAE6592002F32E2 /* libIoTKitLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,15 +105,15 @@
 			children = (
 				FCEBA9631A443F5300F040DB /* BasicSetup.h */,
 				FCEBA9641A443F5300F040DB /* BasicSetup.m */,
-				FCEBA9651A443F5300F040DB /* Module_001_AuthorizationTests.m */,
+				FCEBA9651A443F5300F040DB /* Module_001_AuthorizationManagementTests.m */,
 				FCEBA9661A443F5300F040DB /* Module_002_AccountManagementTests.m */,
 				FCEBA9671A443F5300F040DB /* Module_003_DeviceManagementTests.m */,
-				FCEBA9681A443F5300F040DB /* Module_004_ComponentTypesCatalogTests.m */,
+				FCEBA9681A443F5300F040DB /* Module_004_ComponentCatalogManagementTests.m */,
 				FCEBA9691A443F5300F040DB /* Module_005_DataManagementTests.m */,
 				FCEBA96A1A443F5300F040DB /* Module_006_UserManagementTests.m */,
 				FCEBA96B1A443F5300F040DB /* Module_007_InvitationManagementTests.m */,
 				FCEBA96C1A443F5300F040DB /* Module_008_RuleManagementTests.m */,
-				FCEBA96D1A443F5300F040DB /* Module_009_AdvancedDataEnquiryTests.m */,
+				FCEBA96D1A443F5300F040DB /* Module_009_AdvancedDataInquiryTests.m */,
 				FCEBA96E1A443F5300F040DB /* Module_010_AggregatedReportInterfaceTests.m */,
 				FCEBA96F1A443F5300F040DB /* Module_011_AlertManagementTests.m */,
 				FC172A741A27845200F393D5 /* SupportingFiles */,
@@ -310,15 +310,15 @@
 				FCEBA9731A443F5300F040DB /* Module_003_DeviceManagementTests.m in Sources */,
 				FCEBA9771A443F5300F040DB /* Module_007_InvitationManagementTests.m in Sources */,
 				FCEBA9721A443F5300F040DB /* Module_002_AccountManagementTests.m in Sources */,
-				FCEBA9741A443F5300F040DB /* Module_004_ComponentTypesCatalogTests.m in Sources */,
+				FCEBA9741A443F5300F040DB /* Module_004_ComponentCatalogManagementTests.m in Sources */,
 				FCEBA9701A443F5300F040DB /* BasicSetup.m in Sources */,
 				FCEBA9781A443F5300F040DB /* Module_008_RuleManagementTests.m in Sources */,
 				FCEBA97B1A443F5300F040DB /* Module_011_AlertManagementTests.m in Sources */,
 				FCEBA9761A443F5300F040DB /* Module_006_UserManagementTests.m in Sources */,
 				FCEBA97A1A443F5300F040DB /* Module_010_AggregatedReportInterfaceTests.m in Sources */,
 				FCEBA9751A443F5300F040DB /* Module_005_DataManagementTests.m in Sources */,
-				FCEBA9711A443F5300F040DB /* Module_001_AuthorizationTests.m in Sources */,
-				FCEBA9791A443F5300F040DB /* Module_009_AdvancedDataEnquiryTests.m in Sources */,
+				FCEBA9711A443F5300F040DB /* Module_001_AuthorizationManagementTests.m in Sources */,
+				FCEBA9791A443F5300F040DB /* Module_009_AdvancedDataInquiryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +392,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -430,6 +435,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "";
@@ -445,7 +455,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				HEADER_SEARCH_PATHS = $SOURCE_ROOT/include;
+				HEADER_SEARCH_PATHS = (
+					$SOURCE_ROOT/include,
+					"$SOURCE_ROOT/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/TestApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -462,7 +475,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				HEADER_SEARCH_PATHS = $SOURCE_ROOT/include;
+				HEADER_SEARCH_PATHS = (
+					$SOURCE_ROOT/include,
+					"$SOURCE_ROOT/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/TestApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";

@@ -25,6 +25,7 @@
 #import "HttpUrlBuilder.h"
 #import "HttpResponseDelegatee.h"
 #import "HttpRequestOperation.h"
+#import "CloudResponse.h"
 
 #define CONTENTTYPEJSON @"application/json"
 #define HTTPPOST @"POST"
@@ -37,7 +38,7 @@
 @property(nonatomic,retain)HttpUrlBuilder *objHttpUrlBuilder;
 @property(nonatomic,retain)HttpResponseDelegatee *objHttpResponseDelegatee;
 
--(BOOL)initiateHttpOperation:(HttpRequestOperation*)httpOperation;
+-(CloudResponse *)initiateHttpOperation:(HttpRequestOperation*)httpOperation;
 -(NSString*)getStoredAuthToken;
 -(NSString*)getStoredDeviceToken;
 -(NSString*)getAccountId;

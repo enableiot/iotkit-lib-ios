@@ -43,42 +43,40 @@
 }
 
 - (void)test_801_CreateARule{
-    [self configureResponseDelegateWithExpectedResponseCode:201];
-    CreateRule *createRuleObj = [[CreateRule alloc] init];
-    CreateRuleActions *createRuleActionObj = [[CreateRuleActions alloc] init];
-    CreateRuleConditionValues *createRuleConditionValuesObj = [[CreateRuleConditionValues alloc] init];
+    Rule *ruleObj = [[Rule alloc] init];
+    RuleActions *ruleActionObj = [[RuleActions alloc] init];
+    RuleConditionValues *ruleConditionValuesObj = [[RuleConditionValues alloc] init];
     
-    [createRuleObj setRuleName:[self getRandomRuleName]];
-    [createRuleObj setRuleDescription:@"This is a iotkit_wrapper rule"];
-    [createRuleObj setRulePriority:@"Medium"];
-    [createRuleObj setRuleType:@"Regular"];
-    [createRuleObj setRuleStatus:@"Active"];
-    [createRuleObj setRuleResetType:@"Automatic"];
+    [ruleObj setRuleName:[self getRandomRuleName]];
+    [ruleObj setRuleDescription:@"This is a iotkit_wrapper rule"];
+    [ruleObj setRulePriority:@"Medium"];
+    [ruleObj setRuleType:@"Regular"];
+    [ruleObj setRuleStatus:@"Active"];
+    [ruleObj setRuleResetType:@"Automatic"];
     
-    [createRuleActionObj setRuleActionType:@"mail"];
-    [createRuleActionObj addRuleActionTarget:@"gutha.raghu@gmail.com"];
-    [createRuleActionObj addRuleActionTarget:@"intel.aricent.iot1@gmail.com"];
+    [ruleActionObj setRuleActionType:@"mail"];
+    [ruleActionObj addRuleActionTarget:@"gutha.raghu@gmail.com"];
+    [ruleActionObj addRuleActionTarget:@"intel.aricent.iot1@gmail.com"];
     
-    [createRuleObj addRuleActions:createRuleActionObj];
-    [createRuleObj addRulePopulationId:@"685.1.1.1"];
+    [ruleObj addRuleActions:ruleActionObj];
+    [ruleObj addRulePopulationId:@"685.1.1.1"];
     
-    [createRuleConditionValuesObj addConditionComponentWithKey:@"dataType" AndValue:@"Number"];
-    [createRuleConditionValuesObj addConditionComponentWithKey:@"name" AndValue:@"Temp.01.1"];
-    [createRuleConditionValuesObj setConditionType:@"basic"];
-    [createRuleConditionValuesObj addConditionValues:@"25"];
-    [createRuleConditionValuesObj setConditionOperator:@">"];
+    [ruleConditionValuesObj addConditionComponentWithKey:@"dataType" AndValue:@"Number"];
+    [ruleConditionValuesObj addConditionComponentWithKey:@"name" AndValue:@"Temp.01.1"];
+    [ruleConditionValuesObj setConditionType:@"basic"];
+    [ruleConditionValuesObj addConditionValues:@"25"];
+    [ruleConditionValuesObj setConditionOperator:@">"];
     
-    [createRuleObj setRuleOperatorName:@"OR"];
-    [createRuleObj addRuleConditionValues:createRuleConditionValuesObj];
+    [ruleObj setRuleOperatorName:@"OR"];
+    [ruleObj addRuleConditionValues:ruleConditionValuesObj];
     
-    XCTAssertTrue([_ruleObject createRule:createRuleObj]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject createRule:ruleObj];
+    XCTAssertEqual(response.responseCode, 201);
 }
 - (void)test_802_UpdateRule{
-    [self configureResponseDelegateWithExpectedResponseCode:201];
-    CreateRule *updateRuleObj = [[CreateRule alloc] init];
-    CreateRuleActions *updateRuleActionObj = [[CreateRuleActions alloc] init];
-    CreateRuleConditionValues *updateRuleConditionValuesObj = [[CreateRuleConditionValues alloc] init];
+    Rule *updateRuleObj = [[Rule alloc] init];
+    RuleActions *updateRuleActionObj = [[RuleActions alloc] init];
+    RuleConditionValues *updateRuleConditionValuesObj = [[RuleConditionValues alloc] init];
     
     [updateRuleObj setRuleName:[self getRandomRuleName]];
     [updateRuleObj setRuleDescription:@"This is a iotkit_wrapper rule update"];
@@ -102,31 +100,26 @@
     
     [updateRuleObj setRuleOperatorName:@"OR"];
     [updateRuleObj addRuleConditionValues:updateRuleConditionValuesObj];
-    XCTAssertTrue([_ruleObject updateARule:updateRuleObj OnRule:[[NSUserDefaults standardUserDefaults] objectForKey:RULEID]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject updateARule:updateRuleObj OnRule:[[NSUserDefaults standardUserDefaults] objectForKey:RULEID]];
+    XCTAssertEqual(response.responseCode, 201);
 }
 - (void)test_803_CreateRuleAsDraft{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    BOOL isTrue = [_ruleObject createRuleAsDraftUsing:
-                   [NSString stringWithFormat:@"%@-Draft",[self getRandomRuleName]]];
-    XCTAssertTrue(isTrue);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject createRuleAsDraftUsing:
+                               [NSString stringWithFormat:@"%@-Draft",[self getRandomRuleName]]];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_804_DeleteADraftRule{
-    [self configureResponseDelegateWithExpectedResponseCode:204];
-    XCTAssertTrue([_ruleObject deleteADraftRule:[[NSUserDefaults standardUserDefaults]
-                                                 objectForKey:DRAFTRULEID]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject deleteADraftRule:[[NSUserDefaults standardUserDefaults]
+                                                             objectForKey:DRAFTRULEID]];
+    XCTAssertEqual(response.responseCode, 204);
 }
 - (void)test_805_GetInformationOnRule{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_ruleObject getInformationOnRule:[[NSUserDefaults standardUserDefaults]
-                                                     objectForKey:RULEID]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject getInformationOnRule:[[NSUserDefaults standardUserDefaults]
+                                                                 objectForKey:RULEID]];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_806_GetListOfRules{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_ruleObject getListOfRules]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject getListOfRules];
+    XCTAssertEqual(response.responseCode, 200);
 }
 @end

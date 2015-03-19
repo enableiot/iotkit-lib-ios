@@ -21,13 +21,27 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_AttributeFilterList_h
-#define IoT_AttributeFilterList_h
+#import "DefaultConfiguration.h"
+#import "AttributeFilter.h"
 
-@interface AttributeFilterList : NSObject
+@interface AdvancedDataInquiry : DefaultConfiguration
 
-@property(nonatomic,retain)NSMutableArray *filterData;
+-(id) init __attribute__((unavailable("Must create object using \"initAdvancedDataInquiryWithDefaults\" method")));
+-(id)initAdvancedDataInquiryWithDefaults;
+-(void)addGatewayId:(NSString*)gatewayId;
+-(void)addDeviceId:(NSString*)deviceId;
+-(void)addComponentId:(NSString*)componentId;
+-(void)setStartTimestamp:(long)startTimestamp;
+-(void)setEndTimestamp:(long)endTimestamp;
+-(void)addReturnedMeasureAttributes:(NSString*)attribute;
+-(void)setShowMeasureLocation:(BOOL)measureLocation;
+-(void)addDevCompAttributeFilter:(AttributeFilter*)attributeFilter;
+-(void)addMeasurementAttributeFilter:(AttributeFilter*)attributeFilter;
+-(void)addValueFilter:(AttributeFilter*)attributeFilter;
+-(void)setComponentRowLimit:(NSInteger)componentRowLimit;
+-(void)setCountOnly:(BOOL)countOnly;
+-(void)addSortInfo:(NSString*)name WithValue:(NSString*)value;
+-(CloudResponse *)request;
+
 
 @end
-
-#endif

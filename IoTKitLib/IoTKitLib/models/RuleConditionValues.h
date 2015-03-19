@@ -21,23 +21,15 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_CreateOrUpdateComponentCatalog_h
-#define IoT_CreateOrUpdateComponentCatalog_h
+#ifndef IoT_RuleConditionValues_h
+#define IoT_RuleConditionValues_h
+@interface RuleConditionValues:NSObject
 
-@interface CreateOrUpdateComponentCatalog : NSObject
-
--(id) init __attribute__((unavailable("Must create object using \"CreateOrUpdateComponentCatalog\" method")));
-+(id) CreateOrUpdateComponentCatalogWith:(NSString*) componentName AndVersion: (NSString*) componentVersion
-                                 AndType:(NSString*) componentType AndDataType:(NSString*) componentDataType
-                               AndFormat:(NSString*) componentFormat AndUnit:(NSString*) componentUnit
-                              AndDisplay:(NSString*) componentDisplay;
-
--(void) setMinValue:(double) minValue ;
--(void) setMaxValue:(double) maxValue ;
--(void) setCommandString:(NSString*) commandString ;
--(void) addCommandParameters:(NSString*) commandName AndValue:(NSString*) commandValue ;
+-(void)addConditionComponentWithKey:(NSString*)keyName AndValue:(NSString*)keyValue;
+-(void)setConditionType:(NSString*)ruleConditionType;
+-(void)addConditionValues:(NSString*)value;
+-(void)setConditionOperator:(NSString*)ruleConditionValuesOperatorName;
 
 @end
-
 
 #endif

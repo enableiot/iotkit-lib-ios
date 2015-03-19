@@ -21,7 +21,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import "AdvancedDataEnquiry.h"
+#import "AdvancedDataInquiry.h"
 #import "HttpRequestOperation.h"
 #import "HttpResponseMacros.h"
 
@@ -71,19 +71,8 @@
 @end
 
 
-//##########AttributeFilterList##########
-@interface AttributeFilterList ()
-
-//@property(nonatomic,retain)NSMutableArray *filterData;
-
-@end
-
-@implementation AttributeFilterList
-
-@end
-
-//##########AdvancedDataEnquiry##########
-@interface AdvancedDataEnquiry ()
+//##########AdvancedDataInquiry##########
+@interface AdvancedDataInquiry ()
 
 @property(nonatomic,retain)NSString* msgType;
 @property(nonatomic,retain)NSMutableArray* gatewayIds;
@@ -93,8 +82,8 @@
 @property(nonatomic,assign)long endTimestamp;
 @property(nonatomic,retain)NSMutableArray* returnedMeasureAttributes;
 @property(nonatomic,assign)BOOL showMeasureLocation;
-@property(nonatomic,retain)AttributeFilterList* devCompAttributeFilter;
-@property(nonatomic,retain)AttributeFilterList* measurementAttributeFilter;
+@property(nonatomic,retain)NSMutableArray* devCompAttributeFilter;
+@property(nonatomic,retain)NSMutableArray* measurementAttributeFilter;
 @property(nonatomic,retain)AttributeFilter* valueFilter;
 @property(nonatomic,assign)NSInteger componentRowLimit;
 @property(nonatomic,assign)BOOL countOnly;
@@ -103,10 +92,10 @@
 @end
 
 
-@implementation AdvancedDataEnquiry
+@implementation AdvancedDataInquiry
 
 /***************************************************************************************************************************
- * FUNCTION NAME: initAdvancedDataEnquiryWithDefaults
+ * FUNCTION NAME: initAdvancedDataInquiryWithDefaults
  *
  * DESCRIPTION: Creates custom instance of the class AdvancedDataEnquiry
  *
@@ -114,7 +103,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(id)initAdvancedDataEnquiryWithDefaults{
+-(id)initAdvancedDataInquiryWithDefaults{
     self = [super init];
     if(self){
         _startTimestamp = 0L;
@@ -126,19 +115,7 @@
     return self;
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: setMessageType
- *
- * DESCRIPTION: sets message type for advanced data enquiry
- *
- * RETURNS: nothing
- *
- * PARAMETERS : msgType
- **************************************************************************************************************************/
--(void)setMessageType:(NSString*)msgType{
-    _msgType = msgType;
-}
-/***************************************************************************************************************************
- * FUNCTION NAME: addGatewayIds
+ * FUNCTION NAME: addGatewayId
  *
  * DESCRIPTION: append gatewayId to list
  *
@@ -146,14 +123,14 @@
  *
  * PARAMETERS : gatewayId
  **************************************************************************************************************************/
--(void)addGatewayIds:(NSString*)gatewayId{
+-(void)addGatewayId:(NSString*)gatewayId{
     if(!_gatewayIds){
         _gatewayIds = [NSMutableArray array];
     }
     [_gatewayIds addObject:gatewayId];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: addDeviceIds
+ * FUNCTION NAME: addDeviceId
  *
  * DESCRIPTION: append deviceId method to list
  *
@@ -161,14 +138,14 @@
  *
  * PARAMETERS : deviceId
  **************************************************************************************************************************/
--(void)addDeviceIds:(NSString*)deviceId{
+-(void)addDeviceId:(NSString*)deviceId{
     if(!_deviceIds){
         _deviceIds = [NSMutableArray array];
     }
     [_deviceIds addObject:deviceId];
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: addComponentIds
+ * FUNCTION NAME: addComponentId
  *
  * DESCRIPTION: append componentId method to list
  *
@@ -176,7 +153,7 @@
  *
  * PARAMETERS : componentId
  **************************************************************************************************************************/
--(void)addComponentIds:(NSString*)componentId{
+-(void)addComponentId:(NSString*)componentId{
     if(!_componentIds){
         _componentIds = [NSMutableArray array];
     }
@@ -221,7 +198,7 @@
     }
     [_returnedMeasureAttributes addObject:attribute];
 }
-/***************************************************************************************************************************
+/***************************************************************************************************************************advancedDataEnquiry
  * FUNCTION NAME: setShowMeasureLocation
  *
  * DESCRIPTION: set whether to measure location on data inquiry
@@ -244,10 +221,9 @@
  **************************************************************************************************************************/
 -(void)addDevCompAttributeFilter:(AttributeFilter*)attributeFilter{
     if(!_devCompAttributeFilter){
-        _devCompAttributeFilter = [[AttributeFilterList alloc] init];
-        _devCompAttributeFilter.filterData = [NSMutableArray array];
+        _devCompAttributeFilter = [NSMutableArray array];
     }
-    [_devCompAttributeFilter.filterData addObject:attributeFilter];
+    [_devCompAttributeFilter addObject:attributeFilter];
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addMeasurementAttributeFilter
@@ -260,10 +236,9 @@
  **************************************************************************************************************************/
 -(void)addMeasurementAttributeFilter:(AttributeFilter*)attributeFilter{
     if(!_measurementAttributeFilter){
-        _measurementAttributeFilter = [[AttributeFilterList alloc] init];
-        _measurementAttributeFilter.filterData = [NSMutableArray array];
+        _measurementAttributeFilter = [NSMutableArray array];
     }
-    [_measurementAttributeFilter.filterData addObject:attributeFilter];
+    [_measurementAttributeFilter addObject:attributeFilter];
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addValueFilter
@@ -318,15 +293,15 @@
 }
 
 /***************************************************************************************************************************
- * FUNCTION NAME: advancedDataEnquiry
+ * FUNCTION NAME: request
  *
- * DESCRIPTION: enquire advanced data using different filters
+ * DESCRIPTION: Inquire advanced data using different filters
  *
  * RETURNS: true/false
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL)advancedDataEnquiry{
+-(CloudResponse *)request{
     NSData *data = [self createHttpBodyToEnquireData];
     NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"DATA:%@",myString);
@@ -415,7 +390,7 @@
     }
     if (_devCompAttributeFilter) {
         NSMutableDictionary *devCompAttributeJson = [NSMutableDictionary dictionary];
-        for(AttributeFilter *attributeFilter in _devCompAttributeFilter.filterData){
+        for(AttributeFilter *attributeFilter in _devCompAttributeFilter){
             NSMutableArray *filterValuesArray = [NSMutableArray array];
             for (NSString *filterValue in attributeFilter.filterValues) {
                 [filterValuesArray addObject:filterValue];
@@ -427,7 +402,7 @@
     }
     if (_measurementAttributeFilter) {
         NSMutableDictionary *measurementAttributeJson = [NSMutableDictionary dictionary];
-        for(AttributeFilter *attributeFilter in _measurementAttributeFilter.filterData){
+        for(AttributeFilter *attributeFilter in _measurementAttributeFilter){
             NSMutableArray *filterValuesArray = [NSMutableArray array];
             for (NSString *filterValue in attributeFilter.filterValues) {
                 [filterValuesArray addObject:filterValue];

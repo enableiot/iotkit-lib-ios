@@ -21,16 +21,19 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import "DefaultConfiguration.h"
-#import "CreateOrUpdateComponentCatalog.h"
+#import <Foundation/Foundation.h>
+#import "HttpResponseDelegateHandler.h"
+#import "CloudResponse.h"
 
-@interface ComponentTypesCatalog : DefaultConfiguration
+@interface HttpRequestOperation:NSObject
 
--(BOOL)listAllComponentTypesCatalog;
--(BOOL)listAllDetailsOfComponentTypesCatalog;
--(BOOL)listComponentTypeDetails:(NSString*)componentId;
--(BOOL)createCustomComponent:(CreateOrUpdateComponentCatalog*) createComponentCatalog;
--(BOOL)updateAComponent:(CreateOrUpdateComponentCatalog*) createComponentCatalog OnComponent:(NSString*)componentId;
+@property (nonatomic,weak) id<HttpResponseDelegateHandler> httpDelegate;
 
-
+-(id)initWithUrl:(NSString*)url onOperation:(NSInteger)operationName AndRequestBody:(NSData*)requestBody
+                            AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
+                            AuthToken:(NSString*)authToken DeviceToken:(NSString*)deviceToken;
+- (id) init __attribute__((unavailable("Must create object using \"initWithUrl\" method")));
+- (CloudResponse *)completeHandler:(NSURLResponse *)response onData:(NSData *)data AndError:(NSError *)error;
+- (CloudResponse *)initiateAsyncRequest ;
+- (CloudResponse *)initiateSyncRequest ;
 @end

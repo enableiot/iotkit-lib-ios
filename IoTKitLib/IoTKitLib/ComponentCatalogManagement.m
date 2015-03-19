@@ -20,10 +20,10 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
-#import "ComponentTypesCatalog.h"
+#import "ComponentCatalogManagement.h"
 #import "HttpRequestOperation.h"
 #import "HttpResponseMacros.h"
+
 
 #define TAG @"ComponentTypesCatalog"
 #define DIMENSION @"dimension"
@@ -41,8 +41,8 @@
 #define COMMAND @"command"
 #define ACTUATOR @"actuator"
 
-//#####CreateOrUpdateComponentCatalog#########
-@interface CreateOrUpdateComponentCatalog ()
+//#####ComponentCatalog#########
+@interface ComponentCatalog ()
 
 @property(nonatomic,retain)NSString *componentName;
 @property(nonatomic,retain)NSString *componentVersion;
@@ -60,13 +60,13 @@
 
 @end
 
-@implementation CreateOrUpdateComponentCatalog
+@implementation ComponentCatalog
 /***************************************************************************************************************************
- * FUNCTION NAME: CreateOrUpdateComponentCatalogWith
+ * FUNCTION NAME: ComponentCatalogWith
  *
- * DESCRIPTION: Creates custom instance of the class CreateOrUpdateComponentCatalog
+ * DESCRIPTION: Creates custom instance of the class ComponentCatalog
  *
- * RETURNS: instance of the class CreateOrUpdateComponentCatalog
+ * RETURNS: instance of the class ComponentCatalog
  *
  * PARAMETERS : 1)componentName
                 2)componentVersion
@@ -76,11 +76,11 @@
                 6)componentUnit
                 7)componentDisplay
  **************************************************************************************************************************/
-+(id) CreateOrUpdateComponentCatalogWith:(NSString*) componentName AndVersion: (NSString*) componentVersion
++(id) ComponentCatalogWith:(NSString*) componentName AndVersion: (NSString*) componentVersion
                                  AndType:(NSString*) componentType AndDataType:(NSString*) componentDataType
                                AndFormat:(NSString*) componentFormat AndUnit:(NSString*) componentUnit
                               AndDisplay:(NSString*) componentDisplay {
-    CreateOrUpdateComponentCatalog *customComponent = [[CreateOrUpdateComponentCatalog alloc] initCustomComponent];
+    ComponentCatalog *customComponent = [[ComponentCatalog alloc] initCustomComponent];
     customComponent.componentName = componentName;
     customComponent.componentVersion = componentVersion;
     customComponent.componentType = componentType;
@@ -97,9 +97,9 @@
 /***************************************************************************************************************************
  * FUNCTION NAME: initCustomComponent
  *
- * DESCRIPTION: Creates instance of the class CreateOrUpdateComponentCatalog
+ * DESCRIPTION: Creates instance of the class ComponentCatalog
  *
- * RETURNS: instance of the class CreateOrUpdateComponentCatalog
+ * RETURNS: instance of the class ComponentCatalog
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
@@ -168,8 +168,8 @@
 
 @end
 
-//#####ComponentTypesCatalog#########
-@implementation ComponentTypesCatalog
+//#####ComponentCatalogManagement#########
+@implementation ComponentCatalogManagement
 
 /***************************************************************************************************************************
  * FUNCTION NAME: listAllComponentTypesCatalog
@@ -180,7 +180,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL)listAllComponentTypesCatalog{
+-(CloudResponse *)listAllComponentTypesCatalog{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllComponentTypesCatalog urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:LISTALLCOMPONENTTYPESCATALOG
@@ -200,7 +200,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL)listAllDetailsOfComponentTypesCatalog{
+-(CloudResponse *)listAllDetailsOfComponentTypesCatalog{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllComponentTypesCatalogDetailed urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:LISTALLCOMPONENTTYPESCATALOGDETAILED
@@ -220,7 +220,7 @@
  *
  * PARAMETERS : componentId
  **************************************************************************************************************************/
--(BOOL)listComponentTypeDetails:(NSString *)componentId{
+-(CloudResponse *)listComponentTypeDetails:(NSString *)componentId{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.componentTypeCatalogDetails urlSlugValueList:[NSDictionary dictionaryWithObject:componentId forKey:COMPONENTCATALOGID]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:COMPONENTTYPECATALOGDETAILS
@@ -238,19 +238,19 @@
  *
  * RETURNS: true/false
  *
- * PARAMETERS : CreateOrUpdateComponentCatalog object
+ * PARAMETERS : ComponentCatalog object
  **************************************************************************************************************************/
--(BOOL)createCustomComponent:(CreateOrUpdateComponentCatalog *)createComponentCatalog{
+-(CloudResponse *)createCustomComponent:(ComponentCatalog *)createComponentCatalog{
     if(!createComponentCatalog){
-        NSLog(@"%@:CreateOrUpdateComponentCatalog need to be initialized & configured to create component",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:ComponentCatalog need to be initialized & configured to create component",TAG]];
     }
-    if(![self validateActuatorCommand:createComponentCatalog]){
-        return false;
+    NSString *msg = [self validateActuatorCommand:createComponentCatalog];
+    if (msg) {
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:msg];
     }
     NSData *data = [self createBodyForCreationOfCustomComponent:createComponentCatalog];
     if(!data){
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Bad body for createCustomComponent",TAG]];
     }
     
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.createCustomComponent urlSlugValueList:nil];
@@ -271,21 +271,21 @@
  *
  * RETURNS: true/false
  *
- * PARAMETERS : 1)CreateOrUpdateComponentCatalog object
+ * PARAMETERS : 1)ComponentCatalog object
                 2)componentId
  **************************************************************************************************************************/
--(BOOL)updateAComponent:(CreateOrUpdateComponentCatalog *)updateComponentCatalog
+-(CloudResponse *)updateAComponent:(ComponentCatalog *)updateComponentCatalog
             OnComponent:(NSString *)componentId{
     if(!updateComponentCatalog){
-        NSLog(@"%@:CreateOrUpdateComponentCatalog need to be initialized & configured to update component",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:ComponentCatalog need to be initialized & configured to update component",TAG]];
     }
-    if(![self validateActuatorCommand:updateComponentCatalog]){
-        return false;
+    NSString *msg = [self validateActuatorCommand:updateComponentCatalog];
+    if (msg) {
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:msg];
     }
     NSData *data = [self createBodyForUpdationOfCustomComponent:updateComponentCatalog];
     if(!data){
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Bad body for updateAComponent",TAG]];
     }
     
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.updateComponent urlSlugValueList:[NSDictionary dictionaryWithObject:componentId forKey:COMPONENTCATALOGID]];
@@ -306,9 +306,9 @@
  *
  * RETURNS: data stream of request body
  *
- * PARAMETERS : CreateOrUpdateComponentCatalog object
+ * PARAMETERS : ComponentCatalog object
  **************************************************************************************************************************/
--(NSData*) createBodyForUpdationOfCustomComponent:(CreateOrUpdateComponentCatalog *)updateComponentCatalog{
+-(NSData*) createBodyForUpdationOfCustomComponent:(ComponentCatalog *)updateComponentCatalog{
     NSMutableDictionary *componentDictionary = [NSMutableDictionary dictionary];
     if (updateComponentCatalog.componentType != nil) {
         [componentDictionary setObject:updateComponentCatalog.componentType forKey:TYPE];
@@ -339,9 +339,9 @@
  *
  * RETURNS: data stream of request body
  *
- * PARAMETERS : CreateOrUpdateComponentCatalog object
+ * PARAMETERS : ComponentCatalog object
  **************************************************************************************************************************/
--(NSData*) createBodyForCreationOfCustomComponent:(CreateOrUpdateComponentCatalog *)createComponentCatalog{
+-(NSData*) createBodyForCreationOfCustomComponent:(ComponentCatalog *)createComponentCatalog{
     
     if (createComponentCatalog.componentName == nil || createComponentCatalog.componentVersion == nil ||
         createComponentCatalog.componentType == nil || createComponentCatalog.componentDataType == nil ||
@@ -367,21 +367,19 @@
  *
  * RETURNS: true/false
  *
- * PARAMETERS : CreateOrUpdateComponentCatalog object
+ * PARAMETERS : ComponentCatalog object
  **************************************************************************************************************************/
--(BOOL) validateActuatorCommand:(CreateOrUpdateComponentCatalog*) createOrUpdateComponentCatalog {
-    if ([createOrUpdateComponentCatalog.componentType isEqualToString:ACTUATOR] &&
-        createOrUpdateComponentCatalog.actuatorCommandParams == nil) {
-        NSLog(@"%@:Command Parameters are mandatory for component catalog type \"actuator\"",TAG);
-        return false;
+-(NSString *) validateActuatorCommand:(ComponentCatalog*) ComponentCatalog {
+    if ([ComponentCatalog.componentType isEqualToString:ACTUATOR] &&
+        ComponentCatalog.actuatorCommandParams == nil) {
+        return [NSString stringWithFormat:@"%@:Command Parameters are mandatory for component catalog type \"actuator\"",TAG];
     }
-    if (![createOrUpdateComponentCatalog.componentType isEqualToString:ACTUATOR] &&
-        createOrUpdateComponentCatalog.commandString != nil) {
-        NSLog(@"%@:Command Json(command string and params) not required  for catalog type \"%@\""
-              ,TAG,createOrUpdateComponentCatalog.componentType);
-        return false;
+    if (![ComponentCatalog.componentType isEqualToString:ACTUATOR] &&
+        ComponentCatalog.commandString != nil) {
+        return [NSString stringWithFormat:@"%@:Command Json(command string and params) not required  for catalog type \"%@\""
+              ,TAG,ComponentCatalog.componentType];
     }
-    return true;
+    return nil;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addActuatorCommandParametersToHttpBody
@@ -390,20 +388,20 @@
  *
  * RETURNS: component dictionary
  *
- * PARAMETERS : 1)CreateOrUpdateComponentCatalog object
+ * PARAMETERS : 1)ComponentCatalog object
                 2)component Dictionary
  **************************************************************************************************************************/
--(NSMutableDictionary*)addActuatorCommandParametersToHttpBody:(CreateOrUpdateComponentCatalog *)createOrUpdateComponentCatalog ToDictionary:(NSMutableDictionary*)componentDictionary{
+-(NSMutableDictionary*)addActuatorCommandParametersToHttpBody:(ComponentCatalog *)ComponentCatalog ToDictionary:(NSMutableDictionary*)componentDictionary{
     
-    if (createOrUpdateComponentCatalog.commandString != nil) {
+    if (ComponentCatalog.commandString != nil) {
         NSMutableArray *parameterArray = [NSMutableArray array];
-        for(id key in createOrUpdateComponentCatalog.actuatorCommandParams){
+        for(id key in ComponentCatalog.actuatorCommandParams){
             [parameterArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:key,NAME,
-                                       [createOrUpdateComponentCatalog.actuatorCommandParams objectForKey:key],VALUES,nil]];
+                                       [ComponentCatalog.actuatorCommandParams objectForKey:key],VALUES,nil]];
             
         }
         
-        NSMutableDictionary *commandDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:createOrUpdateComponentCatalog.commandString,COMMANDSTRING,parameterArray,PARAMETERS, nil];
+        NSMutableDictionary *commandDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:ComponentCatalog.commandString,COMMANDSTRING,parameterArray,PARAMETERS, nil];
         [componentDictionary setObject:commandDictionary forKey:COMMAND];
     }
     
@@ -417,16 +415,16 @@
  *
  * RETURNS: component dictionary
  *
- * PARAMETERS :1)CreateOrUpdateComponentCatalog object
+ * PARAMETERS :1)ComponentCatalog object
                2)component Dictionary
  **************************************************************************************************************************/
--(NSMutableDictionary*)addMinMaxValuesToHttpBody:(CreateOrUpdateComponentCatalog *)createOrUpdateComponentCatalog ToDictionary:(NSMutableDictionary*)componentDictionary{
-    if (createOrUpdateComponentCatalog.isMinSet) {
-        [componentDictionary setObject:[NSNumber numberWithDouble:createOrUpdateComponentCatalog.minValue] forKey:MINIMUM];
+-(NSMutableDictionary*)addMinMaxValuesToHttpBody:(ComponentCatalog *)ComponentCatalog ToDictionary:(NSMutableDictionary*)componentDictionary{
+    if (ComponentCatalog.isMinSet) {
+        [componentDictionary setObject:[NSNumber numberWithDouble:ComponentCatalog.minValue] forKey:MINIMUM];
         
     }
-    if (createOrUpdateComponentCatalog.isMaxSet) {
-        [componentDictionary setObject:[NSNumber numberWithDouble:createOrUpdateComponentCatalog.maxValue] forKey:MAXIMUM];
+    if (ComponentCatalog.isMaxSet) {
+        [componentDictionary setObject:[NSNumber numberWithDouble:ComponentCatalog.maxValue] forKey:MAXIMUM];
         
     }
     return componentDictionary;
