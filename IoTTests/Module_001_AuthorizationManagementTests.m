@@ -43,19 +43,17 @@
     [super tearDown];
 }
 - (void)test_101_GetNewAuthorizationToken {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_authorizationObject getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password2529"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_authorizationObject getNewAuthorizationTokenWithUsername:@"intel.aricent.iot6@gmail.com" andPassword:@"Password2529"];
+    XCTAssertEqual(response.responseCode, 200);
+    
 }
 - (void)test_103_GetAuthorizationTokenInfo {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_authorizationObject getAuthorizationTokenInfo]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_authorizationObject getAuthorizationTokenInfo];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_102_ValidateAuthorizationToken{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_authorizationObject validateAuthorizationToken]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_authorizationObject validateAuthorizationToken];
+    XCTAssertEqual(response.responseCode, 200);
 }
 
 @end

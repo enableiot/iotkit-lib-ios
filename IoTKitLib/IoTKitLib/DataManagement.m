@@ -147,7 +147,7 @@
  **************************************************************************************************************************/
 -(CloudResponse *)retrieveDataOn:(ConfigureRetrieveData *)objRetrieveData{
     NSString *msg = [self validateRetrieveDataValues:objRetrieveData];
-    if (!msg) {
+    if (msg) {
         return [CloudResponse createCloudResponseWithStatus:false andMessage:msg];
     }
     NSData *data = [self createHttpBodyToRetrieveData:objRetrieveData];

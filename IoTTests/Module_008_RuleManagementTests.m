@@ -43,7 +43,6 @@
 }
 
 - (void)test_801_CreateARule{
-    [self configureResponseDelegateWithExpectedResponseCode:201];
     Rule *ruleObj = [[Rule alloc] init];
     RuleActions *ruleActionObj = [[RuleActions alloc] init];
     RuleConditionValues *ruleConditionValuesObj = [[RuleConditionValues alloc] init];
@@ -71,11 +70,10 @@
     [ruleObj setRuleOperatorName:@"OR"];
     [ruleObj addRuleConditionValues:ruleConditionValuesObj];
     
-    XCTAssertTrue([_ruleObject createRule:ruleObj]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject createRule:ruleObj];
+    XCTAssertEqual(response.responseCode, 201);
 }
 - (void)test_802_UpdateRule{
-    [self configureResponseDelegateWithExpectedResponseCode:201];
     Rule *updateRuleObj = [[Rule alloc] init];
     RuleActions *updateRuleActionObj = [[RuleActions alloc] init];
     RuleConditionValues *updateRuleConditionValuesObj = [[RuleConditionValues alloc] init];
@@ -102,31 +100,26 @@
     
     [updateRuleObj setRuleOperatorName:@"OR"];
     [updateRuleObj addRuleConditionValues:updateRuleConditionValuesObj];
-    XCTAssertTrue([_ruleObject updateARule:updateRuleObj OnRule:[[NSUserDefaults standardUserDefaults] objectForKey:RULEID]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject updateARule:updateRuleObj OnRule:[[NSUserDefaults standardUserDefaults] objectForKey:RULEID]];
+    XCTAssertEqual(response.responseCode, 201);
 }
 - (void)test_803_CreateRuleAsDraft{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    BOOL isTrue = [_ruleObject createRuleAsDraftUsing:
-                   [NSString stringWithFormat:@"%@-Draft",[self getRandomRuleName]]];
-    XCTAssertTrue(isTrue);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject createRuleAsDraftUsing:
+                               [NSString stringWithFormat:@"%@-Draft",[self getRandomRuleName]]];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_804_DeleteADraftRule{
-    [self configureResponseDelegateWithExpectedResponseCode:204];
-    XCTAssertTrue([_ruleObject deleteADraftRule:[[NSUserDefaults standardUserDefaults]
-                                                 objectForKey:DRAFTRULEID]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject deleteADraftRule:[[NSUserDefaults standardUserDefaults]
+                                                             objectForKey:DRAFTRULEID]];
+    XCTAssertEqual(response.responseCode, 204);
 }
 - (void)test_805_GetInformationOnRule{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_ruleObject getInformationOnRule:[[NSUserDefaults standardUserDefaults]
-                                                     objectForKey:RULEID]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject getInformationOnRule:[[NSUserDefaults standardUserDefaults]
+                                                                 objectForKey:RULEID]];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_806_GetListOfRules{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_ruleObject getListOfRules]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_ruleObject getListOfRules];
+    XCTAssertEqual(response.responseCode, 200);
 }
 @end

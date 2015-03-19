@@ -44,7 +44,6 @@
 }
 
 - (void)test_1001_AggregatedReportInterface {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
     [_aggregatedReportInterfaceObject addGatewayId:[HttpUrlBuilder getDeviceId]];
     //[_aggregatedReportInterfaceObject addGatewayId:@"qwertyPAD1"];
     //[_aggregatedReportInterfaceObject addGatewayId:@"devTest"];
@@ -88,8 +87,9 @@
     //sort
     [_aggregatedReportInterfaceObject addSortInfo:@"timeHour" AndValue:@"Asc"];
     //[_aggregatedReportInterfaceObject addSortInfo:@"sortField2" AndValue:@"Desc"];
-    XCTAssertTrue([_aggregatedReportInterfaceObject request]);
-    [self waitForServerResponse];
+    
+    CloudResponse *response = [_aggregatedReportInterfaceObject request];
+    XCTAssertEqual(response.responseCode, 200);
 }
 
 

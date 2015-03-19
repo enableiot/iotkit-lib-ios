@@ -245,7 +245,7 @@
         return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:ComponentCatalog need to be initialized & configured to create component",TAG]];
     }
     NSString *msg = [self validateActuatorCommand:createComponentCatalog];
-    if (!msg) {
+    if (msg) {
         return [CloudResponse createCloudResponseWithStatus:false andMessage:msg];
     }
     NSData *data = [self createBodyForCreationOfCustomComponent:createComponentCatalog];
@@ -280,7 +280,7 @@
         return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:ComponentCatalog need to be initialized & configured to update component",TAG]];
     }
     NSString *msg = [self validateActuatorCommand:updateComponentCatalog];
-    if (!msg) {
+    if (msg) {
         return [CloudResponse createCloudResponseWithStatus:false andMessage:msg];
     }
     NSData *data = [self createBodyForUpdationOfCustomComponent:updateComponentCatalog];

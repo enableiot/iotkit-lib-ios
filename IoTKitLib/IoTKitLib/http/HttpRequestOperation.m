@@ -181,7 +181,7 @@ AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
                                [self completeHandler:response onData:data AndError:error];
                            }];
     
-    return [CloudResponse createCloudResponseWithStatus:true andMessage:@"initiateAsyncRequest"];
+    return [CloudResponse createCloudResponseWithStatus:true andMessage:@"initiatedAsyncRequest"];
 }
 
 /***************************************************************************************************************************

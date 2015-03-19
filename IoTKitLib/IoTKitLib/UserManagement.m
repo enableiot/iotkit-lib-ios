@@ -144,7 +144,7 @@
  * PARAMETERS : 1)userId
                 2)isAccepted(true/false)
  **************************************************************************************************************************/
--(CloudResponse *) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted{
+/*-(CloudResponse *) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted{
     NSString *tempUserId = [self validateAndGetUserId:userId];
     if(!tempUserId){
         return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:userID empty and cannot find from user defaults",TAG]];
@@ -159,7 +159,7 @@
                                                                           AuthToken:self.getStoredAuthToken
                                                                         DeviceToken:nil];
     return [self initiateHttpOperation:httpOperation];
-}
+}*/
 /***************************************************************************************************************************
  * FUNCTION NAME: requestChangePasswordOn
  *
@@ -332,7 +332,7 @@
         NSLog(@"%@:emailID and password are mandatory",TAG);
         return nil;
     }
-    NSDictionary *newUserJson = [NSDictionary dictionaryWithObjectsAndKeys:emailId,EMAIL,password,PASSWORD,nil];
+    NSDictionary *newUserJson = [NSDictionary dictionaryWithObjectsAndKeys:emailId,EMAIL,password,PASSWORD,[NSNumber numberWithBool:true],@"termsAndConditions",nil];
     NSError *error;
     return [NSJSONSerialization dataWithJSONObject:newUserJson options:NSJSONWritingPrettyPrinted error:&error];
 }

@@ -43,7 +43,6 @@
 }
 
 - (void)test_901_AdvancedDataInquiry {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
     [_objAdvancedDataInquiry addGatewayId:[HttpUrlBuilder getDeviceId]];
     //[objAdvancedDataInquiry addGatewayId:@"devTest"];
     
@@ -99,8 +98,8 @@
     [_objAdvancedDataInquiry addSortInfo:@"Timestamp" WithValue:@"Asc"];
     [_objAdvancedDataInquiry addSortInfo:@"Value" WithValue:@"Desc"];
     
-    [_objAdvancedDataInquiry request];
-    [self waitForServerResponse];
+    CloudResponse *response = [_objAdvancedDataInquiry request];
+    XCTAssertEqual(response.responseCode, 200);
 }
 
 

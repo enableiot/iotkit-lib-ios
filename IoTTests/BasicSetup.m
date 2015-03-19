@@ -27,48 +27,7 @@
 #define RANDOM_RANGE_MAX 10000
 #define RANDOM_RANGE_MAX_READING 100
 
-@interface BasicSetup ()
-
-@property(nonatomic,assign)NSInteger expectedResponseCode;
-@property(nonatomic,assign)NSInteger serverResponseCode;
-@property(nonatomic,assign)BOOL isServerResponded;
-@property(nonatomic,retain)NSString* serverResponseContent;
-@property(nonatomic,retain)HttpResponseDelegatee *responseDelegate;
-
-@end
-
 @implementation BasicSetup
-
-/***************************************************************************************************************************
- * FUNCTION NAME: waitForServerResponse
- *
- * DESCRIPTION: method waits(UI thread) in active loop until server responsds for given request
- *
- * RETURNS: nothing
- *
- * PARAMETERS : nil
- **************************************************************************************************************************/
--(void)waitForServerResponse{
-    @synchronized(self){
-        while(!_isServerResponded){}
-        _isServerResponded = false;
-        XCTAssertEqual(_expectedResponseCode, _serverResponseCode,@"Server Response:%@", _serverResponseContent);
-    }
-}
-
-/***************************************************************************************************************************
- * FUNCTION NAME: notifyServerResponse
- *
- * DESCRIPTION: method which notifies(updates _isServerResponded flag) when server responsds
- *
- * RETURNS: nothing
- *
- * PARAMETERS : nil
- **************************************************************************************************************************/
--(void)notifyServerResponse{
-    _isServerResponded = true;
-    CFRunLoopStop(CFRunLoopGetCurrent());
-}
 
 /***************************************************************************************************************************
  * FUNCTION NAME: setUp
@@ -81,8 +40,6 @@
  **************************************************************************************************************************/
 - (void)setUp {
     [super setUp];
-    _isServerResponded = false;
-    _responseDelegate = [HttpResponseDelegatee sharedInstance];
 }
 
 /***************************************************************************************************************************
@@ -96,27 +53,6 @@
  **************************************************************************************************************************/
 - (void)tearDown {
     [super tearDown];
-}
-
-/***************************************************************************************************************************
- * FUNCTION NAME: configureResponseDelegateWithExpectedResponseCode
- *
- * DESCRIPTION: method creates delegate receive server responses
- *
- * RETURNS: nothing
- *
- * PARAMETERS : expected response code
- **************************************************************************************************************************/
--(void)configureResponseDelegateWithExpectedResponseCode:(NSInteger)expectedResponseCode{
-    __block BasicSetup *blockTest = self;
-    __block HttpResponseDelegatee *blockResponseDelegate = _responseDelegate;
-    blockResponseDelegate.readResponse = ^(CloudResponse *cloudResponse)
-    {
-        _expectedResponseCode = expectedResponseCode;
-        _serverResponseCode = cloudResponse.responseCode;
-        _serverResponseContent = cloudResponse.responseString;
-        [blockTest notifyServerResponse];
-    };
 }
 
 /***************************************************************************************************************************
