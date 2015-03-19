@@ -43,7 +43,6 @@
 }
 
 - (void)test_301_CreateNewDevice{
-    [self configureResponseDelegateWithExpectedResponseCode:201];
     NSString *devId = [self getRandomDeviceId];
     Device *device = [Device createDeviceWithDeviceName:[self getRandomDeviceName]
                                                               andDeviceId:devId andGatewayId:devId];
@@ -54,11 +53,10 @@
     [device addAttributeName:@"Camera" andValue:@"8MP"];
     [device addAttributeName:@"Wifi" andValue:@"YES"];
     [device addAttributeName:@"Retina Display" andValue:@"NO"];
-    XCTAssertTrue([_deviceObject createNewDevice:device]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_deviceObject createNewDevice:device];
+    XCTAssertEqual(response.responseCode, 201);
 }
 - (void)test_302_UpdateADevice{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
     Device *updateDevice = [Device createDeviceWithDeviceName:[self getRandomDeviceName]
                                                               andDeviceId:nil andGatewayId:[HttpUrlBuilder getDeviceId]];
     [updateDevice addLocationInfo:15.0 AndLongitude:25.0 ANdHeight:20.0];
@@ -68,53 +66,44 @@
     [updateDevice addAttributeName:@"Camera" andValue:@"8MP"];
     [updateDevice addAttributeName:@"Wifi" andValue:@"YES"];
     [updateDevice addAttributeName:@"Retina Display" andValue:@"YES"];
-    XCTAssertTrue([_deviceObject updateADevice:updateDevice]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_deviceObject updateADevice:updateDevice];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_303_GetDeviceList{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_deviceObject getDeviceList]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_deviceObject getDeviceList];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_304_GetMyDeviceInfo{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_deviceObject getMyDeviceInfo]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_deviceObject getMyDeviceInfo];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_305_GetInfoOnDevice{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_deviceObject getInfoOnDevice:[HttpUrlBuilder getDeviceId]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_deviceObject getInfoOnDevice:[HttpUrlBuilder getDeviceId]];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_306_ActivateADevice{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_deviceObject activateADevice:[HttpUrlBuilder getAccountActivationCode]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_deviceObject activateADevice:[HttpUrlBuilder getAccountActivationCode]];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_307_AddComponentToDevice{
-    [self configureResponseDelegateWithExpectedResponseCode:201];
-    XCTAssertTrue([_deviceObject addComponentToDevice:[self getRandomDeviceComponentName] WithType:@"temperature.v1.0"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_deviceObject addComponentToDevice:[self getRandomDeviceComponentName] WithType:@"temperature.v1.0"];
+    XCTAssertEqual(response.responseCode, 201);
 }
 - (void)test_308_GetAllAttributes{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_deviceObject getAllAttributes]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_deviceObject getAllAttributes];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_309_GetAllTags{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_deviceObject getAllTags]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_deviceObject getAllTags];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_310_DeleteAComponent{
-    [self configureResponseDelegateWithExpectedResponseCode:204];
-    XCTAssertTrue([_deviceObject deleteAComponent:[HttpUrlBuilder getComponentName]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_deviceObject deleteAComponent:[HttpUrlBuilder getComponentName]];
+    XCTAssertEqual(response.responseCode, 204);
 }
 - (void)test_311_DeleteADevice{
-    [self configureResponseDelegateWithExpectedResponseCode:204];
-    XCTAssertTrue([_deviceObject deleteADevice:[HttpUrlBuilder getDeviceId]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_deviceObject deleteADevice:[HttpUrlBuilder getDeviceId]];
+    XCTAssertEqual(response.responseCode, 204);
 }
 
 @end

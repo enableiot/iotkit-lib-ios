@@ -43,36 +43,31 @@
 }
 
 - (void)test_1102_GetListOfAlerts {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_alertObject getListOfAlerts]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_alertObject getListOfAlerts];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_1103_GetInfoOnAlert {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_alertObject getInfoOnAlert:[[NSUserDefaults standardUserDefaults]
-                                                objectForKey:@"alert_Id"]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_alertObject getInfoOnAlert:[[NSUserDefaults standardUserDefaults]
+                                                            objectForKey:@"alert_Id"]];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_1104_UpdateAlertStatus {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_alertObject updateAlertStatus:[[NSUserDefaults standardUserDefaults]
-                                                   objectForKey:@"alert_Id"] WithStatus:@"Open"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_alertObject updateAlertStatus:[[NSUserDefaults standardUserDefaults]
+                                                               objectForKey:@"alert_Id"] WithStatus:@"Open"];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_1105_AddCommentsToTheAlert {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_alertObject addCommentsToTheAlert:[[NSUserDefaults standardUserDefaults]
-                                                       objectForKey:@"alert_Id"]
-                                               OnUser:@"intel.aricent.iot5@gmail.com"
-                                               AtTime:[self getCurrentTimeInMillis]
-                                          WithComment:@"Demo comment on alert"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_alertObject addCommentsToTheAlert:[[NSUserDefaults standardUserDefaults]
+                                                                   objectForKey:@"alert_Id"]
+                                                           OnUser:@"intel.aricent.iot5@gmail.com"
+                                                           AtTime:[self getCurrentTimeInMillis]
+                                                      WithComment:@"Demo comment on alert"];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_1106_ResetAlert {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_alertObject resetAlert:[[NSUserDefaults standardUserDefaults]
-                                            objectForKey:@"alert_Id"]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_alertObject resetAlert:[[NSUserDefaults standardUserDefaults]
+                                                        objectForKey:@"alert_Id"]];
+    XCTAssertEqual(response.responseCode, 200);
 }
 
 @end

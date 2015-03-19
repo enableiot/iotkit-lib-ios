@@ -44,20 +44,18 @@
 }
 
 - (void)test_501_SubmitData{
-    [self configureResponseDelegateWithExpectedResponseCode:201];
-    XCTAssertTrue([_dataManagementObject submitDataOn:[HttpUrlBuilder getComponentName]
-                                             AndValue:[self getRandomValue]
-                                          AndLatitide:10 AndLongitude:20 AndHeight:30 AndAttributes:nil]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_dataManagementObject submitDataOn:[HttpUrlBuilder getComponentName]
+                                                         AndValue:[self getRandomValue]
+                                                      AndLatitide:10 AndLongitude:20 AndHeight:30 AndAttributes:nil];
+    XCTAssertEqual(response.responseCode, 201);
 }
 
 - (void)test_502_RetrieveData{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
     ConfigureRetrieveData *retData = [[ConfigureRetrieveData alloc] initConfigureRetrieveData:0 ToTimeInMillis:[[NSDate date] timeIntervalSince1970] * 1000];
     [retData addDeviceId:[HttpUrlBuilder getDeviceId]];
     [retData addComponentId:[HttpUrlBuilder getComponentId:[HttpUrlBuilder getComponentName]]];
-    XCTAssertTrue([_dataManagementObject retrieveDataOn:retData]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_dataManagementObject retrieveDataOn:retData];
+    XCTAssertEqual(response.responseCode, 200);
 }
 
 @end

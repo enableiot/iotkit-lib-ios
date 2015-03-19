@@ -29,7 +29,7 @@
 -(CloudResponse *) deleteUser:(NSString*)userId;
 -(CloudResponse *) getUserInfo:(NSString*)userId;
 -(CloudResponse *) updateUserAttributesOn:(NSString*) userId AndListOfAttributes:(NSDictionary*)listOfUserAttributes;
--(CloudResponse *) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted;
+//-(CloudResponse *) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted;
 -(CloudResponse *) requestChangePasswordOn:(NSString*)emailId;
 -(CloudResponse *) updateForgotPassword:(NSString*)mailToken AndNewPassword:(NSString*)newPassword;
 -(CloudResponse *) changePasswordOn:(NSString*)emailId AndCurrentPassword:(NSString*)currentPassword

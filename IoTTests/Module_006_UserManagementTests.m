@@ -43,59 +43,48 @@
     [super tearDown];
 }
 - (void)test_601_CreateNewUser{
-    [self configureResponseDelegateWithExpectedResponseCode:201];
-    XCTAssertTrue([_userManagementObject createNewUserWith:@"intel.aricent.iot5@gmail.com"
-                                               AndPassword:@"Password2529"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_userManagementObject createNewUserWith:@"intel.aricent.iot6@gmail.com"
+                                                           AndPassword:@"Password2529"];
+    XCTAssertEqual(response.responseCode, 201);
 }
 - (void)test_602_GetNewAuthorizationToken{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
     AuthorizationManagement *auth = [[AuthorizationManagement alloc]init];
-    XCTAssertTrue([auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password2529"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot6@gmail.com" andPassword:@"Password2529"];
+    XCTAssertEqual(response.responseCode, 200);
 }
-- (void)test_603_AcceptTermsAndConditions{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_userManagementObject acceptTermsAndConditionsOn:[HttpUrlBuilder getUserId]
-                                                         Acceptance:true]);
-    [self waitForServerResponse];
-}
+/*- (void)test_603_AcceptTermsAndConditions{
+    CloudResponse *response = [_userManagementObject acceptTermsAndConditionsOn:[HttpUrlBuilder getUserId]
+                                                                     Acceptance:true];
+    XCTAssertEqual(response.responseCode, 200);
+}*/
 - (void)test_604_GetUserInfo{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_userManagementObject getUserInfo:[HttpUrlBuilder getUserId]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_userManagementObject getUserInfo:[HttpUrlBuilder getUserId]];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_605_UpdateUserAttributes{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    BOOL isTrue = [_userManagementObject updateUserAttributesOn:[HttpUrlBuilder getUserId]
-                              AndListOfAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"100000000",@"phone",@"hey hey",@"wish", nil]];
-    XCTAssertTrue(isTrue);
-    [self waitForServerResponse];
+    CloudResponse *response = [_userManagementObject updateUserAttributesOn:[HttpUrlBuilder getUserId]
+                                                        AndListOfAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"100000000",@"phone",@"hey hey",@"wish", nil]];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_606_ChangePassword{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_userManagementObject changePasswordOn:@"intel.aricent.iot5@gmail.com" AndCurrentPassword:@"Password2529" AndNewPassword:@"Password25292"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_userManagementObject changePasswordOn:@"intel.aricent.iot6@gmail.com" AndCurrentPassword:@"Password2529" AndNewPassword:@"Password25292"];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_607_GetNewAuthorizationToken{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
     AuthorizationManagement *auth = [[AuthorizationManagement alloc]init];
-    XCTAssertTrue([auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password25292"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot6@gmail.com" andPassword:@"Password25292"];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_608_RequestChangePassword{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_userManagementObject requestChangePasswordOn:@"intel.aricent.iot5@gmail.com"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_userManagementObject requestChangePasswordOn:@"intel.aricent.iot6@gmail.com"];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_609_UpdateForgotPassword{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_userManagementObject updateForgotPassword:@"HqaRch3mzCaDe2XH" AndNewPassword:@"Password2529"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_userManagementObject updateForgotPassword:@"dxmYkK0VNkJdTdqc" AndNewPassword:@"Password2529"];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_610_DeleteAUser{
-    [self configureResponseDelegateWithExpectedResponseCode:204];
-    XCTAssertTrue([_userManagementObject deleteUser:[HttpUrlBuilder getUserId]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_userManagementObject deleteUser:[HttpUrlBuilder getUserId]];
+    XCTAssertEqual(response.responseCode, 204);
 }
 @end

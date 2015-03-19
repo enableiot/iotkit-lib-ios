@@ -43,45 +43,37 @@
 }
 
 - (void)test_201_CreateAnAccount {
-    [self configureResponseDelegateWithExpectedResponseCode:201];
-    XCTAssertTrue([_accountManagementObject createAnAccount:[self getRandomAccountName]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_accountManagementObject createAnAccount:[self getRandomAccountName]];
+    XCTAssertEqual(response.responseCode, 201);
 }
 - (void)test_202_GetNewAuthorizationToken{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    AuthorizationManagement *auth = [[AuthorizationManagement alloc]init];
-    XCTAssertTrue([auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password2529"]);
-    [self waitForServerResponse];
+     AuthorizationManagement *auth = [[AuthorizationManagement alloc]init];
+    CloudResponse *response = [auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot6@gmail.com" andPassword:@"Password2529"];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_203_GetAccountInformation {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_accountManagementObject getAccountInformation]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_accountManagementObject getAccountInformation];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_204_RenewAccountActivationCode {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_accountManagementObject renewAccountActivationCode]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_accountManagementObject renewAccountActivationCode];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_205_GetAccountActivationCode {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_accountManagementObject getAccountActivationCode]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_accountManagementObject getAccountActivationCode];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_206_AddAnotherUserToYourAccount {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_accountManagementObject addAnotherUserToAccount:[HttpUrlBuilder getAccountId] UserGettingInvited:@"545b0cb707024be10dec1152" Admin:false]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_accountManagementObject addAnotherUserToAccount:[HttpUrlBuilder getAccountId] UserGettingInvited:@"545b0cb707024be10dec1152" Admin:true];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_207_UpdateAnAccount {
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_accountManagementObject updateAnAccount:[HttpUrlBuilder getAccountName]
-                   andOptionalAttributesWithSimpleKeyValues:nil]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_accountManagementObject updateAnAccount:[HttpUrlBuilder getAccountName]
+                               andOptionalAttributesWithSimpleKeyValues:nil];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_208_DeleteAnAccount {
-    [self configureResponseDelegateWithExpectedResponseCode:204];
-    XCTAssertTrue([_accountManagementObject deleteAnAccount]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_accountManagementObject deleteAnAccount];
+    XCTAssertEqual(response.responseCode, 204);
 }
 @end
