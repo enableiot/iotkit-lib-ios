@@ -25,9 +25,9 @@
 
 @interface InvitationManagement : DefaultConfiguration
 
--(BOOL) getListOfInvitation;
--(BOOL) getInvitationListSendToSpecificUser:(NSString*)emailId;
--(BOOL) deleteInvitationsTo:(NSString*)emailId;
--(BOOL) createInvitationTo:(NSString*)emailId;
+-(CloudResponse *) getListOfInvitation;
+-(CloudResponse *) getInvitationListSendToSpecificUser:(NSString*)emailId;
+-(CloudResponse *) deleteInvitationsTo:(NSString*)emailId;
+-(CloudResponse *) createInvitationTo:(NSString*)emailId;
 
 @end

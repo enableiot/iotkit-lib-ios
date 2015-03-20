@@ -21,13 +21,16 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_ConditionCmpsValuePoints_h
-#define IoT_ConditionCmpsValuePoints_h
+#import "DefaultConfiguration.h"
+#import "ComponentCatalog.h"
 
-@interface ConditionCmpsValuePoints : NSObject
+@interface ComponentCatalogManagement : DefaultConfiguration
 
--(id) init __attribute__((unavailable("Must create object using \"initConditionCmpsValuePoints\" method")));
+-(CloudResponse *)listAllComponentTypesCatalog;
+-(CloudResponse *)listAllDetailsOfComponentTypesCatalog;
+-(CloudResponse *)listComponentTypeDetails:(NSString*)componentId;
+-(CloudResponse *)createCustomComponent:(ComponentCatalog*) createComponentCatalog;
+-(CloudResponse *)updateAComponent:(ComponentCatalog*) createComponentCatalog OnComponent:(NSString*)componentId;
+
 
 @end
-
-#endif

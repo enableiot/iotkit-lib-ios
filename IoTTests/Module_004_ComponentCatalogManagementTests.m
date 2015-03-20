@@ -22,19 +22,19 @@
  */
 
 #import "BasicSetup.h"
-#import "IoTKitLib/ComponentTypesCatalog.h"
+#import "IoTKitLib/ComponentCatalogManagement.h"
 
-@interface Module_004_ComponentTypesCatalogTests : BasicSetup
+@interface Module_004_ComponentCatalogManagementTests : BasicSetup
 
-@property(nonatomic,retain)ComponentTypesCatalog *componentCatalogObject;
+@property(nonatomic,retain)ComponentCatalogManagement *componentCatalogObject;
 
 @end
 
-@implementation Module_004_ComponentTypesCatalogTests
+@implementation Module_004_ComponentCatalogManagementTests
 
 - (void)setUp {
     [super setUp];
-    _componentCatalogObject = [[ComponentTypesCatalog alloc]init];
+    _componentCatalogObject = [[ComponentCatalogManagement alloc]init];
 }
 
 - (void)tearDown {
@@ -42,23 +42,19 @@
     [super tearDown];
 }
 - (void)test_401_ListAllComponentTypesCatalog{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_componentCatalogObject listAllComponentTypesCatalog]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_componentCatalogObject listAllComponentTypesCatalog];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_402_ListAllDetailsOfComponentTypesCatalog{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_componentCatalogObject listAllDetailsOfComponentTypesCatalog]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_componentCatalogObject listAllDetailsOfComponentTypesCatalog];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_403_ListComponentTypeDetails{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_componentCatalogObject listComponentTypeDetails:@"temperature.v1.0"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_componentCatalogObject listComponentTypeDetails:@"temperature.v1.0"];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_404_CreateCustomComponent{
-    [self configureResponseDelegateWithExpectedResponseCode:201];
-    CreateOrUpdateComponentCatalog *createComponentCatalog = [CreateOrUpdateComponentCatalog CreateOrUpdateComponentCatalogWith:[self getRandomCustomComponentName] AndVersion:@"1.0" AndType:@"actuator" AndDataType:@"Number" AndFormat:@"float" AndUnit:@"Degrees Celsius" AndDisplay:@"timeSeries"];
+    ComponentCatalog *createComponentCatalog = [ComponentCatalog ComponentCatalogWith:[self getRandomCustomComponentName] AndVersion:@"1.0" AndType:@"actuator" AndDataType:@"Number" AndFormat:@"float" AndUnit:@"Degrees Celsius" AndDisplay:@"timeSeries"];
     [createComponentCatalog setMinValue:5.0];
     [createComponentCatalog setMaxValue:100.0];
     [createComponentCatalog setCommandString:@"Intel actuator"];
@@ -67,12 +63,11 @@
     [createComponentCatalog addCommandParameters:@"AC3" AndValue:@"32-38"];
     [createComponentCatalog addCommandParameters:@"TrueAC" AndValue:@"20-30"];
     [createComponentCatalog addCommandParameters:@"LiveAC" AndValue:@"10-20"];
-    XCTAssertTrue([_componentCatalogObject createCustomComponent:createComponentCatalog]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_componentCatalogObject createCustomComponent:createComponentCatalog];
+    XCTAssertEqual(response.responseCode, 201);
 }
 - (void)test_405_UpdateAComponent{
-    [self configureResponseDelegateWithExpectedResponseCode:201];
-    CreateOrUpdateComponentCatalog *updateComponentCatalog = [CreateOrUpdateComponentCatalog CreateOrUpdateComponentCatalogWith:nil AndVersion:nil AndType:@"actuator" AndDataType:@"Number" AndFormat:@"integer" AndUnit:@"Degrees Celsius" AndDisplay:@"timeSeries"];
+    ComponentCatalog *updateComponentCatalog = [ComponentCatalog ComponentCatalogWith:nil AndVersion:nil AndType:@"actuator" AndDataType:@"Number" AndFormat:@"integer" AndUnit:@"Degrees Celsius" AndDisplay:@"timeSeries"];
     [updateComponentCatalog setMinValue:5.0];
     [updateComponentCatalog setMaxValue:100.0];
     [updateComponentCatalog setCommandString:@"Intel actuator"];
@@ -81,9 +76,9 @@
     [updateComponentCatalog addCommandParameters:@"AC3" AndValue:@"32-38"];
     [updateComponentCatalog addCommandParameters:@"TrueAC" AndValue:@"10-30"];
     [updateComponentCatalog addCommandParameters:@"LiveAC" AndValue:@"0-20"];
-    XCTAssertTrue([_componentCatalogObject updateAComponent:updateComponentCatalog OnComponent:
-                   [[self getCustomComponentName] stringByAppendingString:@".V1.0"]]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_componentCatalogObject updateAComponent:updateComponentCatalog OnComponent:
+                               [[self getCustomComponentName] stringByAppendingString:@".V1.0"]];
+    XCTAssertEqual(response.responseCode, 201);
 }
 
 

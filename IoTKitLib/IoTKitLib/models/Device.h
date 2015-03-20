@@ -21,29 +21,19 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_CreateNewAlertData_h
-#define IoT_CreateNewAlertData_h
+#ifndef IoT_Device_h
+#define IoT_Device_h
 
-#import "CreateNewAlertDataConditions.h"
+@interface Device : NSObject
 
-@interface CreateNewAlertData : NSObject
+-(id) init __attribute__((unavailable("Must create object using \"Device\" method")));
 
--(id) init __attribute__((unavailable("Must create object using \"initCreateNewAlertData\" method")));
--(id)initCreateNewAlertData;
--(void)alertSetAccountId:(NSString*)accountId;
--(void)alertSetAlertId:(NSInteger)alertId;
--(void)alertSetRuleId:(NSInteger)ruleId;
--(void)alertSetDeviceId:(NSString*)deviceId;
--(void)alertSetAlertStatus:(NSString*)alertStatus;
--(void)alertSetTimestamp:(long)timestamp;
--(void)alertSetResetTimestamp:(long)resetTimestamp;
--(void)alertSetResetType:(NSString*)resetType;
--(void)alertSetLastUpdateDate:(long)lastUpdateDate;
--(void)alertSetRuleName:(NSString*)ruleName;
--(void)alertSetRulePriority:(NSString*)rulePriority;
--(void)alertSetNaturalLangAlert:(NSString*)naturalLangAlert;
--(void)alertSetRuleExecutionTimestamp:(long)ruleExecutionTimestamp;
--(void)alertAddNewAlertConditions:(CreateNewAlertDataConditions*)conditionsObj;
++(id)createDeviceWithDeviceName:(NSString*)deviceName andDeviceId:(NSString*) deviceId andGatewayId:(NSString*) gatewayId;
+
+-(void)addLocationInfo:(double)latitude AndLongitude:(double) longitude ANdHeight:(double) height;
+-(void)addTagName:(NSString*)tagName ;
+-(void)addAttributeName:(NSString*)attributeName  andValue:(NSString*)attributeValue;
+
 
 @end
 

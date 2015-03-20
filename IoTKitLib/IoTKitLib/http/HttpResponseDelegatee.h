@@ -21,27 +21,13 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_CreateRule_h
-#define IoT_CreateRule_h
+#import <Foundation/Foundation.h>
+#import "CloudResponse.h"
 
-#import "CreateRuleActions.h"
-#import "CreateRuleConditionValues.h"
+@interface HttpResponseDelegatee : NSObject
 
-@interface CreateRule:NSObject
++(id) sharedInstance;
 
--(void)setRuleName:(NSString*)ruleName;
--(void)setRuleDescription:(NSString*)description;
--(void)setRulePriority:(NSString*)priority;
--(void)setRuleType:(NSString*)ruleType;
--(void)setRuleStatus:(NSString*)status;
--(void)setRuleResetType:(NSString*)resetType;
--(void)setRulePopulationAttributes:(NSString*)attributes;
--(void)setRuleOperatorName:(NSString*)operatorName;
--(void)addRuleActions:(CreateRuleActions*)createRuleActionsObj;
--(void)addRulePopulationId:(NSString*)populationId;
--(void)addRuleConditionValues:(CreateRuleConditionValues*)createRuleConditionValuesObj;
-
-
+@property (atomic,copy) void (^readResponse)(CloudResponse *);
+- (id) init __attribute__((unavailable("Must create singleton using \"sharedInstance\" method")));
 @end
-
-#endif

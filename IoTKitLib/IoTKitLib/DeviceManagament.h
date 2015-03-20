@@ -23,21 +23,21 @@
 #import <Foundation/Foundation.h>
 
 #import "DefaultConfiguration.h"
-#import "CreateDevice.h"
+#import "Device.h"
 
 @interface DeviceManagament : DefaultConfiguration
 
--(BOOL) listAllDevices;
--(BOOL) createNewDevice:(CreateDevice*) deviceCreateObj;
--(BOOL) updateADevice:(CreateDevice*)deviceUpdationObj;
--(BOOL) getMyDeviceInfo;
--(BOOL) getInfoOnDevice:(NSString*)deviceId;
--(BOOL) listAllDeviceTags;
--(BOOL) listAllDeviceAttributes;
--(BOOL) activateADevice:(NSString*)activationCode;
--(BOOL) addComponentToDevice:(NSString*)componentName WithType:(NSString*)componentType;
--(BOOL) deleteAComponent:(NSString*)componentName;
--(BOOL) deleteADevice:(NSString*)deviceId;
+-(CloudResponse *) getDeviceList;
+-(CloudResponse *) createNewDevice:(Device*) deviceCreateObj;
+-(CloudResponse *) updateADevice:(Device*)deviceUpdationObj;
+-(CloudResponse *) getMyDeviceInfo;
+-(CloudResponse *) getInfoOnDevice:(NSString*)deviceId;
+-(CloudResponse *) getAllTags;
+-(CloudResponse *) getAllAttributes;
+-(CloudResponse *) activateADevice:(NSString*)activationCode;
+-(CloudResponse *) addComponentToDevice:(NSString*)componentName WithType:(NSString*)componentType;
+-(CloudResponse *) deleteAComponent:(NSString*)componentName;
+-(CloudResponse *) deleteADevice:(NSString*)deviceId;
 
 
 @end

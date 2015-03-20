@@ -56,10 +56,45 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+/***************************************************************************************************************************
+ * FUNCTION NAME: connectToIoTServerSyncButtonClicked
+ *
+ * DESCRIPTION: synchronous version of method gets called on click of button,
+ *
+ * RETURNS: button action instance
+ *
+ * PARAMETERS : sender object
+ **************************************************************************************************************************/
+
+- (IBAction)connectToIoTServerSyncButtonClicked:(id)sender {
+    self.responseCodeTextField.text = @"";
+    self.responseTextView.text = @"";
+    
+    //Authorization,Executing on UI thread, Blocks UI
+    dispatch_async(dispatch_get_main_queue(), ^{
+        AuthorizationManagement *auth = [[AuthorizationManagement alloc] init];
+        CloudResponse *response = [auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password2529"];
+        self.responseCodeTextField.text = [NSString stringWithFormat:@"%ld",(long)response.responseCode];
+        self.responseTextView.text = response.responseString;
+        NSLog(@"ViewController: done sending request for authorization token code:%d msg:%@", response.status, response.responseString);
+    });
+    //Authorization,Executing on background thread, Does not blocks UI
+    /*dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{//Executing on background thread
+        AuthorizationManagement *auth = [[AuthorizationManagement alloc] init];
+        CloudResponse *response = [auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password2529"];
+        dispatch_sync(dispatch_get_main_queue(), ^{//response showing on UI thread
+            self.responseCodeTextField.text = [NSString stringWithFormat:@"%ld",(long)response.responseCode];
+            self.responseTextView.text = response.responseString;
+        });
+        NSLog(@"ViewController: done sending request for authorization token code:%d msg:%@", response.status, response.responseString);
+    });*/
+}
+
 /***************************************************************************************************************************
  * FUNCTION NAME: connectToIoTServerButtonClicked
  *
- * DESCRIPTION: method gets called on click of button
+ * DESCRIPTION: Asynchronous version of method gets called on click of button,
  *
  * RETURNS: button action instance
  *
@@ -71,22 +106,24 @@
     self.responseTextView.text = @"";
     
     HttpResponseDelegatee *obj = [HttpResponseDelegatee sharedInstance];
-    obj.cloudResponse = ^(NSInteger responseCode, NSString* responseContent)
+    obj.readResponse = ^(CloudResponse* cloudResponse)
     {
-        NSLog(@"ViewController:responseCode:%ld,responseContent:%@",(long)responseCode,responseContent);
+        NSLog(@"ViewController:responseCode:%ld,responseContent:%@",(long)cloudResponse.responseCode,cloudResponse.responseString);
         dispatch_async(dispatch_get_main_queue(), ^{//Executing on UI thread
-            self.responseCodeTextField.text = [NSString stringWithFormat:@"%ld",(long)responseCode];
-            self.responseTextView.text = responseContent;
+            self.responseCodeTextField.text = [NSString stringWithFormat:@"%ld",(long)cloudResponse.responseCode];
+            self.responseTextView.text = cloudResponse.responseString;
         });
-        CFRunLoopStop(CFRunLoopGetCurrent());//stopping background thread
     };
     
-    //Authorization
-    
+    //Authorization,Executing on UI thread, does not block UI as it is async http call
+    //note:following request can be executed on background thread
     AuthorizationManagement *auth = [[AuthorizationManagement alloc] init];
-    [auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password2529"];
-    
+    CloudResponse *response = [auth getNewAuthorizationTokenWithUsername:@"intel.aricent.iot5@gmail.com" andPassword:@"Password2529"];
+    NSLog(@"ViewController: done sending request for authorization token code:%d msg:%@", response.status, response.responseString);
+    self.responseCodeTextField.text = [NSString stringWithFormat:@"%ld",(long)response.responseCode];
+    self.responseTextView.text = response.responseString;
 }
+
 /***************************************************************************************************************************
  * FUNCTION NAME: getCurrentTimeInMillis
  *

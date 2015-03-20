@@ -14,21 +14,19 @@
 -(id) init __attribute__((unavailable("Must create object using \"initAggregatedReportInterfaceWithDefaults\" method")));
 
 -(id) initAggregatedReportInterfaceWithDefaults;
--(BOOL)getAggregatedReportInterface;
--(void)setReportMessageType:(NSString*) msgType;
--(void)setReportStartTimestamp:(long) startTimestamp;
--(void)setReportEndTimestamp:(long) endTimestamp;
--(void)addAggregationMethods:(NSString*) aggregation;
--(void)addDimensions:(NSString*) dimension;
+-(void)setStartTimestamp:(long) startTimestamp;
+-(void)setEndTimestamp:(long) endTimestamp;
+-(void)addAggregationMethod:(NSString*) aggregation;
+-(void)addDimension:(NSString*) dimension;
 -(void)setOffset:(NSInteger) offset;
 -(void)setLimit:(NSInteger) limit;
--(void)setReportCountOnly:(BOOL) countOnly;
+-(void)setCountOnly:(BOOL) countOnly;
 -(void)setOutputType:(NSString*) outputType;
--(void)addReportDeviceIds:(NSString*) deviceId;
--(void)addReportGatewayIds:(NSString*) gatewayId;
--(void)addReportComponentIds:(NSString*) componentId;
--(void)addReportSortInfo:(NSString*) name AndValue:(NSString*)value;
--(void)addFilters:(AttributeFilter*) attributeFilter;
-
+-(void)addDeviceId:(NSString*) deviceId;
+-(void)addGatewayId:(NSString*) gatewayId;
+-(void)addComponentId:(NSString*) componentId;
+-(void)addSortInfo:(NSString*) name AndValue:(NSString*)value;
+-(void)addFilter:(AttributeFilter*) attributeFilter;
+-(CloudResponse *)request;
 
 @end

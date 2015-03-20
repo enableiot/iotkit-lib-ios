@@ -21,13 +21,23 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_CreateRuleActions_h
-#define IoT_CreateRuleActions_h
-@interface CreateRuleActions:NSObject
+#ifndef IoT_ComponentCatalog_h
+#define IoT_ComponentCatalog_h
 
--(void)setRuleActionType:(NSString*)ruleActionType;
--(void)addRuleActionTarget:(NSString*)target;
+@interface ComponentCatalog : NSObject
+
+-(id) init __attribute__((unavailable("Must create object using \"ComponentCatalog\" method")));
++(id) ComponentCatalogWith:(NSString*) componentName AndVersion: (NSString*) componentVersion
+                                 AndType:(NSString*) componentType AndDataType:(NSString*) componentDataType
+                               AndFormat:(NSString*) componentFormat AndUnit:(NSString*) componentUnit
+                              AndDisplay:(NSString*) componentDisplay;
+
+-(void) setMinValue:(double) minValue ;
+-(void) setMaxValue:(double) maxValue ;
+-(void) setCommandString:(NSString*) commandString ;
+-(void) addCommandParameters:(NSString*) commandName AndValue:(NSString*) commandValue ;
 
 @end
+
 
 #endif

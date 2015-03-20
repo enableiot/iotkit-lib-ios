@@ -42,23 +42,19 @@
     [super tearDown];
 }
 - (void)test_701_CreateInvitation{
-    [self configureResponseDelegateWithExpectedResponseCode:201];
-    XCTAssertTrue([_invitationObject createInvitationTo:@"intel.aricent.iot3@gmail.com"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_invitationObject createInvitationTo:@"intel.aricent.iot3@gmail.com"];
+    XCTAssertEqual(response.responseCode, 201);
 }
 - (void)test_702_GetInvitationListSendToSpecificUser{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_invitationObject getInvitationListSendToSpecificUser:@"intel.aricent.iot3@gmail.com"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_invitationObject getInvitationListSendToSpecificUser:@"intel.aricent.iot3@gmail.com"];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_703_GetListOfInvitation{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_invitationObject getListOfInvitation]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_invitationObject getListOfInvitation];
+    XCTAssertEqual(response.responseCode, 200);
 }
 - (void)test_704_DeleteInvitations{
-    [self configureResponseDelegateWithExpectedResponseCode:200];
-    XCTAssertTrue([_invitationObject deleteInvitationsTo:@"intel.aricent.iot3@gmail.com"]);
-    [self waitForServerResponse];
+    CloudResponse *response = [_invitationObject deleteInvitationsTo:@"intel.aricent.iot3@gmail.com"];
+    XCTAssertEqual(response.responseCode, 200);
 }
 @end

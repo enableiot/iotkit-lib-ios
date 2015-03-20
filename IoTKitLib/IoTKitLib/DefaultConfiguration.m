@@ -73,23 +73,7 @@
     assert(self.objHttpUrlBuilder);
     assert(self.objHttpResponseDelegatee);
 }
-/***************************************************************************************************************************
- * FUNCTION NAME: createHttpRequest
- *
- * DESCRIPTION: method which initiates request
- *
- * RETURNS: true/false
- *
- * PARAMETERS : httpOperation Object
- **************************************************************************************************************************/
--(BOOL)createHttpRequest:(HttpRequestOperation*)httpOperation{
-    if([httpOperation initiateRequest]){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
+
 /***************************************************************************************************************************
  * FUNCTION NAME: initiateHttpOperation
  *
@@ -99,27 +83,16 @@
  *
  * PARAMETERS : httpOperation Object
  **************************************************************************************************************************/
--(BOOL)initiateHttpOperation:(HttpRequestOperation*)httpOperation{
-    __block BOOL isSuccess;
+-(CloudResponse *)initiateHttpOperation:(HttpRequestOperation*)httpOperation{
     [httpOperation setHttpDelegate:(id)self.objHttpResponseDelegatee];
-    //need to dispatch synchronously, because need "isSuccess" value to return
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        //Background Thread
-        isSuccess = [self createHttpRequest:httpOperation];
-        if(isSuccess){
-            CFRunLoopRun();
-        }
-        else{
-            NSLog(@"%@:not able to create Http Request!!!!",TAG);
-        }
-        
-//        dispatch_async(dispatch_get_main_queue(), ^(void){
-//            //Run UI Updates
-//        });
-    });
-    return true;
-    //[NSThread detachNewThreadSelector:@selector(createHttpRequest:) toTarget:self withObject:httpOperation];
+
+    if (self.objHttpResponseDelegatee.readResponse) {
+        return [httpOperation initiateAsyncRequest];
+    } else {
+        return [httpOperation initiateSyncRequest];
+    }
 }
+
 /***************************************************************************************************************************
  * FUNCTION NAME: getStoredAuthToken
  *

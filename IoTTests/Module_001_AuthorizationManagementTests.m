@@ -21,16 +21,39 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_CreateNewAlertDataConditionComponents_h
-#define IoT_CreateNewAlertDataConditionComponents_h
 
-@interface CreateNewAlertDataConditionComponents : NSObject
+#import "BasicSetup.h"
+#import "IoTKitLib/AuthorizationManagement.h"
 
--(void)alertSetComponentId:(NSString*)cmpId;
--(void)alertSetDataType:(NSString*)cmdDataType;
--(void)alertSetComponentName:(NSString*)cmpName;
--(void)alertAddValuePointsAt:(long) timeStamp With:(NSString*)value;
+@interface Module_001_AuthorizationManagementTests : BasicSetup
+
+@property(nonatomic,retain)AuthorizationManagement *authorizationObject;
 
 @end
 
-#endif
+@implementation Module_001_AuthorizationManagementTests
+
+- (void)setUp {
+    [super setUp];
+    _authorizationObject = [[AuthorizationManagement alloc] init];
+    
+}
+- (void)tearDown {
+    _authorizationObject = nil;
+    [super tearDown];
+}
+- (void)test_101_GetNewAuthorizationToken {
+    CloudResponse *response = [_authorizationObject getNewAuthorizationTokenWithUsername:@"intel.aricent.iot6@gmail.com" andPassword:@"Password2529"];
+    XCTAssertEqual(response.responseCode, 200);
+    
+}
+- (void)test_103_GetAuthorizationTokenInfo {
+    CloudResponse *response = [_authorizationObject getAuthorizationTokenInfo];
+    XCTAssertEqual(response.responseCode, 200);
+}
+- (void)test_102_ValidateAuthorizationToken{
+    CloudResponse *response = [_authorizationObject validateAuthorizationToken];
+    XCTAssertEqual(response.responseCode, 200);
+}
+
+@end

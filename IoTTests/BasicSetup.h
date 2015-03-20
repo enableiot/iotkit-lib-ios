@@ -29,8 +29,6 @@
 
 @interface BasicSetup : XCTestCase
 
--(void)configureResponseDelegateWithExpectedResponseCode:(NSInteger)expectedResponseCode;
--(void)waitForServerResponse;
 -(NSString*)getRandomValueString;
 -(NSString*)getRandomAccountName;
 -(NSString*)getRandomDeviceName;

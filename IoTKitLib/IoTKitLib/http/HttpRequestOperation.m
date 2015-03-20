@@ -22,6 +22,7 @@
  */
 
 #import "HttpRequestOperation.h"
+#import "CloudResponse.h"
 
 
 #define TAG @"HttpRequestOperation"
@@ -29,12 +30,40 @@
 #define CONTENTLENGTH @"Content-Length"
 #define AUTHORIZATION @"Authorization"
 
-@interface HttpRequestOperation()
-{
-    NSString *responseString;
-    NSInteger responseCode;
+@interface CloudResponse()
+
+@property (readwrite, nonatomic) BOOL status;
+@property (readwrite, nonatomic) NSUInteger responseCode;
+@property (readwrite, nonatomic) NSString *responseString;
+
+@end
+
+@implementation CloudResponse
+- (id)init {
+    self = [super init];
     
+    if (self) {
+        // initialize instance variables here
+        _status = true;
+        _responseCode = 0;
+        _responseString = @"";
+    }
+    
+    return self;
 }
+
++(id)createCloudResponseWithStatus:(BOOL)status andMessage:(NSString*) message {
+    CloudResponse *cloudResponse = [[CloudResponse alloc] init];
+    cloudResponse.status = status;
+    cloudResponse.responseString = message;
+    NSLog(@"status:%d message:%@", status, message);
+    return cloudResponse;
+}
+
+@end
+
+@interface HttpRequestOperation()
+
 @property(nonatomic,retain) NSString* url;
 @property(nonatomic,retain) NSString *httpMethod;
 @property(nonatomic,retain) NSString *contentType;
@@ -81,20 +110,58 @@ AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
     }
     return self;
 }
+
+- (CloudResponse *)completeHandler:(NSURLResponse *)response onData:(NSData *)data AndError:(NSError *)error {
+    NSString *responseString;
+    NSInteger responseCode;
+    CloudResponse *cloudResponse = [[CloudResponse alloc] init];
+    
+    if ([data length] > 0 && error == nil) {
+        _responseData = [NSMutableData data];
+        [_responseData setData:data];
+        responseCode = ((NSHTTPURLResponse*)response).statusCode;
+        responseString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
+        cloudResponse.responseString = responseString;
+        cloudResponse.responseCode = responseCode;
+        [self.httpDelegate cloudResponseOnOperation:_operationName WithCloudResponse:cloudResponse];
+    }
+    else if ([data length] == 0 && error == nil) {
+        _responseData = [NSMutableData data];
+        [_responseData setLength:0];
+        responseCode = ((NSHTTPURLResponse*)response).statusCode;
+        NSLog(@"%@:empty data from server",TAG);
+        responseString = @"empty data from server";
+        cloudResponse.responseString = responseString;
+        cloudResponse.responseCode = responseCode;
+        [self.httpDelegate cloudResponseOnOperation:_operationName WithCloudResponse:cloudResponse];
+    }
+    else if (error != nil) {
+        responseCode = [error code];
+        responseString = [error localizedDescription];
+        NSLog(@"%@:ERROR:: %@", TAG,responseString);
+        NSLog(@"%@:ERROR code %ld",TAG,(long)responseCode);
+        cloudResponse.responseString = responseString;
+        cloudResponse.responseCode = responseCode;
+        [self.httpDelegate cloudResponseOnOperation:_operationName WithCloudResponse:cloudResponse];
+    }
+    return cloudResponse;
+}
+
 /***************************************************************************************************************************
- * FUNCTION NAME: initiateRequest
+ * FUNCTION NAME: initiateAsyncRequest
  *
  * DESCRIPTION:initiates Http Request to IoT server
  *
- * RETURNS:true/false
+ * RETURNS:CloudResponse object
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
-- (BOOL)initiateRequest {
+- (CloudResponse *)initiateAsyncRequest {
+   
     // Do the main work of the operation here.
     if(!_url || !_httpMethod || !_contentType || _operationName <= 0){
         NSLog(@"%@:url/http method/content type/operation name cannot be empty",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:@"Url/http method/content type/operation name cannot be empty"];
     }
     NSMutableURLRequest *requestUrl = nil;
     requestUrl = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_url]];
@@ -109,87 +176,48 @@ AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
     [requestUrl setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[_requestBody length]] forHTTPHeaderField : CONTENTLENGTH];
     [requestUrl setHTTPBody : _requestBody];
     
-    //initiate url connection
-    _urlConnection = [[NSURLConnection alloc] initWithRequest:requestUrl
-                                                     delegate:self startImmediately:YES];
-    if(!_urlConnection){
-        NSLog(@"%@:not able to create url connection",TAG);
-        return false;
-    }
-    NSLog(@"%@:Url connection success:%@",TAG,_urlConnection);
-    return true;
+    [NSURLConnection sendAsynchronousRequest:requestUrl queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               [self completeHandler:response onData:data AndError:error];
+                           }];
     
+    return [CloudResponse createCloudResponseWithStatus:true andMessage:@"initiatedAsyncRequest"];
 }
+
 /***************************************************************************************************************************
- * FUNCTION NAME: didReceiveResponse
+ * FUNCTION NAME: initiateSyncRequest
  *
- * DESCRIPTION:delegate method gets called when server responds
+ * DESCRIPTION:initiates Http Request to IoT server
  *
- * RETURNS:nothing
+ * RETURNS:CloudResponse object
  *
- * PARAMETERS : 1)connection object
-                2)response object
+ * PARAMETERS : nil
  **************************************************************************************************************************/
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    _responseData = [NSMutableData data];
-    [_responseData setLength:0];
-    responseCode = ((NSHTTPURLResponse*)response).statusCode;
-}
-/***************************************************************************************************************************
- * FUNCTION NAME: didReceiveData
- *
- * DESCRIPTION:delegate method gets called multiple times to collect data
- *
- * RETURNS:nothing
- *
- * PARAMETERS : 1)connection object
-                2)data object
- **************************************************************************************************************************/
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [_responseData appendData:data];
-}
-/***************************************************************************************************************************
- * FUNCTION NAME: didFailWithError
- *
- * DESCRIPTION:delegate method gets called when server/network error comes
- *
- * RETURNS:nothing
- *
- * PARAMETERS : 1)connection object
-                2)error object
- **************************************************************************************************************************/
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    responseCode = [error code];
-    responseString = [error localizedDescription];
-    NSLog(@"%@:ERROR:: %@", TAG,responseString);
-    NSLog(@"%@:ERROR code %ld",TAG,(long)responseCode);
-    [self.httpDelegate cloudResponseOnOperation:_operationName WithCode:responseCode response:responseString];
-}
-/***************************************************************************************************************************
- * FUNCTION NAME: connectionDidFinishLoading
- *
- * DESCRIPTION:delegate method gets called after collecting all data
- *
- * RETURNS:nothing
- *
- * PARAMETERS : 1)connection object
- **************************************************************************************************************************/
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if(_responseData && _responseData.length){
-        responseString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
+- (CloudResponse *)initiateSyncRequest {
+    // Do the main work of the operation here.
+    if(!_url || !_httpMethod || !_contentType || _operationName <= 0){
+        NSLog(@"%@:url/http method/content type/operation name cannot be empty",TAG);
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:@"Url/http method/content type/operation name cannot be empty"];
     }
-    else{
-        NSLog(@"%@:empty data from server",TAG);
-        responseString = @"empty data from server";
-        
+    NSMutableURLRequest *requestUrl = nil;
+    requestUrl = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_url]];
+    [requestUrl setHTTPMethod :_httpMethod];
+    [requestUrl setValue:_contentType forHTTPHeaderField:CONTENTTYPE];
+    //gets auth/device token based on existence
+    NSString *token = [self getHeaderToken];
+    if(token){
+        [requestUrl setValue:token forHTTPHeaderField:AUTHORIZATION];
     }
-    [self.httpDelegate cloudResponseOnOperation:_operationName WithCode:responseCode response:responseString];
     
+    [requestUrl setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[_requestBody length]] forHTTPHeaderField : CONTENTLENGTH];
+    [requestUrl setHTTPBody : _requestBody];
+    
+    NSError *error = nil;
+    NSURLResponse *response = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:requestUrl returningResponse:&response error:&error];
+    return [self completeHandler:response onData:data AndError:error];
 }
+
 /***************************************************************************************************************************
  * FUNCTION NAME: getHeaderToken
  *
@@ -213,7 +241,5 @@ AndHttpMethodType:(NSString*)httpMethod AndContentType:(NSString*)contentType
     }
     return token;
 }
-
-
 
 @end

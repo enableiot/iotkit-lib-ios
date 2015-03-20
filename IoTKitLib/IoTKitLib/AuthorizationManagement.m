@@ -32,7 +32,7 @@
 @implementation AuthorizationManagement
 
 /***************************************************************************************************************************
- * FUNCTION NAME: getNewAuthorizationTokenWithUsername
+ * FUNCTION NAME: getNewAuthorizationToken
  *
  * DESCRIPTION: requests to get new auth-token using given username&password
  *
@@ -41,10 +41,9 @@
  * PARAMETERS : 1)userName
                 2)password
  **************************************************************************************************************************/
--(BOOL) getNewAuthorizationTokenWithUsername:(NSString*)username andPassword:(NSString*)password{
+-(CloudResponse *) getNewAuthorizationTokenWithUsername:(NSString*)username andPassword:(NSString*)password{
     if(!username || !password){
-        NSLog(@"%@:username or password cannot be nil",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:username or password cannot be nil",TAG]];
     }
     //creating http body
     NSData *data = [self createBodyForNewAuthTokenRequestWithUsername:username andPassword:password];
@@ -67,7 +66,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL) getAuthorizationTokenInfo{
+-(CloudResponse *) getAuthorizationTokenInfo{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.authTokenInfo urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:GETAUTHTOKENINFO
@@ -87,7 +86,7 @@
  *
  * PARAMETERS : nil
  **************************************************************************************************************************/
--(BOOL) validateAuthorizationToken{
+-(CloudResponse *) validateAuthorizationToken{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.authTokenInfo urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
                                                                         onOperation:VALIDATEAUTHTOKEN

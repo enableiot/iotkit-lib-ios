@@ -42,10 +42,10 @@
  * PARAMETERS : 1)mailId
                 2)password
  **************************************************************************************************************************/
--(BOOL) createNewUserWith:(NSString*)emailId AndPassword:(NSString*)password{
+-(CloudResponse *) createNewUserWith:(NSString*)emailId AndPassword:(NSString*)password{
     NSData *data = [self validateAndCreateHttpBodyForNewUser:emailId AndPassword:password];
     if(!data){
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:invalid body for createNewUserWithEmailAndPassword",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.createUser urlSlugValueList:nil];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -64,12 +64,12 @@
  *
  * RETURNS: true/false
  *
- * PARAMETERS : userId **************************************************************************************************************************/
--(BOOL) deleteUser:(NSString*)userId{
+ * PARAMETERS : userId 
+ **************************************************************************************************************************/
+-(CloudResponse *) deleteUser:(NSString*)userId{
     NSString *tempUserId = [self validateAndGetUserId:userId];
     if(!tempUserId){
-        NSLog(@"%@:userID empty and cannot find from user defaults",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:userID empty and cannot find from user defaults",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.deleteUser urlSlugValueList:[NSDictionary dictionaryWithObjectsAndKeys:tempUserId,CONFIGUSERID,nil]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -88,12 +88,12 @@
  *
  * RETURNS: true/false
  *
- * PARAMETERS : userId **************************************************************************************************************************/
--(BOOL) getUserInfo:(NSString*)userId{
+ * PARAMETERS : userId 
+ **************************************************************************************************************************/
+-(CloudResponse *) getUserInfo:(NSString*)userId{
     NSString *tempUserId = [self validateAndGetUserId:userId];
     if(!tempUserId){
-        NSLog(@"%@:userID empty and cannot find from user defaults",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:userID empty and cannot find from user defaults",TAG]];
     }
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getUserInfo urlSlugValueList:[NSDictionary dictionaryWithObjectsAndKeys:tempUserId,CONFIGUSERID,nil]];
     HttpRequestOperation *httpOperation = [[HttpRequestOperation alloc] initWithUrl:url
@@ -115,15 +115,13 @@
  * PARAMETERS : 1)userId
                 2)listOfUserAttributes
  **************************************************************************************************************************/
--(BOOL) updateUserAttributesOn:(NSString*) userId AndListOfAttributes:(NSDictionary*)listOfUserAttributes{
+-(CloudResponse *) updateUserAttributesOn:(NSString*) userId AndListOfAttributes:(NSDictionary*)listOfUserAttributes{
     NSString *tempUserId = [self validateAndGetUserId:userId];
     if(!tempUserId){
-        NSLog(@"%@:userID empty and cannot find from user defaults",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:userID empty and cannot find from user defaults",TAG]];
     }
     if(!listOfUserAttributes || ![listOfUserAttributes count]){
-        NSLog(@"%@:user Attributes cannot be empty",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:user Attributes cannot be empty",TAG]];
     }
     NSData *data = [self createBodyForUserAttributesUpdation:tempUserId AndListOfAttributes:listOfUserAttributes];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.updateUserAttributes urlSlugValueList:[NSDictionary dictionaryWithObjectsAndKeys:tempUserId,CONFIGUSERID,nil]];
@@ -146,11 +144,10 @@
  * PARAMETERS : 1)userId
                 2)isAccepted(true/false)
  **************************************************************************************************************************/
--(BOOL) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted{
+/*-(CloudResponse *) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted{
     NSString *tempUserId = [self validateAndGetUserId:userId];
     if(!tempUserId){
-        NSLog(@"%@:userID empty and cannot find from user defaults",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:userID empty and cannot find from user defaults",TAG]];
     }
     NSData *data = [self createBodyForTermsAndConditionsAcceptance:userId Acceptance:isAccepted];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.acceptTermsAndConditions urlSlugValueList:[NSDictionary dictionaryWithObjectsAndKeys:tempUserId,CONFIGUSERID,nil]];
@@ -162,7 +159,7 @@
                                                                           AuthToken:self.getStoredAuthToken
                                                                         DeviceToken:nil];
     return [self initiateHttpOperation:httpOperation];
-}
+}*/
 /***************************************************************************************************************************
  * FUNCTION NAME: requestChangePasswordOn
  *
@@ -170,11 +167,11 @@
  *
  * RETURNS: true/false
  *
- * PARAMETERS : mail Id **************************************************************************************************************************/
--(BOOL) requestChangePasswordOn:(NSString*)emailId{
+ * PARAMETERS : mail Id 
+ **************************************************************************************************************************/
+-(CloudResponse *) requestChangePasswordOn:(NSString*)emailId{
     if(!emailId){
-        NSLog(@"%@:email Id cannot be empty",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:email Id cannot be empty",TAG]];
     }
     NSData *data = [self createBodyForRequestingChangePassword:emailId];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.requestChangePassword urlSlugValueList:nil];
@@ -197,10 +194,9 @@
  * PARAMETERS : 1)mailToken
                 2)newPassword
  **************************************************************************************************************************/
--(BOOL) updateForgotPassword:(NSString*)mailToken AndNewPassword:(NSString*)newPassword{
+-(CloudResponse *) updateForgotPassword:(NSString*)mailToken AndNewPassword:(NSString*)newPassword{
     if(!mailToken || !newPassword){
-        NSLog(@"%@:neither token nor newPassword cannot be empty",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:neither token nor newPassword cannot be empty",TAG]];
     }
     NSData *data = [self createBodyForUpdatingForgotPassword:mailToken AndNewPassword:newPassword];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.requestChangePassword urlSlugValueList:nil];
@@ -225,11 +221,10 @@
                 2)currentPassword
                 3)newPassword
  **************************************************************************************************************************/
--(BOOL) changePasswordOn:(NSString*)emailId AndCurrentPassword:(NSString*)currentPassword
+-(CloudResponse *) changePasswordOn:(NSString*)emailId AndCurrentPassword:(NSString*)currentPassword
           AndNewPassword:(NSString*)newPassword{
     if(!emailId || !currentPassword || !newPassword){
-        NSLog(@"%@:email or currentPassword or newPassword cannot be empty",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:email or currentPassword or newPassword cannot be empty",TAG]];
     }
     NSData *data = [self createBodyForChangePassword:currentPassword AndNewPassword:newPassword];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.changePassword urlSlugValueList:[NSDictionary dictionaryWithObjectsAndKeys:emailId,EMAIL,nil]];
@@ -337,7 +332,7 @@
         NSLog(@"%@:emailID and password are mandatory",TAG);
         return nil;
     }
-    NSDictionary *newUserJson = [NSDictionary dictionaryWithObjectsAndKeys:emailId,EMAIL,password,PASSWORD,nil];
+    NSDictionary *newUserJson = [NSDictionary dictionaryWithObjectsAndKeys:emailId,EMAIL,password,PASSWORD,[NSNumber numberWithBool:true],@"termsAndConditions",nil];
     NSError *error;
     return [NSJSONSerialization dataWithJSONObject:newUserJson options:NSJSONWritingPrettyPrinted error:&error];
 }

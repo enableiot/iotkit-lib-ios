@@ -21,13 +21,26 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_HttpResponseDelegateHandler_h
-#define IoT_HttpResponseDelegateHandler_h
-#import <Foundation/Foundation.h>
+#ifndef IoT_Rule_h
+#define IoT_Rule_h
 
-@protocol HttpResponseDelegateHandler <NSObject>
+#import "RuleActions.h"
+#import "RuleConditionValues.h"
 
--(void)cloudResponseOnOperation:(NSInteger)operationName WithCode:(NSInteger)responseCode response:(NSString*)responseContent;
+@interface Rule:NSObject
+
+-(void)setRuleName:(NSString*)ruleName;
+-(void)setRuleDescription:(NSString*)description;
+-(void)setRulePriority:(NSString*)priority;
+-(void)setRuleType:(NSString*)ruleType;
+-(void)setRuleStatus:(NSString*)status;
+-(void)setRuleResetType:(NSString*)resetType;
+-(void)setRulePopulationAttributes:(NSString*)attributes;
+-(void)setRuleOperatorName:(NSString*)operatorName;
+-(void)addRuleActions:(RuleActions*)ruleActionsObj;
+-(void)addRulePopulationId:(NSString*)populationId;
+-(void)addRuleConditionValues:(RuleConditionValues*)ruleConditionValuesObj;
+
 
 @end
 

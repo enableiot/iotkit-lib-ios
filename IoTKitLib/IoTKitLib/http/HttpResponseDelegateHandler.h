@@ -21,18 +21,14 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef IoT_CreateNewAlertDataConditions_h
-#define IoT_CreateNewAlertDataConditions_h
-#import "CreateNewAlertDataConditionComponents.h"
+#ifndef IoT_HttpResponseDelegateHandler_h
+#define IoT_HttpResponseDelegateHandler_h
+#import <Foundation/Foundation.h>
+#import "CloudResponse.h"
 
-@interface CreateNewAlertDataConditions : NSObject
+@protocol HttpResponseDelegateHandler <NSObject>
 
--(void)alertSetConditionSequence:(NSInteger)conditionSequence;
--(void)alertSetNaturalLanguageCondition:(NSString*)naturalLangCondition;
--(void)alertAddComponents:(CreateNewAlertDataConditionComponents*)component;
--(id) init __attribute__((unavailable("Must create object using \"initCreateNewAlertDataConditions\" method")));
--(id)initCreateNewAlertDataConditions;
-
+-(void)cloudResponseOnOperation:(NSInteger)operationName WithCloudResponse:(CloudResponse *)cloudResponse;
 
 @end
 

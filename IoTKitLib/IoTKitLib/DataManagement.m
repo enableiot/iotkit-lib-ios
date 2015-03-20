@@ -71,7 +71,8 @@
  *
  * RETURNS: nothing
  *
- * PARAMETERS : deviceId **************************************************************************************************************************/
+ * PARAMETERS : deviceId 
+ **************************************************************************************************************************/
 -(void) addDeviceId:(NSString*) deviceId {
     if (!_deviceList) {
         _deviceList = [NSMutableArray array];
@@ -85,7 +86,8 @@
  *
  * RETURNS: nothing
  *
- * PARAMETERS : componentId **************************************************************************************************************************/
+ * PARAMETERS : componentId 
+ **************************************************************************************************************************/
 -(void) addComponentId:(NSString*) componentId {
     if (!_componentIdList) {
         _componentIdList = [NSMutableArray array];
@@ -113,13 +115,12 @@
                 6)attributes
  
 **************************************************************************************************************************/
--(BOOL) submitDataOn:(NSString*) componentName AndValue:(NSString*) componentValue
+-(CloudResponse *) submitDataOn:(NSString*) componentName AndValue:(NSString*) componentValue
          AndLatitide:(double) latitude AndLongitude:(double) longitude AndHeight:(double) height
        AndAttributes:(NSDictionary*)attributes{
     NSString *componentId = [self validateRequestBodyParametersAndGetcomponentIdOn:componentName AndValue:componentValue];
     if(!componentId){
-        NSLog(@"%@:Cannot submit data for device component",TAG);
-        return false;
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:[NSString stringWithFormat:@"%@:Cannot submit data for device component",TAG]];
     }
     NSData *data = [self createHttpBodyForDataSubmissionOn:componentId AndValue: componentValue
                                                AndLatitide:latitude AndLongitude:longitude AndHeight:height
@@ -144,9 +145,10 @@
  *
  * PARAMETERS : retrieve object data
  **************************************************************************************************************************/
--(BOOL)retrieveDataOn:(ConfigureRetrieveData *)objRetrieveData{
-    if(![self validateRetrieveDataValues:objRetrieveData]){
-        return false;
+-(CloudResponse *)retrieveDataOn:(ConfigureRetrieveData *)objRetrieveData{
+    NSString *msg = [self validateRetrieveDataValues:objRetrieveData];
+    if (msg) {
+        return [CloudResponse createCloudResponseWithStatus:false andMessage:msg];
     }
     NSData *data = [self createHttpBodyToRetrieveData:objRetrieveData];
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.retrieveData urlSlugValueList:nil];
@@ -255,11 +257,10 @@
  *
  * PARAMETERS : retrieve object data
  **************************************************************************************************************************/
--(BOOL)validateRetrieveDataValues:(ConfigureRetrieveData *)objRetrieveData{
+-(NSString *)validateRetrieveDataValues:(ConfigureRetrieveData *)objRetrieveData{
     if(!objRetrieveData.deviceList || !objRetrieveData.componentIdList){
-        NSLog(@"%@:devices or components not yet configured!!",TAG);
-        return false;
+        return [NSString stringWithFormat:@"%@:devices or components not yet configured!!",TAG];
     }
-    return true;
+    return nil;
 }
 @end

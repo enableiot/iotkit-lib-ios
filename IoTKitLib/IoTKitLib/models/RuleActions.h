@@ -21,13 +21,13 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import <Foundation/Foundation.h>
+#ifndef IoT_RuleActions_h
+#define IoT_RuleActions_h
+@interface RuleActions:NSObject
 
+-(void)setRuleActionType:(NSString*)ruleActionType;
+-(void)addRuleActionTarget:(NSString*)target;
 
-@interface HttpResponseDelegatee : NSObject
-
-+(id) sharedInstance;
-
-@property (atomic,copy) void (^cloudResponse)(NSInteger,NSString*);
-- (id) init __attribute__((unavailable("Must create singleton using \"sharedInstance\" method")));
 @end
+
+#endif
