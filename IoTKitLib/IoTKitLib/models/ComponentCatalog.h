@@ -24,17 +24,52 @@
 #ifndef IoT_ComponentCatalog_h
 #define IoT_ComponentCatalog_h
 
+/*!
+ * @brief The Component Catalog object that encapsulated information about a component
+ */
 @interface ComponentCatalog : NSObject
 
 -(id) init __attribute__((unavailable("Must create object using \"ComponentCatalog\" method")));
+
+/*!
+ * Creates custom instance of the class ComponentCatalog
+ * @return instance of the class ComponentCatalog
+ * @param componentName The name of the component
+ * @param componentVersion The version of the component
+ * @param componentType The type of the component
+ * @param componentDataType The data type
+ * @param componentFormat The format of the data type
+ * @param componentUnit The unit of the data type
+ * @param componentDisplay The display
+ */
 +(id) ComponentCatalogWith:(NSString*) componentName AndVersion: (NSString*) componentVersion
                                  AndType:(NSString*) componentType AndDataType:(NSString*) componentDataType
                                AndFormat:(NSString*) componentFormat AndUnit:(NSString*) componentUnit
                               AndDisplay:(NSString*) componentDisplay;
 
+/*!
+ * Sets minimum Name
+ * @param minValue The mininum value
+ */
 -(void) setMinValue:(double) minValue ;
+
+/*!
+ * Sets maximum Name
+ * @param maxValue The maximum value
+ */
 -(void) setMaxValue:(double) maxValue ;
+
+/*!
+ * Sets command string Name
+ * @param commandString The name of the command
+ */
 -(void) setCommandString:(NSString*) commandString ;
+
+/*!
+ * Adds command name-value pair to command params list
+ * @param commandName The name of the command
+ * @param commandValue The value of the command
+ */
 -(void) addCommandParameters:(NSString*) commandName AndValue:(NSString*) commandValue ;
 
 @end

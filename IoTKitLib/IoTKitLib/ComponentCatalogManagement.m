@@ -65,16 +65,6 @@
  * FUNCTION NAME: ComponentCatalogWith
  *
  * DESCRIPTION: Creates custom instance of the class ComponentCatalog
- *
- * RETURNS: instance of the class ComponentCatalog
- *
- * PARAMETERS : 1)componentName
-                2)componentVersion
-                3)componentType
-                4)componentDataType
-                5)componentFormat
-                6)componentUnit
-                7)componentDisplay
  **************************************************************************************************************************/
 +(id) ComponentCatalogWith:(NSString*) componentName AndVersion: (NSString*) componentVersion
                                  AndType:(NSString*) componentType AndDataType:(NSString*) componentDataType
@@ -98,10 +88,6 @@
  * FUNCTION NAME: initCustomComponent
  *
  * DESCRIPTION: Creates instance of the class ComponentCatalog
- *
- * RETURNS: instance of the class ComponentCatalog
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(id)initCustomComponent{
     self = [super init];
@@ -113,11 +99,7 @@
 /***************************************************************************************************************************
  * FUNCTION NAME: setMinValue
  *
- * DESCRIPTION: sets minimum Name
- *
- * RETURNS: nothing
- *
- * PARAMETERS : min Value
+ * DESCRIPTION: sets minimum value
  **************************************************************************************************************************/
 -(void) setMinValue:(double) minValue {
     _isMinSet = true;
@@ -126,11 +108,7 @@
 /***************************************************************************************************************************
  * FUNCTION NAME: setMaxValue
  *
- * DESCRIPTION: sets maximum Name
- *
- * RETURNS: nothing
- *
- * PARAMETERS : max value
+ * DESCRIPTION: sets maximum value
  **************************************************************************************************************************/
 -(void) setMaxValue:(double) maxValue {
     _isMaxSet = true;
@@ -140,10 +118,6 @@
  * FUNCTION NAME: setCommandString
  *
  * DESCRIPTION: sets command string Name
- *
- * RETURNS: nothing
- *
- * PARAMETERS : command string
  **************************************************************************************************************************/
 -(void) setCommandString:(NSString*) commandString {
     _commandString = commandString;
@@ -152,11 +126,6 @@
  * FUNCTION NAME: addCommandParameters
  *
  * DESCRIPTION: adds command name-value pair to command params list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : 1)command name
-                2)command value
  **************************************************************************************************************************/
 -(void) addCommandParameters:(NSString*) commandName AndValue:(NSString*) commandValue {
     if (!_actuatorCommandParams) {
@@ -175,10 +144,6 @@
  * FUNCTION NAME: listAllComponentTypesCatalog
  *
  * DESCRIPTION: requests to get list of components
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *)listAllComponentTypesCatalog{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllComponentTypesCatalog urlSlugValueList:nil];
@@ -195,10 +160,6 @@
  * FUNCTION NAME: listAllDetailsOfComponentTypesCatalog
  *
  * DESCRIPTION: requests to get list of components detailed
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *)listAllDetailsOfComponentTypesCatalog{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllComponentTypesCatalogDetailed urlSlugValueList:nil];
@@ -215,10 +176,6 @@
  * FUNCTION NAME: listComponentTypeDetails
  *
  * DESCRIPTION: requests to list single Component Details
- *
- * RETURNS: true/false
- *
- * PARAMETERS : componentId
  **************************************************************************************************************************/
 -(CloudResponse *)listComponentTypeDetails:(NSString *)componentId{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.componentTypeCatalogDetails urlSlugValueList:[NSDictionary dictionaryWithObject:componentId forKey:COMPONENTCATALOGID]];
@@ -235,10 +192,6 @@
  * FUNCTION NAME: createCustomComponent
  *
  * DESCRIPTION: requests to create custom component
- *
- * RETURNS: true/false
- *
- * PARAMETERS : ComponentCatalog object
  **************************************************************************************************************************/
 -(CloudResponse *)createCustomComponent:(ComponentCatalog *)createComponentCatalog{
     if(!createComponentCatalog){
@@ -268,11 +221,6 @@
  * FUNCTION NAME: updateAComponent
  *
  * DESCRIPTION: requests to update component using component ID
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)ComponentCatalog object
-                2)componentId
  **************************************************************************************************************************/
 -(CloudResponse *)updateAComponent:(ComponentCatalog *)updateComponentCatalog
             OnComponent:(NSString *)componentId{
