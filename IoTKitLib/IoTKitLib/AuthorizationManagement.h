@@ -37,11 +37,28 @@
  * @param password the password for the user.
  * @return For async model, return CloudResponse which wraps true if the request of REST
  * call is valid; otherwise false. The actual result from
- * the REST call is return asynchronously as part {@link RequestStatusHandler#readResponse}.
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
  * For synch model, return CloudResponse which wraps HTTP return code and response.
  */
 -(CloudResponse *) getNewAuthorizationTokenWithUsername:(NSString*)username andPassword:(NSString*)password;
+
+/*!
+ * Get user JWT token information.
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ */
 -(CloudResponse *) getAuthorizationTokenInfo;
+
+/*!
+ * Validate the token. This is basically the same call as getAuthorizationTokenInfo() to verify
+ * that JWT token info can be retrieved.
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ */
 -(CloudResponse *) validateAuthorizationToken;
 
 @end

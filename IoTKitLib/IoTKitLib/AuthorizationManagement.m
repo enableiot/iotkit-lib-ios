@@ -35,11 +35,6 @@
  * FUNCTION NAME: getNewAuthorizationToken
  *
  * DESCRIPTION: requests to get new auth-token using given username&password
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)userName
-                2)password
  **************************************************************************************************************************/
 -(CloudResponse *) getNewAuthorizationTokenWithUsername:(NSString*)username andPassword:(NSString*)password{
     if(!username || !password){
@@ -61,10 +56,6 @@
  * FUNCTION NAME: getAuthorizationTokenInfo
  *
  * DESCRIPTION: requests to get token related info
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *) getAuthorizationTokenInfo{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.authTokenInfo urlSlugValueList:nil];
@@ -81,10 +72,6 @@
  * FUNCTION NAME: validateAuthorizationToken
  *
  * DESCRIPTION: requests to validate auth token
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *) validateAuthorizationToken{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.authTokenInfo urlSlugValueList:nil];
