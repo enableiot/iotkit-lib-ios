@@ -22,10 +22,22 @@
  */
 #import "DefaultConfiguration.h"
 
+/*!
+ * @brief The AccountManagement object that is used to manage all aspects associated with an account
+ */
 @interface AccountManagement : DefaultConfiguration
 
 -(CloudResponse *) createAnAccount:(NSString*)accountName;
 -(CloudResponse *) getAccountInformation;
+/*!
+ * Get the account activation code which is the transient code that can be used to activate
+ * devices for the account. It expires after one hour.
+ *
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part {@link RequestStatusHandler#readResponse}.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ */
 -(CloudResponse *) getAccountActivationCode;
 -(CloudResponse *) renewAccountActivationCode;
 -(CloudResponse *) updateAnAccount:(NSString*)accountNameToUpdate andOptionalAttributesWithSimpleKeyValues:(NSDictionary*)attributes;

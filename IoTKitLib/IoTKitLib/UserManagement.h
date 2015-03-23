@@ -23,6 +23,9 @@
 
 #import "DefaultConfiguration.h"
 
+/*!
+ * @brief The UserManagement object that is used to manage all the aspects associated with an user
+ */
 @interface UserManagement : DefaultConfiguration
 
 -(CloudResponse *) createNewUserWith:(NSString*)emailId AndPassword:(NSString*)password;

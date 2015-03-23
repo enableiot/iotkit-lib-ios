@@ -50,12 +50,6 @@
  * FUNCTION NAME: createDeviceWithDeviceName
  *
  * DESCRIPTION: Creates custom instance of the class Device
- *
- * RETURNS: instance of the class Device
- *
- * PARAMETERS : 1)deviceName
-                2)deviceId
-                3)gatewayId
  **************************************************************************************************************************/
 +(id)createDeviceWithDeviceName:(NSString*)deviceName andDeviceId:(NSString*) deviceId andGatewayId:(NSString*) gatewayId
 {
@@ -85,12 +79,6 @@
  * FUNCTION NAME: addLocationInfo
  *
  * DESCRIPTION: adds location info of device using lat,long&height
- *
- * RETURNS: nothing
- *
- * PARAMETERS : 1)latitude
-                2)longitude
-                3)height
  **************************************************************************************************************************/
 -(void)addLocationInfo:(double)latitude AndLongitude:(double) longitude ANdHeight:(double) height{
     _location = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:latitude],[NSNumber numberWithDouble:longitude],[NSNumber numberWithDouble:height],nil];
@@ -99,10 +87,6 @@
  * FUNCTION NAME: addTagName
  *
  * DESCRIPTION: adds tag name to list of tags
- *
- * RETURNS: nothing
- *
- * PARAMETERS : tag name
  **************************************************************************************************************************/
 -(void)addTagName:(NSString*)tagName {
     if(!_listOfTags){
@@ -114,11 +98,6 @@
  * FUNCTION NAME: addAttributeName
  *
  * DESCRIPTION: adds attribute name-value pair to attribute list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : 1)attribute name
-                2)attribute value
  **************************************************************************************************************************/
 -(void)addAttributeName:(NSString*)attributeName  andValue:(NSString*)attributeValue {
     if(!_listOfAttributes){
@@ -150,10 +129,6 @@
  * FUNCTION NAME: getDeviceList
  *
  * DESCRIPTION: requests to list all devices
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *) getDeviceList{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listDevices urlSlugValueList:nil];
@@ -170,10 +145,6 @@
  * FUNCTION NAME: createNewDevice
  *
  * DESCRIPTION: requests to create new device
- *
- * RETURNS: true/false
- *
- * PARAMETERS : deviceCreationObj object
  **************************************************************************************************************************/
 -(CloudResponse *) createNewDevice:(Device*) deviceCreationObj{
     if(!deviceCreationObj){
@@ -198,10 +169,6 @@
  * FUNCTION NAME: getMyDeviceInfo
  *
  * DESCRIPTION: requests to my device info
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *) getMyDeviceInfo{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getMyDeviceInfo urlSlugValueList:nil];
@@ -218,10 +185,6 @@
  * FUNCTION NAME: getInfoOnDevice
  *
  * DESCRIPTION: requests to get device info with given Id
- *
- * RETURNS: true/false
- *
- * PARAMETERS : deviceID
  **************************************************************************************************************************/
 -(CloudResponse *) getInfoOnDevice:(NSString*)deviceId{
     if(!deviceId){
@@ -241,10 +204,6 @@
  * FUNCTION NAME: getAllTags
  *
  * DESCRIPTION: requests to list device tags
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *) getAllTags{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllTags urlSlugValueList:nil];
@@ -261,10 +220,6 @@
  * FUNCTION NAME: getAllAttributes
  *
  * DESCRIPTION: requests to list device attributes
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *) getAllAttributes{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllAttributes urlSlugValueList:nil];
@@ -281,10 +236,6 @@
  * FUNCTION NAME: updateADevice
  *
  * DESCRIPTION: requests to update device
- *
- * RETURNS: true/false
- *
- * PARAMETERS : update device object
  **************************************************************************************************************************/
 -(CloudResponse *) updateADevice:(Device*)deviceUpdationObj{
     if(!deviceUpdationObj){
@@ -308,10 +259,6 @@
  * FUNCTION NAME: activateADevice
  *
  * DESCRIPTION: requests to activate device
- *
- * RETURNS: true/false
- *
- * PARAMETERS : activation code
  **************************************************************************************************************************/
 -(CloudResponse *) activateADevice:(NSString*)activationCode{
     if(!activationCode){
@@ -335,11 +282,6 @@
  * FUNCTION NAME: addComponentToDevice
  *
  * DESCRIPTION: requests to add component to device with component name & type
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)componentName
-                2)componentType
  **************************************************************************************************************************/
 -(CloudResponse *) addComponentToDevice:(NSString*)componentName WithType:(NSString*)componentType{
     if(!componentName || !componentType){
@@ -364,10 +306,6 @@
  * FUNCTION NAME: deleteAComponent
  *
  * DESCRIPTION: requests to delete component
- *
- * RETURNS: true/false
- *
- * PARAMETERS : componentName
  **************************************************************************************************************************/
 -(CloudResponse *)deleteAComponent:(NSString*)componentName{
     if(!componentName){
@@ -410,11 +348,6 @@
  * FUNCTION NAME: createBodyForDeviceComponent
  *
  * DESCRIPTION: method to create http Body to add component to device
- *
- * RETURNS: data stream of request body
- *
- * PARAMETERS : 1)component name
-                2)component Type
  **************************************************************************************************************************/
 -(NSData*) createBodyForDeviceComponent:(NSString*)componentName WithType:(NSString*)componentType{
     NSError *error;
@@ -424,10 +357,7 @@
  * FUNCTION NAME: createBodyForDeviceActivation
  *
  * DESCRIPTION: method to create http Body to activate device
- *
- * RETURNS: data stream of request body
- *
- * PARAMETERS : activation code **************************************************************************************************************************/
+ **************************************************************************************************************************/
 -(NSData*) createBodyForDeviceActivation:(NSString*)activationCode{
     NSError *error;
     return [NSJSONSerialization dataWithJSONObject:[NSDictionary dictionaryWithObject:activationCode forKey:ACTIVATIONCODE] options:NSJSONWritingPrettyPrinted error:&error];
@@ -436,10 +366,6 @@
  * FUNCTION NAME: createBodyForDeviceUpdation
  *
  * DESCRIPTION: method to create http Body to update device
- *
- * RETURNS: data stream of request body
- *
- * PARAMETERS : Device object
  **************************************************************************************************************************/
 -(NSData*) createBodyForDeviceUpdation:(Device*)deviceUpdationObj{
     
@@ -459,10 +385,6 @@
  * FUNCTION NAME: createBodyForDeviceCreation
  *
  * DESCRIPTION: method to create http Body to create device
- *
- * RETURNS: data stream of request body
- *
- * PARAMETERS : Device object
  **************************************************************************************************************************/
 -(NSData*) createBodyForDeviceCreation:(Device*)deviceCreationObj{
     if(!deviceCreationObj.deviceId){
@@ -485,11 +407,6 @@
  * FUNCTION NAME: createOrUpdateDeviceBodyWith
  *
  * DESCRIPTION: method to create/update http Body to create/update device
- *
- * RETURNS: data stream of request body
- *
- * PARAMETERS : 1)jsonDictionary
-                2)Device object
  **************************************************************************************************************************/
 -(NSMutableDictionary*)createOrUpdateDeviceBodyWith:(NSMutableDictionary*)jsonDictionary OnDevice:(Device*)createOrUpdateDeviceObj{
     if(!createOrUpdateDeviceObj.gatewayId || !createOrUpdateDeviceObj.deviceName){
