@@ -24,13 +24,47 @@
 #import "DefaultConfiguration.h"
 #import "ConfigureRetrieveData.h"
 
-
+/*!
+ * @brief The DataManagement object that is used to send and receive data for a device from the cloud.
+ */
 @interface DataManagement : DefaultConfiguration
 
+/*!
+ * Submit data for specific device and it's component. Device and component have to be
+ * registered in the cloud before sending observations. The device id
+ * that is used will be the current device that is cached usually after a create new device.
+ *
+ * @param componentName  the name of the component to look up the component id.
+ * @param componentValue the value to set for the component.
+ * @param latitude       lat location for the device in decimal
+ * @param longitude      lon location for the device in decimal
+ * @param height         altitude value in meters
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *) submitDataOn:(NSString*) componentName AndValue:(NSString*) componentValue
          AndLatitide:(double) latitude AndLongitude:(double) longitude AndHeight:(double) height
        AndAttributes:(NSDictionary*)attributes;
 
+/*!
+ * Submit data for specific device and it's component. Device and component have to be
+ * registered in the cloud before sending observations.
+ *
+ * @param deviceId       the identifier for the device to submit the data for.
+ * @param componentName  the name of the component to look up the component id.
+ * @param componentValue the value to set for the component.
+ * @param latitude       lat location for the device in decimal
+ * @param longitude      lon location for the device in decimal
+ * @param height         altitude value in meters
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *) retrieveDataOn:(ConfigureRetrieveData*)objRetrieveData;
 
 @end
