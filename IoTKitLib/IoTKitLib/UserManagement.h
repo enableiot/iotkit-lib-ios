@@ -28,13 +28,92 @@
  */
 @interface UserManagement : DefaultConfiguration
 
+/*!
+ * Create a new user
+ *
+ * @param emailID  the email id for the user which is used as an identifier
+ * @param password the password for the user
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *) createNewUserWith:(NSString*)emailId AndPassword:(NSString*)password;
+
+/*!
+ * Delete a user
+ *
+ * @param userId the identifier for the user to be deleted from the cloud
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ */
 -(CloudResponse *) deleteUser:(NSString*)userId;
+
+/*!
+ * Get user information
+ *
+ * @param userId the identifier for the user for retrieving user information for
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ */
 -(CloudResponse *) getUserInfo:(NSString*)userId;
+
+/*!
+ * Update the user attributes for a given user
+ *
+ * @param userId         The identifier for the user to update the attributes for
+ * @param userAttributes A list of name value pairs that specify the user attributes for the user
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *) updateUserAttributesOn:(NSString*) userId AndListOfAttributes:(NSDictionary*)listOfUserAttributes;
-//-(CloudResponse *) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted;
+
+/*!
+ * Request for change of password
+ *
+ * @param emailId The email address of the user that requests for a change of password
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *) requestChangePasswordOn:(NSString*)emailId;
+
+/*!
+ * Update the password
+ *
+ * @param token       The token that is used access the cloud backend for updating the password
+ * @param newPassword The new password for the user
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
+
 -(CloudResponse *) updateForgotPassword:(NSString*)mailToken AndNewPassword:(NSString*)newPassword;
+
+/*!
+ * Change the password for the user
+ *
+ * @param emailAddress    The email address of the user
+ * @param currentPassword The current password for the user
+ * @param newPassword     The new password for the user
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *) changePasswordOn:(NSString*)emailId AndCurrentPassword:(NSString*)currentPassword
           AndNewPassword:(NSString*)newPassword;
 
