@@ -32,10 +32,6 @@
  * FUNCTION NAME: getListOfInvitation
  *
  * DESCRIPTION: requests list of invitations
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil 
  **************************************************************************************************************************/
 -(CloudResponse *) getListOfInvitation{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getInvitationList urlSlugValueList:nil];
@@ -52,10 +48,6 @@
  * FUNCTION NAME: getInvitationListSendToSpecificUser
  *
  * DESCRIPTION: requests list of invitations send to specific user
- *
- * RETURNS: true/false
- *
- * PARAMETERS : emailId 
  **************************************************************************************************************************/
 -(CloudResponse *) getInvitationListSendToSpecificUser:(NSString*)emailId{
     if(!emailId){
@@ -76,10 +68,6 @@
  * FUNCTION NAME: createInvitationTo
  *
  * DESCRIPTION: requests to create invitation for given mailId
- *
- * RETURNS: true/false
- *
- * PARAMETERS :mailId 
  **************************************************************************************************************************/
 -(CloudResponse *) createInvitationTo:(NSString *)emailId{
     if(!emailId){
@@ -100,10 +88,6 @@
  * FUNCTION NAME: deleteInvitationsTo
  *
  * DESCRIPTION: requests to delete Invitations to mailId
- *
- * RETURNS: true/false
- *
- * PARAMETERS : mail Id 
  **************************************************************************************************************************/
 -(CloudResponse *) deleteInvitationsTo:(NSString*)emailId{
     if(!emailId){
