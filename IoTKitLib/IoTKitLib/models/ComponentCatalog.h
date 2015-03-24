@@ -51,19 +51,19 @@
  * Sets minimum Name
  * @param minValue The mininum value
  */
--(void) setMinValue:(double) minValue ;
+-(void) setMinValue:(double) min ;
 
 /*!
  * Sets maximum Name
  * @param maxValue The maximum value
  */
--(void) setMaxValue:(double) maxValue ;
+-(void) setMaxValue:(double) max ;
 
 /*!
  * Sets command string Name
- * @param commandString The name of the command
+ * @param command The name of the command
  */
--(void) setCommandString:(NSString*) commandString ;
+-(void) setCommandName:(NSString*) command ;
 
 /*!
  * Adds command name-value pair to command params list

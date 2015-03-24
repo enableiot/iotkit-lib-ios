@@ -51,10 +51,10 @@
 @property(nonatomic,retain)NSString *componentFormat;
 @property(nonatomic,retain)NSString *componentDisplay;
 @property(nonatomic,retain)NSString *componentUnit;
-@property(nonatomic,retain)NSString *commandString;
+@property(nonatomic,retain)NSString *command;
 @property(nonatomic,retain)NSMutableDictionary *actuatorCommandParams;
-@property(nonatomic,assign)double minValue;
-@property(nonatomic,assign)double maxValue;
+@property(nonatomic,assign)double minimumValue;
+@property(nonatomic,assign)double maximumValue;
 @property(nonatomic,assign)BOOL isMinSet;
 @property(nonatomic,assign)BOOL isMaxSet;
 
@@ -80,8 +80,8 @@
     customComponent.componentDisplay = componentDisplay;
     customComponent.isMinSet = false;
     customComponent.isMaxSet = false;
-    customComponent.minValue = 0.0;
-    customComponent.maxValue = 0.0;
+    customComponent.minimumValue = 0.0;
+    customComponent.maximumValue = 0.0;
     return customComponent;
 }
 /***************************************************************************************************************************
@@ -101,26 +101,26 @@
  *
  * DESCRIPTION: sets minimum value
  **************************************************************************************************************************/
--(void) setMinValue:(double) minValue {
+-(void) setMinValue:(double) min {
     _isMinSet = true;
-    _minValue = minValue;
+    _minimumValue = min;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: setMaxValue
  *
  * DESCRIPTION: sets maximum value
  **************************************************************************************************************************/
--(void) setMaxValue:(double) maxValue {
+-(void) setMaxValue:(double) max {
     _isMaxSet = true;
-    _maxValue = maxValue;
+    _maximumValue = max;
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: setCommandString
+ * FUNCTION NAME: setCommandName
  *
  * DESCRIPTION: sets command string Name
  **************************************************************************************************************************/
--(void) setCommandString:(NSString*) commandString {
-    _commandString = commandString;
+-(void) setCommandName:(NSString*) command {
+    _command = command;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addCommandParameters
@@ -323,7 +323,7 @@
         return [NSString stringWithFormat:@"%@:Command Parameters are mandatory for component catalog type \"actuator\"",TAG];
     }
     if (![ComponentCatalog.componentType isEqualToString:ACTUATOR] &&
-        ComponentCatalog.commandString != nil) {
+        ComponentCatalog.command != nil) {
         return [NSString stringWithFormat:@"%@:Command Json(command string and params) not required  for catalog type \"%@\""
               ,TAG,ComponentCatalog.componentType];
     }
@@ -341,7 +341,7 @@
  **************************************************************************************************************************/
 -(NSMutableDictionary*)addActuatorCommandParametersToHttpBody:(ComponentCatalog *)ComponentCatalog ToDictionary:(NSMutableDictionary*)componentDictionary{
     
-    if (ComponentCatalog.commandString != nil) {
+    if (ComponentCatalog.command != nil) {
         NSMutableArray *parameterArray = [NSMutableArray array];
         for(id key in ComponentCatalog.actuatorCommandParams){
             [parameterArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:key,NAME,
@@ -349,7 +349,7 @@
             
         }
         
-        NSMutableDictionary *commandDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:ComponentCatalog.commandString,COMMANDSTRING,parameterArray,PARAMETERS, nil];
+        NSMutableDictionary *commandDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:ComponentCatalog.command,COMMANDSTRING,parameterArray,PARAMETERS, nil];
         [componentDictionary setObject:commandDictionary forKey:COMMAND];
     }
     
@@ -368,11 +368,11 @@
  **************************************************************************************************************************/
 -(NSMutableDictionary*)addMinMaxValuesToHttpBody:(ComponentCatalog *)ComponentCatalog ToDictionary:(NSMutableDictionary*)componentDictionary{
     if (ComponentCatalog.isMinSet) {
-        [componentDictionary setObject:[NSNumber numberWithDouble:ComponentCatalog.minValue] forKey:MINIMUM];
+        [componentDictionary setObject:[NSNumber numberWithDouble:ComponentCatalog.minimumValue] forKey:MINIMUM];
         
     }
     if (ComponentCatalog.isMaxSet) {
-        [componentDictionary setObject:[NSNumber numberWithDouble:ComponentCatalog.maxValue] forKey:MAXIMUM];
+        [componentDictionary setObject:[NSNumber numberWithDouble:ComponentCatalog.maximumValue] forKey:MAXIMUM];
         
     }
     return componentDictionary;
