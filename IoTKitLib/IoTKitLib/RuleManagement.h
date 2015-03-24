@@ -24,14 +24,94 @@
 #import "DefaultConfiguration.h"
 #import "Rule.h"
 
+/*!
+ * @brief Module that manages rules. manage Rules. A rule is an association between one or more
+ * device's components, a set of conditions for those components, and a number of actions
+ * that have to be triggered in case those conditions are met.
+ */
 @interface RuleManagement : DefaultConfiguration
 
+/*!
+ * Get a list of all rules for the specified account.
+ *
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ */
 -(CloudResponse *)getListOfRules;
+
+/*!
+ * Get specific rule details for the account
+ *
+ * @param ruleId the identifier for the rule to retrieve info for.
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ */
 -(CloudResponse *)getInformationOnRule:(NSString*)ruleId;
+
+/*!
+ * Delete a specific draft rule for account.
+ *
+ * @param ruleId the identifier for the rule to delete.
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ */
 -(CloudResponse *)deleteADraftRule:(NSString*)ruleId;
+
+/*!
+ * Update the status of the rule. Cannot be used for changing the status of draft rule.
+ * Status value should be one of the following: ["Active", "Archived", "On-hold"]
+ *
+ * @param ruleId the identifier for the rule to have the status updated.
+ * @param status value should be one of the following: ["Active", "Archived", "On-hold"]
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *)updateStatusOfRule:(NSString*)ruleId WithStatus:(NSString*)status;
+
+/*!
+ * Create a rule with a status - "Draft" for the specified account.
+ *
+ * @param ruleName the name of the rule to create a draft
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *)createRuleAsDraftUsing:(NSString*)ruleName;
+
+/*!
+ * Create a rule.
+ *
+ * @param ruleObj the information needed to create a new rule with.
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *)createRule:(Rule*)RuleObj;
+
+/*!
+ * Update the rule.
+ *
+ * @param updateRuleObj the information that is used to update the rule with.
+ * @param ruleId        the identifier for the rule to be updated.
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *)updateARule:(Rule*)updateRuleObj OnRule:(NSString*)ruleId;
 
 @end

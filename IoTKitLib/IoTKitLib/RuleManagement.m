@@ -44,9 +44,9 @@
 @interface Rule ()
 
 @property (nonatomic,retain)NSString* name;
-@property (nonatomic,retain)NSString* ruleDescription;
+@property (nonatomic,retain)NSString* desc;
 @property (nonatomic,retain)NSString* priority;
-@property (nonatomic,retain)NSString* ruleType;
+@property (nonatomic,retain)NSString* type;
 @property (nonatomic,retain)NSString* status;
 @property (nonatomic,retain)NSString* resetType;
 @property (nonatomic,retain)NSMutableArray* ruleActionsList;
@@ -64,34 +64,22 @@
  * FUNCTION NAME: setRuleName
  *
  * DESCRIPTION: sets rule Name
- *
- * RETURNS: nothing
- *
- * PARAMETERS : ruleName
  **************************************************************************************************************************/
--(void)setRuleName:(NSString*)ruleName{
-    _name = ruleName;
+-(void)setName:(NSString*)name{
+    _name = name;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: setRuleDescription
  *
  * DESCRIPTION: sets rule Description
- *
- * RETURNS: nothing
- *
- * PARAMETERS : description
  **************************************************************************************************************************/
--(void)setRuleDescription:(NSString*)description{
-    _ruleDescription = description;
+-(void)setRuleDescription:(NSString*)description {
+     _desc = description;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: setRulePriority
  *
  * DESCRIPTION: sets rule priority
- *
- * RETURNS: nothing
- *
- * PARAMETERS : priority
  **************************************************************************************************************************/
 -(void)setRulePriority:(NSString*)priority{
     _priority = priority;
@@ -100,22 +88,14 @@
  * FUNCTION NAME: setRuleType
  *
  * DESCRIPTION: sets type of rule
- *
- * RETURNS: nothing
- *
- * PARAMETERS : ruleType
  **************************************************************************************************************************/
 -(void)setRuleType:(NSString*)ruleType{
-    _ruleType = ruleType;
+    _type = ruleType;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: setRuleStatus
  *
  * DESCRIPTION: sets status of rule
- *
- * RETURNS: nothing
- *
- * PARAMETERS : status
  **************************************************************************************************************************/
 -(void)setRuleStatus:(NSString*)status{
     self.status = status;
@@ -124,10 +104,6 @@
  * FUNCTION NAME: setRuleResetType
  *
  * DESCRIPTION: sets resetType of rule
- *
- * RETURNS: nothing
- *
- * PARAMETERS : resetType
  **************************************************************************************************************************/
 -(void)setRuleResetType:(NSString*)resetType{
     _resetType = resetType;
@@ -136,10 +112,6 @@
  * FUNCTION NAME: setRulePopulationAttributes
  *
  * DESCRIPTION: sets population attributes on rule
- *
- * RETURNS: nothing
- *
- * PARAMETERS : attributes
  **************************************************************************************************************************/
 -(void)setRulePopulationAttributes:(NSString*)attributes{
     _populationAttributes = attributes;
@@ -148,10 +120,6 @@
  * FUNCTION NAME: setRuleOperatorName
  *
  * DESCRIPTION: sets rule opeartor name
- *
- * RETURNS: nothing
- *
- * PARAMETERS : opeartor name
  **************************************************************************************************************************/
 -(void)setRuleOperatorName:(NSString*)operatorName{
     _operatorName = operatorName;
@@ -160,10 +128,6 @@
  * FUNCTION NAME: addRuleActions
  *
  * DESCRIPTION: adds rule action object to rule action list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : rule action object
  **************************************************************************************************************************/
 -(void)addRuleActions:(RuleActions*)ruleActionsObj{
     if(!_ruleActionsList){
@@ -175,10 +139,6 @@
  * FUNCTION NAME: addRulePopulationId
  *
  * DESCRIPTION: append population Id's to lsit of Id's
- *
- * RETURNS: nothing
- *
- * PARAMETERS : populationId 
  **************************************************************************************************************************/
 -(void)addRulePopulationId:(NSString*)populationId{
     if(!_populationIds){
@@ -190,10 +150,6 @@
  * FUNCTION NAME: addRuleConditionValues
  *
  * DESCRIPTION: append condition value obj to list of conditions
- *
- * RETURNS: nothing
- *
- * PARAMETERS : rule condition values object 
  **************************************************************************************************************************/
 -(void)addRuleConditionValues:(RuleConditionValues*)RuleConditionValuesObj{
     if(!_ruleConditionValuesList){
@@ -300,6 +256,7 @@
     }
     [_values addObject:value];
 }
+
 /***************************************************************************************************************************
  * FUNCTION NAME: setConditionOperator
  *
@@ -323,10 +280,6 @@
  * FUNCTION NAME: getListOfRules
  *
  * DESCRIPTION: requests list of rules
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *)getListOfRules{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getListOfRules urlSlugValueList:nil];
@@ -343,10 +296,6 @@
  * FUNCTION NAME: getInformationOnRule
  *
  * DESCRIPTION: requests info of given rule id
- *
- * RETURNS: true/false
- *
- * PARAMETERS : ruleId
  **************************************************************************************************************************/
 -(CloudResponse *)getInformationOnRule:(NSString*)ruleId{
     if(!ruleId){
@@ -366,10 +315,6 @@
  * FUNCTION NAME: deleteADraftRule
  *
  * DESCRIPTION: requests delete of given rule id
- *
- * RETURNS: true/false
- *
- * PARAMETERS : ruleId
  **************************************************************************************************************************/
 -(CloudResponse *)deleteADraftRule:(NSString*)ruleId{
     if(!ruleId){
@@ -389,11 +334,6 @@
  * FUNCTION NAME: updateStatusOfRule
  *
  * DESCRIPTION: requests status update of given rule id with given status
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)ruleId
-                2)status
  **************************************************************************************************************************/
 -(CloudResponse *)updateStatusOfRule:(NSString*)ruleId WithStatus:(NSString*)status{
     if(!ruleId || !status){
@@ -414,10 +354,6 @@
  * FUNCTION NAME: createRuleAsDraftUsing
  *
  * DESCRIPTION: requests creation of draft rule using given rule Name
- *
- * RETURNS: true/false
- *
- * PARAMETERS : ruleName
  **************************************************************************************************************************/
 -(CloudResponse *)createRuleAsDraftUsing:(NSString*)ruleName{
     if(!ruleName){
@@ -438,10 +374,6 @@
  * FUNCTION NAME: createRule
  *
  * DESCRIPTION: requests to create a rule
- *
- * RETURNS: true/false
- *
- * PARAMETERS : create rule object
  **************************************************************************************************************************/
 -(CloudResponse *)createRule:(Rule*)ruleObj{
     if(!ruleObj){
@@ -463,11 +395,6 @@
  * FUNCTION NAME: updateARule
  *
  * DESCRIPTION: requests update of given ruleId
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)updateRule object
-                2)ruleId
  **************************************************************************************************************************/
 -(CloudResponse *)updateARule:(Rule *)updateRuleObj OnRule:(NSString *)ruleId{
     if(!updateRuleObj || !ruleId){
@@ -497,9 +424,9 @@
     
     NSMutableDictionary *createRuleDictionary = [NSMutableDictionary dictionary];
     [createRuleDictionary setObject:ruleObj.name forKey:NAME];
-    [createRuleDictionary setObject:ruleObj.ruleDescription forKey:DESCRIPTION];
+    [createRuleDictionary setObject:ruleObj.desc forKey:DESCRIPTION];
     [createRuleDictionary setObject:ruleObj.priority forKey:PRIORITY];
-    [createRuleDictionary setObject:ruleObj.ruleType forKey:TYPE];
+    [createRuleDictionary setObject:ruleObj.type forKey:TYPE];
     [createRuleDictionary setObject:ruleObj.status forKey:STATUS];
     [createRuleDictionary setObject:ruleObj.resetType forKey:RESETTYPE];
     //adding actions
