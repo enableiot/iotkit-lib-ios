@@ -33,7 +33,7 @@
 @interface Rule:NSObject
 
 /*!
- * Sets rule Name
+ * Sets rule name
  * @param name The name of the rule
  */
 -(void)setRuleName:(NSString*)name;
