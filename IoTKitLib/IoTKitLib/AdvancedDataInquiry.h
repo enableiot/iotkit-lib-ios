@@ -40,44 +40,44 @@
 -(id)initAdvancedDataInquiryWithDefaults;
 
 /*!
- * Append gatewayId to list
- * @param gatewayId The gateway identifier
+ * Add a gateway id that is requested for the data in the report.
+ * @param gatewayId The gateway identifier for gateway data to be included in the report.
  */
 -(void)addGatewayId:(NSString*)gatewayId;
 
 /*!
- * Append deviceId method to list
- * @param deviceId The device identifier
+ * Add a device id that is requested for the data in the report.
+ * @param deviceId The device identifier for device data to be included in the report.
  */
 -(void)addDeviceId:(NSString*)deviceId;
 
 /*!
- * Append componentId method to list
- * @param componentId The component identifier
+ * Add a component id that is requested for the data in the report.
+ * @param componentId The component identifier for component data to be included in the report.
  */
 -(void)addComponentId:(NSString*)componentId;
 
 /*!
- * Set start time stamp
- * @param startTimestamp The starting time
+ * Set the start time for query data in be included in the report.
+ * @param startTimestamp time in milliseconds since epoch time.
  */
 -(void)setStartTimestamp:(long)timestamp;
 
 /*!
- * Set end time stamp
- * @param endTimestamp The ending time
+ * Set the end time for query data in be included in the report.
+ * @param endTimestamp time in milliseconds since epoch time.
  */
 -(void)setEndTimestamp:(long)timestamp;
 
 /*!
- * Append measure attribute to list
- * @param attribute The measured attribute
+ * Add a requested attribute to a list of attributes that will be return for each measurement.
+ * @param attribute The attribute to add to the list of attributes that will be part of the request.
  */
 -(void)addReturnedMeasureAttributes:(NSString*)attribute;
 
 /*!
- * Set whether to measure location on data inquiry
- * @param measureLocation True if measured location to be returned; otherwise false
+ * Request for location (lat, long, alt) as part of each returned measurement.
+ * @param measureLocation if true returns location.
  */
 -(void)setShowMeasureLocation:(BOOL)measureLocation;
 
@@ -100,14 +100,14 @@
 -(void)addValueFilter:(AttributeFilter*)attributeFilter;
 
 /*!
- * Set component row limit for return results
- * @param rowLimit The number of row to return
+ * Limits the number of records returned for each component in the report.
+ * @param componentRowLimit the number of row that will be returned.
  */
 -(void)setComponentRowLimit:(NSInteger)rowLimit;
 
 /*!
- * Set count true to get only count from server else false
- * @param countOnly True if query contains count; otherwise false
+ * Setting to true will return the number of rows that would have returned from this report.
+ * @param countOnly true will return number of rows.
  */
 -(void)setCountOnly:(BOOL)countOnly;
 
