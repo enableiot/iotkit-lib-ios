@@ -13,8 +13,7 @@
 
 @interface AggregatedReportInterface ()
 
-@property (nonatomic,retain)NSString *msgType;
-@property (nonatomic,retain)NSString *outputType;
+@property (nonatomic,retain)NSString *outType;
 @property (nonatomic,retain)NSMutableArray *filters;
 @property (nonatomic,retain)NSMutableArray *aggregationMethods;
 @property (nonatomic,retain)NSMutableArray *dimensions;
@@ -22,11 +21,11 @@
 @property (nonatomic,retain)NSMutableArray *deviceIds;
 @property (nonatomic,retain)NSMutableArray *componentIds;
 @property (nonatomic,retain)NSMutableDictionary *sort;
-@property (nonatomic,assign)long startTimestamp;
-@property (nonatomic,assign)long endTimestamp;
-@property (nonatomic,assign)NSInteger offset;
-@property (nonatomic,assign)NSInteger limit;
-@property (nonatomic,assign)BOOL countOnly;
+@property (nonatomic,assign)long startTS;
+@property (nonatomic,assign)long endTS;
+@property (nonatomic,assign)NSInteger reptOffset;
+@property (nonatomic,assign)NSInteger reptLimit;
+@property (nonatomic,assign)BOOL bCountOnly;
 
 @end
 
@@ -35,19 +34,15 @@
  * FUNCTION NAME: initAggregatedReportInterfaceWithDefaults
  *
  * DESCRIPTION: Creates custom instance of the class AggregatedReportInterface
- *
- * RETURNS: instance of the class AggregatedReportInterface
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(id) initAggregatedReportInterfaceWithDefaults {
     self = [super init];
     if(self){
-        _startTimestamp = 0L;
-        _endTimestamp = 0L;
-        _offset = 0;
-        _limit = 0;
-        _countOnly = false;
+        _startTS = 0L;
+        _endTS = 0L;
+        _reptOffset = 0;
+        _reptLimit = 0;
+        _bCountOnly = false;
     }
     return self;
 }
@@ -55,34 +50,22 @@
  * FUNCTION NAME: setStartTimestamp
  *
  * DESCRIPTION: set start time stamp
- *
- * RETURNS: nothing
- *
- * PARAMETERS : startTimestamp
  **************************************************************************************************************************/
 -(void)setStartTimestamp:(long) startTimestamp{
-    _startTimestamp = startTimestamp;
+    _startTS = startTimestamp;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: setEndTimestamp
  *
  * DESCRIPTION: set end time stamp
- *
- * RETURNS: nothing
- *
- * PARAMETERS : endTimestamp
  **************************************************************************************************************************/
 -(void)setEndTimestamp:(long) endTimestamp{
-    _endTimestamp = endTimestamp;
+    _endTS = endTimestamp;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addAggregationMethod
  *
  * DESCRIPTION: append aggregated method to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : aggregation type
  **************************************************************************************************************************/
 -(void)addAggregationMethod:(NSString*) aggregation{
     if (!_aggregationMethods) {
@@ -94,10 +77,6 @@
  * FUNCTION NAME: addDimension
  *
  * DESCRIPTION: append dimension to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : dimension type
  **************************************************************************************************************************/
 -(void)addDimension:(NSString*) dimension{
     if (!_dimensions) {
@@ -109,58 +88,38 @@
  * FUNCTION NAME: setOffset
  *
  * DESCRIPTION: set offset value
- *
- * RETURNS: nothing
- *
- * PARAMETERS : offset
  **************************************************************************************************************************/
 -(void)setOffset:(NSInteger) offset{
-    _offset = offset;
+    _reptOffset = offset;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: setLimit
  *
  * DESCRIPTION: set limit on number of return results
- *
- * RETURNS: nothing
- *
- * PARAMETERS : limit
  **************************************************************************************************************************/
 -(void)setLimit:(NSInteger) limit{
-    _limit = limit;
+    _reptLimit = limit;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: setCountOnly
  *
  * DESCRIPTION: sets to return number of results only
- *
- * RETURNS: nothing
- *
- * PARAMETERS : countOnly(true/false)
  **************************************************************************************************************************/
 -(void)setCountOnly:(BOOL) countOnly{
-    _countOnly = countOnly;
+    _bCountOnly = countOnly;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: setOutputType
  *
  * DESCRIPTION: set outputType of report
- *
- * RETURNS: nothing
- *
- * PARAMETERS : outputType
  **************************************************************************************************************************/
 -(void)setOutputType:(NSString*) outputType{
-    _outputType = outputType;
+    _outType = outputType;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addDeviceId
  *
  * DESCRIPTION: append deviceId to query list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : deviceId
  **************************************************************************************************************************/
 -(void)addDeviceId:(NSString*) deviceId{
     if (!_deviceIds) {
@@ -172,10 +131,6 @@
  * FUNCTION NAME: addGatewayId
  *
  * DESCRIPTION: append gatewayId to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : gatewayId
  **************************************************************************************************************************/
 -(void)addGatewayId:(NSString*) gatewayId{
     if (!_gatewayIds) {
@@ -187,10 +142,6 @@
  * FUNCTION NAME: addComponentId
  *
  * DESCRIPTION: append componentId to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : componentId
  **************************************************************************************************************************/
 -(void)addComponentId:(NSString*) componentId{
     if (!_componentIds) {
@@ -202,10 +153,6 @@
  * FUNCTION NAME: addSortInfo
  *
  * DESCRIPTION: append sort key-value pair to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : name & value of sort type
  **************************************************************************************************************************/
 -(void)addSortInfo:(NSString*) name AndValue:(NSString*)value{
     if (!_sort) {
@@ -217,10 +164,6 @@
  * FUNCTION NAME: addDimension
  *
  * DESCRIPTION: append filter object to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : attributeFilter object
  **************************************************************************************************************************/
 -(void)addFilter:(AttributeFilter*) attributeFilter{
     if (!_filters) {
@@ -232,10 +175,6 @@
  * FUNCTION NAME: request
  *
  * DESCRIPTION: method to create request on aggreagted report
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *)request{
     NSData *data = [self createHttpBodyToGetAggregatedReport];
@@ -263,13 +202,13 @@
 -(NSData*)createHttpBodyToGetAggregatedReport{
     NSMutableDictionary *reportInterfaceJson = [NSMutableDictionary dictionary];
     
-    [reportInterfaceJson setObject:[NSNumber numberWithInteger:_offset] forKey:@"offset"];
-    [reportInterfaceJson setObject:[NSNumber numberWithInteger:_limit] forKey:@"limit"];
-    if (_countOnly) {
-        [reportInterfaceJson setObject:[NSNumber numberWithBool:_countOnly] forKey:@"countOnly"];
+    [reportInterfaceJson setObject:[NSNumber numberWithInteger:_reptOffset] forKey:@"offset"];
+    [reportInterfaceJson setObject:[NSNumber numberWithInteger:_reptLimit] forKey:@"limit"];
+    if (_bCountOnly) {
+        [reportInterfaceJson setObject:[NSNumber numberWithBool:_bCountOnly] forKey:@"countOnly"];
     }
-    if (_outputType) {
-        [reportInterfaceJson setObject:_outputType forKey:@"outputType"];
+    if (_outType) {
+        [reportInterfaceJson setObject:_outType forKey:@"outputType"];
     }
     if (_aggregationMethods) {
         [reportInterfaceJson setObject:_aggregationMethods forKey:@"aggregationMethods"];
@@ -290,8 +229,8 @@
         }
         [reportInterfaceJson setObject:componentIdArray forKey:@"componentIds"];
     }
-    [reportInterfaceJson setObject:[NSNumber numberWithLong:_startTimestamp] forKey:@"from"];
-    [reportInterfaceJson setObject:[NSNumber numberWithLong:_endTimestamp] forKey:@"to"];
+    [reportInterfaceJson setObject:[NSNumber numberWithLong:_startTS] forKey:@"from"];
+    [reportInterfaceJson setObject:[NSNumber numberWithLong:_endTS] forKey:@"to"];
     //sort
     if (_sort) {
         NSMutableArray *sortArray = [NSMutableArray array];
