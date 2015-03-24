@@ -27,18 +27,75 @@
 #import "RuleActions.h"
 #import "RuleConditionValues.h"
 
+/*!
+ * @brief The Rule object that encapsulated information about a rule
+ */
 @interface Rule:NSObject
 
--(void)setRuleName:(NSString*)ruleName;
+/*!
+ * Sets rule name
+ * @param name The name of the rule
+ */
+-(void)setRuleName:(NSString*)name;
+
+/*!
+ * Sets rule Description
+ * @param description The description of the rule.
+ */
 -(void)setRuleDescription:(NSString*)description;
+
+/*!
+ * Sets rule priority
+ * @param priority The priority of the rule
+ */
 -(void)setRulePriority:(NSString*)priority;
--(void)setRuleType:(NSString*)ruleType;
+
+/*!
+ * Sets type of rule
+ * @param type The type of rule
+ */
+-(void)setRuleType:(NSString*)type;
+
+/*!
+ * Sets status of rule
+ * @param status The status of the rule
+ */
 -(void)setRuleStatus:(NSString*)status;
+
+/*!
+ * Sets resetType of rule
+ * @param resetType The reset type
+ */
 -(void)setRuleResetType:(NSString*)resetType;
+
+/*!
+ * Sets population attributes on rule
+ * @param attributes The population attributes
+ */
 -(void)setRulePopulationAttributes:(NSString*)attributes;
+
+/*!
+ * Sets rule opeartor name
+ * @param opeartorName The name of the operator
+ */
 -(void)setRuleOperatorName:(NSString*)operatorName;
+
+/*!
+ * Adds rule action object to rule action list
+ * @param ruleActionObj The rule action
+ */
 -(void)addRuleActions:(RuleActions*)ruleActionsObj;
+
+/*!
+ * Append population Id's to lsit of Id's
+ * @param populationId The identifier for the population
+ */
 -(void)addRulePopulationId:(NSString*)populationId;
+
+/*!
+ * Append condition value obj to list of conditions
+ * @param ruleConditionValuesObj The rule condition values
+ */
 -(void)addRuleConditionValues:(RuleConditionValues*)ruleConditionValuesObj;
 
 

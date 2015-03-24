@@ -51,10 +51,10 @@
 @property(nonatomic,retain)NSString *componentFormat;
 @property(nonatomic,retain)NSString *componentDisplay;
 @property(nonatomic,retain)NSString *componentUnit;
-@property(nonatomic,retain)NSString *commandString;
+@property(nonatomic,retain)NSString *command;
 @property(nonatomic,retain)NSMutableDictionary *actuatorCommandParams;
-@property(nonatomic,assign)double minValue;
-@property(nonatomic,assign)double maxValue;
+@property(nonatomic,assign)double minimumValue;
+@property(nonatomic,assign)double maximumValue;
 @property(nonatomic,assign)BOOL isMinSet;
 @property(nonatomic,assign)BOOL isMaxSet;
 
@@ -65,16 +65,6 @@
  * FUNCTION NAME: ComponentCatalogWith
  *
  * DESCRIPTION: Creates custom instance of the class ComponentCatalog
- *
- * RETURNS: instance of the class ComponentCatalog
- *
- * PARAMETERS : 1)componentName
-                2)componentVersion
-                3)componentType
-                4)componentDataType
-                5)componentFormat
-                6)componentUnit
-                7)componentDisplay
  **************************************************************************************************************************/
 +(id) ComponentCatalogWith:(NSString*) componentName AndVersion: (NSString*) componentVersion
                                  AndType:(NSString*) componentType AndDataType:(NSString*) componentDataType
@@ -90,18 +80,14 @@
     customComponent.componentDisplay = componentDisplay;
     customComponent.isMinSet = false;
     customComponent.isMaxSet = false;
-    customComponent.minValue = 0.0;
-    customComponent.maxValue = 0.0;
+    customComponent.minimumValue = 0.0;
+    customComponent.maximumValue = 0.0;
     return customComponent;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: initCustomComponent
  *
  * DESCRIPTION: Creates instance of the class ComponentCatalog
- *
- * RETURNS: instance of the class ComponentCatalog
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(id)initCustomComponent{
     self = [super init];
@@ -113,50 +99,33 @@
 /***************************************************************************************************************************
  * FUNCTION NAME: setMinValue
  *
- * DESCRIPTION: sets minimum Name
- *
- * RETURNS: nothing
- *
- * PARAMETERS : min Value
+ * DESCRIPTION: sets minimum value
  **************************************************************************************************************************/
--(void) setMinValue:(double) minValue {
+-(void) setMinValue:(double) min {
     _isMinSet = true;
-    _minValue = minValue;
+    _minimumValue = min;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: setMaxValue
  *
- * DESCRIPTION: sets maximum Name
- *
- * RETURNS: nothing
- *
- * PARAMETERS : max value
+ * DESCRIPTION: sets maximum value
  **************************************************************************************************************************/
--(void) setMaxValue:(double) maxValue {
+-(void) setMaxValue:(double) max {
     _isMaxSet = true;
-    _maxValue = maxValue;
+    _maximumValue = max;
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: setCommandString
+ * FUNCTION NAME: setCommandName
  *
  * DESCRIPTION: sets command string Name
- *
- * RETURNS: nothing
- *
- * PARAMETERS : command string
  **************************************************************************************************************************/
--(void) setCommandString:(NSString*) commandString {
-    _commandString = commandString;
+-(void) setCommandName:(NSString*) command {
+    _command = command;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addCommandParameters
  *
  * DESCRIPTION: adds command name-value pair to command params list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : 1)command name
-                2)command value
  **************************************************************************************************************************/
 -(void) addCommandParameters:(NSString*) commandName AndValue:(NSString*) commandValue {
     if (!_actuatorCommandParams) {
@@ -175,10 +144,6 @@
  * FUNCTION NAME: listAllComponentTypesCatalog
  *
  * DESCRIPTION: requests to get list of components
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *)listAllComponentTypesCatalog{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllComponentTypesCatalog urlSlugValueList:nil];
@@ -195,10 +160,6 @@
  * FUNCTION NAME: listAllDetailsOfComponentTypesCatalog
  *
  * DESCRIPTION: requests to get list of components detailed
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *)listAllDetailsOfComponentTypesCatalog{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.listAllComponentTypesCatalogDetailed urlSlugValueList:nil];
@@ -215,10 +176,6 @@
  * FUNCTION NAME: listComponentTypeDetails
  *
  * DESCRIPTION: requests to list single Component Details
- *
- * RETURNS: true/false
- *
- * PARAMETERS : componentId
  **************************************************************************************************************************/
 -(CloudResponse *)listComponentTypeDetails:(NSString *)componentId{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.componentTypeCatalogDetails urlSlugValueList:[NSDictionary dictionaryWithObject:componentId forKey:COMPONENTCATALOGID]];
@@ -235,10 +192,6 @@
  * FUNCTION NAME: createCustomComponent
  *
  * DESCRIPTION: requests to create custom component
- *
- * RETURNS: true/false
- *
- * PARAMETERS : ComponentCatalog object
  **************************************************************************************************************************/
 -(CloudResponse *)createCustomComponent:(ComponentCatalog *)createComponentCatalog{
     if(!createComponentCatalog){
@@ -268,11 +221,6 @@
  * FUNCTION NAME: updateAComponent
  *
  * DESCRIPTION: requests to update component using component ID
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)ComponentCatalog object
-                2)componentId
  **************************************************************************************************************************/
 -(CloudResponse *)updateAComponent:(ComponentCatalog *)updateComponentCatalog
             OnComponent:(NSString *)componentId{
@@ -375,7 +323,7 @@
         return [NSString stringWithFormat:@"%@:Command Parameters are mandatory for component catalog type \"actuator\"",TAG];
     }
     if (![ComponentCatalog.componentType isEqualToString:ACTUATOR] &&
-        ComponentCatalog.commandString != nil) {
+        ComponentCatalog.command != nil) {
         return [NSString stringWithFormat:@"%@:Command Json(command string and params) not required  for catalog type \"%@\""
               ,TAG,ComponentCatalog.componentType];
     }
@@ -393,7 +341,7 @@
  **************************************************************************************************************************/
 -(NSMutableDictionary*)addActuatorCommandParametersToHttpBody:(ComponentCatalog *)ComponentCatalog ToDictionary:(NSMutableDictionary*)componentDictionary{
     
-    if (ComponentCatalog.commandString != nil) {
+    if (ComponentCatalog.command != nil) {
         NSMutableArray *parameterArray = [NSMutableArray array];
         for(id key in ComponentCatalog.actuatorCommandParams){
             [parameterArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:key,NAME,
@@ -401,7 +349,7 @@
             
         }
         
-        NSMutableDictionary *commandDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:ComponentCatalog.commandString,COMMANDSTRING,parameterArray,PARAMETERS, nil];
+        NSMutableDictionary *commandDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:ComponentCatalog.command,COMMANDSTRING,parameterArray,PARAMETERS, nil];
         [componentDictionary setObject:commandDictionary forKey:COMMAND];
     }
     
@@ -420,11 +368,11 @@
  **************************************************************************************************************************/
 -(NSMutableDictionary*)addMinMaxValuesToHttpBody:(ComponentCatalog *)ComponentCatalog ToDictionary:(NSMutableDictionary*)componentDictionary{
     if (ComponentCatalog.isMinSet) {
-        [componentDictionary setObject:[NSNumber numberWithDouble:ComponentCatalog.minValue] forKey:MINIMUM];
+        [componentDictionary setObject:[NSNumber numberWithDouble:ComponentCatalog.minimumValue] forKey:MINIMUM];
         
     }
     if (ComponentCatalog.isMaxSet) {
-        [componentDictionary setObject:[NSNumber numberWithDouble:ComponentCatalog.maxValue] forKey:MAXIMUM];
+        [componentDictionary setObject:[NSNumber numberWithDouble:ComponentCatalog.maximumValue] forKey:MAXIMUM];
         
     }
     return componentDictionary;

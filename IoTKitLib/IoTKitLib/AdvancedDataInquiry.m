@@ -78,15 +78,15 @@
 @property(nonatomic,retain)NSMutableArray* gatewayIds;
 @property(nonatomic,retain)NSMutableArray* deviceIds;
 @property(nonatomic,retain)NSMutableArray* componentIds;
-@property(nonatomic,assign)long startTimestamp;
-@property(nonatomic,assign)long endTimestamp;
+@property(nonatomic,assign)long startTS;
+@property(nonatomic,assign)long endTS;
 @property(nonatomic,retain)NSMutableArray* returnedMeasureAttributes;
-@property(nonatomic,assign)BOOL showMeasureLocation;
+@property(nonatomic,assign)BOOL bShowMeasureLocation;
 @property(nonatomic,retain)NSMutableArray* devCompAttributeFilter;
 @property(nonatomic,retain)NSMutableArray* measurementAttributeFilter;
 @property(nonatomic,retain)AttributeFilter* valueFilter;
-@property(nonatomic,assign)NSInteger componentRowLimit;
-@property(nonatomic,assign)BOOL countOnly;
+@property(nonatomic,assign)NSInteger rowLimit;
+@property(nonatomic,assign)BOOL bCountOnly;
 @property(nonatomic,retain)NSMutableDictionary* sort;
 
 @end
@@ -98,19 +98,15 @@
  * FUNCTION NAME: initAdvancedDataInquiryWithDefaults
  *
  * DESCRIPTION: Creates custom instance of the class AdvancedDataEnquiry
- *
- * RETURNS: instance of the class AdvancedDataEnquiry
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(id)initAdvancedDataInquiryWithDefaults{
     self = [super init];
     if(self){
-        _startTimestamp = 0L;
-        _endTimestamp = 0L;
-        _showMeasureLocation = false;
-        _componentRowLimit = 0;
-        _countOnly = false;
+        _startTS = 0L;
+        _endTS = 0L;
+        _bShowMeasureLocation = false;
+        _rowLimit = 0;
+        _bCountOnly = false;
     }
     return self;
 }
@@ -118,10 +114,6 @@
  * FUNCTION NAME: addGatewayId
  *
  * DESCRIPTION: append gatewayId to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : gatewayId
  **************************************************************************************************************************/
 -(void)addGatewayId:(NSString*)gatewayId{
     if(!_gatewayIds){
@@ -133,10 +125,6 @@
  * FUNCTION NAME: addDeviceId
  *
  * DESCRIPTION: append deviceId method to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : deviceId
  **************************************************************************************************************************/
 -(void)addDeviceId:(NSString*)deviceId{
     if(!_deviceIds){
@@ -148,10 +136,6 @@
  * FUNCTION NAME: addComponentId
  *
  * DESCRIPTION: append componentId method to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : componentId
  **************************************************************************************************************************/
 -(void)addComponentId:(NSString*)componentId{
     if(!_componentIds){
@@ -163,34 +147,22 @@
  * FUNCTION NAME: setStartTimestamp
  *
  * DESCRIPTION: set start time stamp
- *
- * RETURNS: nothing
- *
- * PARAMETERS : startTimestamp
  **************************************************************************************************************************/
--(void)setStartTimestamp:(long)startTimestamp{
-    _startTimestamp = startTimestamp;
+-(void)setStartTimestamp:(long)timestamp{
+    _startTS = timestamp;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: setEndTimestamp
  *
  * DESCRIPTION: set end time stamp
- *
- * RETURNS: nothing
- *
- * PARAMETERS : endTimestamp
  **************************************************************************************************************************/
--(void)setEndTimestamp:(long)endTimestamp{
-    _endTimestamp = endTimestamp;
+-(void)setEndTimestamp:(long)timestamp{
+    _endTS = timestamp;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addReturnedMeasureAttributes
  *
  * DESCRIPTION: append measure attribute to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : attribute
  **************************************************************************************************************************/
 -(void)addReturnedMeasureAttributes:(NSString*)attribute{
     if(!_returnedMeasureAttributes){
@@ -198,26 +170,18 @@
     }
     [_returnedMeasureAttributes addObject:attribute];
 }
-/***************************************************************************************************************************advancedDataEnquiry
+/***************************************************************************************************************************
  * FUNCTION NAME: setShowMeasureLocation
  *
  * DESCRIPTION: set whether to measure location on data inquiry
- *
- * RETURNS: nothing
- *
- * PARAMETERS : measureLocation(true/false)
  **************************************************************************************************************************/
 -(void)setShowMeasureLocation:(BOOL)measureLocation{
-    _showMeasureLocation = measureLocation;
+    _bShowMeasureLocation = measureLocation;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addDevCompAttributeFilter
  *
  * DESCRIPTION: append dev comp attribute filter to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS :  attributeFilter
  **************************************************************************************************************************/
 -(void)addDevCompAttributeFilter:(AttributeFilter*)attributeFilter{
     if(!_devCompAttributeFilter){
@@ -229,10 +193,6 @@
  * FUNCTION NAME: addMeasurementAttributeFilter
  *
  * DESCRIPTION: append measurement attribute filter to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : attributeFilter
  **************************************************************************************************************************/
 -(void)addMeasurementAttributeFilter:(AttributeFilter*)attributeFilter{
     if(!_measurementAttributeFilter){
@@ -244,10 +204,6 @@
  * FUNCTION NAME: addValueFilter
  *
  * DESCRIPTION: append avalue filter to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : attributeFilter
  **************************************************************************************************************************/
 -(void)addValueFilter:(AttributeFilter*)attributeFilter{
     _valueFilter = attributeFilter;
@@ -256,34 +212,22 @@
  * FUNCTION NAME: setComponentRowLimit
  *
  * DESCRIPTION: set component row limit for return results
- *
- * RETURNS: nothing
- *
- * PARAMETERS : componentRowLimit
  **************************************************************************************************************************/
 -(void)setComponentRowLimit:(NSInteger)componentRowLimit{
-    _componentRowLimit = componentRowLimit;
+    _rowLimit = componentRowLimit;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: setCountOnly
  *
  * DESCRIPTION: set count true to get only count from server else false
- *
- * RETURNS: nothing
- *
- * PARAMETERS : true/false
  **************************************************************************************************************************/
 -(void)setCountOnly:(BOOL)countOnly{
-    _countOnly = countOnly;
+    _bCountOnly = countOnly;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addSortInfo
  *
  * DESCRIPTION: append sor key-value pair to list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : sort name & value
  **************************************************************************************************************************/
 -(void)addSortInfo:(NSString*)name WithValue:(NSString*)value{
     if(!_sort){
@@ -296,10 +240,6 @@
  * FUNCTION NAME: request
  *
  * DESCRIPTION: Inquire advanced data using different filters
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *)request{
     NSData *data = [self createHttpBodyToEnquireData];
@@ -356,8 +296,8 @@
         }
         [dataInquiryJson setObject:componentIdArray forKey:@"componentIds"];
     }
-    [dataInquiryJson setObject:[NSNumber numberWithLong:_startTimestamp] forKey:@"from"];
-    [dataInquiryJson setObject:[NSNumber numberWithLong:_endTimestamp] forKey:@"to"];
+    [dataInquiryJson setObject:[NSNumber numberWithLong:_startTS] forKey:@"from"];
+    [dataInquiryJson setObject:[NSNumber numberWithLong:_endTS] forKey:@"to"];
     
     
     //returnedMeasureAttributes
@@ -369,11 +309,11 @@
         [dataInquiryJson setObject:returnedMeasureAttributesArray forKey:@"returnedMeasureAttributes"];
     }
     
-    if (_showMeasureLocation) {
-        [dataInquiryJson setObject:[NSNumber numberWithBool:_showMeasureLocation] forKey:@"showMeasureLocation"];
+    if (_bShowMeasureLocation) {
+        [dataInquiryJson setObject:[NSNumber numberWithBool:_bShowMeasureLocation] forKey:@"showMeasureLocation"];
     }
-    if (_componentRowLimit > 0) {
-        [dataInquiryJson setObject:[NSNumber numberWithInteger:_componentRowLimit] forKey:@"componentRowLimit"];
+    if (_rowLimit > 0) {
+        [dataInquiryJson setObject:[NSNumber numberWithInteger:_rowLimit] forKey:@"componentRowLimit"];
     }
     //sort
     if (_sort) {
@@ -385,8 +325,8 @@
         }
         [dataInquiryJson setObject:sortArray forKey:@"sort"];
     }
-    if (_countOnly) {
-        [dataInquiryJson setObject:[NSNumber numberWithBool:_countOnly] forKey:@"countOnly"];
+    if (_bCountOnly) {
+        [dataInquiryJson setObject:[NSNumber numberWithBool:_bCountOnly] forKey:@"countOnly"];
     }
     if (_devCompAttributeFilter) {
         NSMutableDictionary *devCompAttributeJson = [NSMutableDictionary dictionary];

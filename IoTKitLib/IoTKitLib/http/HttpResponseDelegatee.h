@@ -24,6 +24,9 @@
 #import <Foundation/Foundation.h>
 #import "CloudResponse.h"
 
+/*!
+ * @brief The delegate to receive the data from the cloud for asynchronous request.
+ */
 @interface HttpResponseDelegatee : NSObject
 
 +(id) sharedInstance;

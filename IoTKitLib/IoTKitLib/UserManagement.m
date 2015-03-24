@@ -36,11 +36,6 @@
  * FUNCTION NAME: createNewUserWith
  *
  * DESCRIPTION: requests to create new user with given mailID&password
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)mailId
-                2)password
  **************************************************************************************************************************/
 -(CloudResponse *) createNewUserWith:(NSString*)emailId AndPassword:(NSString*)password{
     NSData *data = [self validateAndCreateHttpBodyForNewUser:emailId AndPassword:password];
@@ -61,10 +56,6 @@
  * FUNCTION NAME: deleteUser
  *
  * DESCRIPTION: requests to delete user with userId
- *
- * RETURNS: true/false
- *
- * PARAMETERS : userId 
  **************************************************************************************************************************/
 -(CloudResponse *) deleteUser:(NSString*)userId{
     NSString *tempUserId = [self validateAndGetUserId:userId];
@@ -85,10 +76,6 @@
  * FUNCTION NAME: getUserInfo
  *
  * DESCRIPTION: requests to get user info on userId
- *
- * RETURNS: true/false
- *
- * PARAMETERS : userId 
  **************************************************************************************************************************/
 -(CloudResponse *) getUserInfo:(NSString*)userId{
     NSString *tempUserId = [self validateAndGetUserId:userId];
@@ -109,11 +96,6 @@
  * FUNCTION NAME: updateUserAttributesOn
  *
  * DESCRIPTION: requests to update User attributes on given userId with given attributes
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)userId
-                2)listOfUserAttributes
  **************************************************************************************************************************/
 -(CloudResponse *) updateUserAttributesOn:(NSString*) userId AndListOfAttributes:(NSDictionary*)listOfUserAttributes{
     NSString *tempUserId = [self validateAndGetUserId:userId];
@@ -138,11 +120,6 @@
  * FUNCTION NAME: acceptTermsAndConditionsOn
  *
  * DESCRIPTION: requests to accept/dont accept terms and conditions on given userId
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)userId
-                2)isAccepted(true/false)
  **************************************************************************************************************************/
 /*-(CloudResponse *) acceptTermsAndConditionsOn:(NSString*)userId Acceptance:(BOOL)isAccepted{
     NSString *tempUserId = [self validateAndGetUserId:userId];
@@ -164,10 +141,6 @@
  * FUNCTION NAME: requestChangePasswordOn
  *
  * DESCRIPTION: requests to change password on mailId
- *
- * RETURNS: true/false
- *
- * PARAMETERS : mail Id 
  **************************************************************************************************************************/
 -(CloudResponse *) requestChangePasswordOn:(NSString*)emailId{
     if(!emailId){
@@ -188,11 +161,6 @@
  * FUNCTION NAME: updateForgotPassword
  *
  * DESCRIPTION: requests to update forgotten password using token & new password
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)mailToken
-                2)newPassword
  **************************************************************************************************************************/
 -(CloudResponse *) updateForgotPassword:(NSString*)mailToken AndNewPassword:(NSString*)newPassword{
     if(!mailToken || !newPassword){
@@ -214,12 +182,6 @@
  * FUNCTION NAME: changePasswordOn
  *
  * DESCRIPTION: requests to change password for the mailId(user) with current & new passwords
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)mail Id
-                2)currentPassword
-                3)newPassword
  **************************************************************************************************************************/
 -(CloudResponse *) changePasswordOn:(NSString*)emailId AndCurrentPassword:(NSString*)currentPassword
           AndNewPassword:(NSString*)newPassword{

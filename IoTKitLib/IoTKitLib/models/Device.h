@@ -24,14 +24,41 @@
 #ifndef IoT_Device_h
 #define IoT_Device_h
 
+/*!
+ * @brief The Device object that encapsulated information about the device
+ */
 @interface Device : NSObject
 
 -(id) init __attribute__((unavailable("Must create object using \"Device\" method")));
 
+/*!
+ * Creates custom instance of the class Device
+ * @return an instance of the class Device
+ * @param deviceName the device name
+ * @param deviceId the device identifier
+ * @param gatewayId the gateway identifier
+ */
 +(id)createDeviceWithDeviceName:(NSString*)deviceName andDeviceId:(NSString*) deviceId andGatewayId:(NSString*) gatewayId;
 
+/*!
+ * Adds location info of device using lat,long&height
+ * @param latitude the current latitude where the device is located
+ * @param longitude the current longitude where the device is located
+ * @param height the current height of the device
+ */
 -(void)addLocationInfo:(double)latitude AndLongitude:(double) longitude ANdHeight:(double) height;
+
+/*!
+ * Adds tag name to list of tags
+ * @param tagName the tag name to be associated with the device
+ */
 -(void)addTagName:(NSString*)tagName ;
+
+/*!
+ * Adds attribute name-value pair to attribute list
+ * @param attributeName the name of the attribute to be associated with the device
+ * @param attributeValue the value of the attribute to be associated with the device
+ */
 -(void)addAttributeName:(NSString*)attributeName  andValue:(NSString*)attributeValue;
 
 

@@ -104,17 +104,7 @@
  * FUNCTION NAME: submitDataOn
  *
  * DESCRIPTION: requests to submit data using componentName&value, lat&long, height &attributes
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)componentName
-                2)componentValue
-                3)latitude
-                4)longitude
-                5)height
-                6)attributes
- 
-**************************************************************************************************************************/
+ **************************************************************************************************************************/
 -(CloudResponse *) submitDataOn:(NSString*) componentName AndValue:(NSString*) componentValue
          AndLatitide:(double) latitude AndLongitude:(double) longitude AndHeight:(double) height
        AndAttributes:(NSDictionary*)attributes{
@@ -140,10 +130,6 @@
  * FUNCTION NAME: retrieveDataOn
  *
  * DESCRIPTION: requests to retrieve data
- *
- * RETURNS: true/false
- *
- * PARAMETERS : retrieve object data
  **************************************************************************************************************************/
 -(CloudResponse *)retrieveDataOn:(ConfigureRetrieveData *)objRetrieveData{
     NSString *msg = [self validateRetrieveDataValues:objRetrieveData];

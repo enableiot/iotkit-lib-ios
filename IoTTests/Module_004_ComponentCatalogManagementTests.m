@@ -57,7 +57,7 @@
     ComponentCatalog *createComponentCatalog = [ComponentCatalog ComponentCatalogWith:[self getRandomCustomComponentName] AndVersion:@"1.0" AndType:@"actuator" AndDataType:@"Number" AndFormat:@"float" AndUnit:@"Degrees Celsius" AndDisplay:@"timeSeries"];
     [createComponentCatalog setMinValue:5.0];
     [createComponentCatalog setMaxValue:100.0];
-    [createComponentCatalog setCommandString:@"Intel actuator"];
+    [createComponentCatalog setCommandName:@"Intel actuator"];
     [createComponentCatalog addCommandParameters:@"AC1" AndValue:@"30-40"];
     [createComponentCatalog addCommandParameters:@"AC2" AndValue:@"35-48"];
     [createComponentCatalog addCommandParameters:@"AC3" AndValue:@"32-38"];
@@ -70,7 +70,7 @@
     ComponentCatalog *updateComponentCatalog = [ComponentCatalog ComponentCatalogWith:nil AndVersion:nil AndType:@"actuator" AndDataType:@"Number" AndFormat:@"integer" AndUnit:@"Degrees Celsius" AndDisplay:@"timeSeries"];
     [updateComponentCatalog setMinValue:5.0];
     [updateComponentCatalog setMaxValue:100.0];
-    [updateComponentCatalog setCommandString:@"Intel actuator"];
+    [updateComponentCatalog setCommandName:@"Intel actuator"];
     [updateComponentCatalog addCommandParameters:@"AC1" AndValue:@"35-40"];
     [updateComponentCatalog addCommandParameters:@"AC2" AndValue:@"25-48"];
     [updateComponentCatalog addCommandParameters:@"AC3" AndValue:@"32-38"];

@@ -24,23 +24,108 @@
 #import "DefaultConfiguration.h"
 #import "AttributeFilter.h"
 
+/*!
+ * Advanced Data Inquiry allows querying measurement data (values, location and attributes) for
+ * a single account using advanced filtering and sorting.
+ */
 @interface AdvancedDataInquiry : DefaultConfiguration
 
 -(id) init __attribute__((unavailable("Must create object using \"initAdvancedDataInquiryWithDefaults\" method")));
+
+/*!
+ * Creates custom instance of the class AdvancedDataEnquiry
+ *
+ * @return an instance of the class AdvancedDataEnquiry
+ */
 -(id)initAdvancedDataInquiryWithDefaults;
+
+/*!
+ * Add a gateway id that is requested for the data in the report.
+ * @param gatewayId The gateway identifier for gateway data to be included in the report.
+ */
 -(void)addGatewayId:(NSString*)gatewayId;
+
+/*!
+ * Add a device id that is requested for the data in the report.
+ * @param deviceId The device identifier for device data to be included in the report.
+ */
 -(void)addDeviceId:(NSString*)deviceId;
+
+/*!
+ * Add a component id that is requested for the data in the report.
+ * @param componentId The component identifier for component data to be included in the report.
+ */
 -(void)addComponentId:(NSString*)componentId;
--(void)setStartTimestamp:(long)startTimestamp;
--(void)setEndTimestamp:(long)endTimestamp;
+
+/*!
+ * Set the start time for query data in be included in the report.
+ * @param startTimestamp time in milliseconds since epoch time.
+ */
+-(void)setStartTimestamp:(long)timestamp;
+
+/*!
+ * Set the end time for query data in be included in the report.
+ * @param endTimestamp time in milliseconds since epoch time.
+ */
+-(void)setEndTimestamp:(long)timestamp;
+
+/*!
+ * Add a requested attribute to a list of attributes that will be return for each measurement.
+ * @param attribute The attribute to add to the list of attributes that will be part of the request.
+ */
 -(void)addReturnedMeasureAttributes:(NSString*)attribute;
+
+/*!
+ * Request for location (lat, long, alt) as part of each returned measurement.
+ * @param measureLocation if true returns location.
+ */
 -(void)setShowMeasureLocation:(BOOL)measureLocation;
+
+/*!
+ * Append device comp attribute filter to list. Filters by device and/or component attributes.
+ * @param attributeFilter The filter to filtered by
+ */
 -(void)addDevCompAttributeFilter:(AttributeFilter*)attributeFilter;
+
+/*!
+ * Append measurement attribute filter to list. Filters by measurement attributes.
+ * @param attributeFilter The filter to filtered by
+ */
 -(void)addMeasurementAttributeFilter:(AttributeFilter*)attributeFilter;
+
+/*!
+ * Append avalue filter to list. Filters by measurement values.
+ * @param attributeFilter The filter to filtered by
+ */
 -(void)addValueFilter:(AttributeFilter*)attributeFilter;
--(void)setComponentRowLimit:(NSInteger)componentRowLimit;
+
+/*!
+ * Limits the number of records returned for each component in the report.
+ * @param componentRowLimit the number of row that will be returned.
+ */
+-(void)setComponentRowLimit:(NSInteger)rowLimit;
+
+/*!
+ * Setting to true will return the number of rows that would have returned from this report.
+ * @param countOnly true will return number of rows.
+ */
 -(void)setCountOnly:(BOOL)countOnly;
+
+/*!
+ * Append sort key-value pair to list for query to be sorted by
+ * @param name The name of the key
+ * @param value The value of the key
+ */
 -(void)addSortInfo:(NSString*)name WithValue:(NSString*)value;
+
+/**
+ * Starts a request for the report.
+ *
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ */
 -(CloudResponse *)request;
 
 

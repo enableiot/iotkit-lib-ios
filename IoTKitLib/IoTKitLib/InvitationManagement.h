@@ -23,11 +23,53 @@
 
 #import "DefaultConfiguration.h"
 
+/*!
+ * @brief Module that handles invitations. Invitation to the account can be created by the user with
+ * administrator permission. After created, invitation notification will be send as an email
+ * message to the specific email account. Invited user has to login into IoT dashboard and
+ * the accept/decline received invitation.
+ */
 @interface InvitationManagement : DefaultConfiguration
 
+/*!
+ * Get a list of invitations send to specific user.
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ */
 -(CloudResponse *) getListOfInvitation;
+
+/*!
+ * Get the details about invitations send to specific user.
+ * @param emailId The email that identifies the user
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ */
 -(CloudResponse *) getInvitationListSendToSpecificUser:(NSString*)emailId;
+
+/*!
+ * Delete invitations to an account for a specific user
+ * @param emailId identifier for the user
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *) deleteInvitationsTo:(NSString*)emailId;
+
+/*!
+ * Create an invitation to send out to the user
+ * @param emailId The email of the user to be invited
+ * @return For async model, return CloudResponse which wraps true if the request of REST
+ * call is valid; otherwise false. The actual result from
+ * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * For synch model, return CloudResponse which wraps HTTP return code and response.
+ * @throws JSONException
+ */
 -(CloudResponse *) createInvitationTo:(NSString*)emailId;
 
 @end

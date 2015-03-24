@@ -50,10 +50,6 @@
  * FUNCTION NAME: createAnAccount
  *
  * DESCRIPTION: requests to create new account with given account name
- *
- * RETURNS: true/false
- *
- * PARAMETERS : accountName
  **************************************************************************************************************************/
 -(CloudResponse *) createAnAccount:(NSString*)accountName{
     if(!accountName){
@@ -75,10 +71,6 @@
  * FUNCTION NAME: getAccountInformation
  *
  * DESCRIPTION: requests to get account information
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil 
  **************************************************************************************************************************/
 -(CloudResponse *) getAccountInformation {
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getAccountInfo urlSlugValueList:nil];
@@ -96,10 +88,6 @@
  * FUNCTION NAME: getAccountActivationCode
  *
  * DESCRIPTION: requests to get account activation code
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *) getAccountActivationCode{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getActivationCode urlSlugValueList:nil];
@@ -117,10 +105,6 @@
  * FUNCTION NAME: renewAccountActivationCode
  *
  * DESCRIPTION: requests to renew account activation code
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *) renewAccountActivationCode{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.renewActivationCode urlSlugValueList:nil];
@@ -137,11 +121,6 @@
  * FUNCTION NAME: updateAnAccount
  *
  * DESCRIPTION: requests to update an account with accountName&Optional attributes
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)accountName
-                2)optional attributes(can be nil)
  **************************************************************************************************************************/
 -(CloudResponse *) updateAnAccount:(NSString*)accountNameToUpdate andOptionalAttributesWithSimpleKeyValues:(NSDictionary*)attributes{
     if(!accountNameToUpdate){
@@ -162,12 +141,6 @@
  * FUNCTION NAME: addAnotherUserToAccount
  *
  * DESCRIPTION: requests to add another user(given userId) to given accountId, setting admin based on passed bool value on isAdmin
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)accountId
-                2)inviteeUserId
-                3)isAdmin
  **************************************************************************************************************************/
 -(CloudResponse *) addAnotherUserToAccount:(NSString*)accountId UserGettingInvited:(NSString*)inviteeUserId
                           Admin:(BOOL)isAdmin{
@@ -190,10 +163,6 @@
  * FUNCTION NAME: deleteAnAccount
  *
  * DESCRIPTION: requests to delete an user
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *) deleteAnAccount{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.deleteAccount urlSlugValueList:nil];
