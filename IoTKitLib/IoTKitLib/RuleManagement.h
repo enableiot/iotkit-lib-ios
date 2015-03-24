@@ -25,7 +25,7 @@
 #import "Rule.h"
 
 /*!
- * @brief Module that manages rules. manage Rules. A rule is an association between one or more
+ * @brief Module that manages rules. A rule is an association between one or more
  * device's components, a set of conditions for those components, and a number of actions
  * that have to be triggered in case those conditions are met.
  */

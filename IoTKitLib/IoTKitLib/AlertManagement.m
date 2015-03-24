@@ -35,10 +35,6 @@
  * FUNCTION NAME: getListOfAlerts
  *
  * DESCRIPTION: requests list of alerts
- *
- * RETURNS: true/false
- *
- * PARAMETERS : nil
  **************************************************************************************************************************/
 -(CloudResponse *)getListOfAlerts{
     NSString *url = [self.objHttpUrlBuilder prepareUrlByAppendingUrl:self.objHttpUrlBuilder.getListOfAlerts urlSlugValueList:nil];
@@ -55,10 +51,6 @@
  * FUNCTION NAME: getInfoOnAlert
  *
  * DESCRIPTION: requests information on given alert ID
- *
- * RETURNS: true/false
- *
- * PARAMETERS : alertId
  **************************************************************************************************************************/
 -(CloudResponse *)getInfoOnAlert:(NSString *)alertId{
     if(!alertId){
@@ -79,10 +71,6 @@
  * FUNCTION NAME: resetAlert
  *
  * DESCRIPTION: requests reset of given alert id
- *
- * RETURNS: true/false
- *
- * PARAMETERS : alertId
  **************************************************************************************************************************/
 -(CloudResponse *)resetAlert:(NSString *)alertId{
     if(!alertId){
@@ -102,11 +90,6 @@
  * FUNCTION NAME: updateAlertStatus
  *
  * DESCRIPTION: updates given alert with passed status
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)alertId
-                2)status
  **************************************************************************************************************************/
 -(CloudResponse *)updateAlertStatus:(NSString *)alertId WithStatus:(NSString *)status{
     if(!alertId || !status){
@@ -126,13 +109,6 @@
  * FUNCTION NAME: addCommentsToTheAlert
  *
  * DESCRIPTION: add comment on user alert id at given time stamp
- *
- * RETURNS: true/false
- *
- * PARAMETERS : 1)alertId
-                2)user
-                3)timeStamp
-                4)comment
  **************************************************************************************************************************/
 -(CloudResponse *)addCommentsToTheAlert:(NSString *)alertId OnUser:(NSString *)user AtTime:(long)timeStamp
                  WithComment:(NSString *)comment{
