@@ -164,7 +164,7 @@
 //#####RuleActions#######
 @interface RuleActions ()
 
-@property (nonatomic,retain)NSString* ruleActionType;
+@property (nonatomic,retain)NSString* type;
 @property (nonatomic,retain)NSMutableArray* targetList;
 
 @end
@@ -175,22 +175,14 @@
  * FUNCTION NAME: setRuleActionType
  *
  * DESCRIPTION: sets action type on rule
- *
- * RETURNS: nothing
- *
- * PARAMETERS : action type
  **************************************************************************************************************************/
--(void)setRuleActionType:(NSString*)ruleActionType{
-    _ruleActionType = ruleActionType;
+-(void)setRuleActionType:(NSString*)type{
+    _type = type;
 }
 /***************************************************************************************************************************
  * FUNCTION NAME: addRuleActionTarget
  *
  * DESCRIPTION: append rule target type to list of targets
- *
- * RETURNS: nothing
- *
- * PARAMETERS : target 
  **************************************************************************************************************************/
 -(void)addRuleActionTarget:(NSString*)target{
     if(!_targetList){
@@ -217,11 +209,6 @@
  * FUNCTION NAME: addConditionComponentWithKey
  *
  * DESCRIPTION: append key-value pair to component list
- *
- * RETURNS: nothing
- *
- * PARAMETERS : 1)key
-                2)Value
  **************************************************************************************************************************/
 -(void)addConditionComponentWithKey:(NSString*)keyName AndValue:(NSString*)keyValue{
     if(!_component){
@@ -233,22 +220,14 @@
  * FUNCTION NAME: setConditionType
  *
  * DESCRIPTION: sets rule condition type
- *
- * RETURNS: nothing
- *
- * PARAMETERS : ruleConditionType
  **************************************************************************************************************************/
 -(void)setConditionType:(NSString*)ruleConditionType{
     _ruleConditionType = ruleConditionType;
 }
 /***************************************************************************************************************************
- * FUNCTION NAME: alertAddaddConditionValuesComponents
+ * FUNCTION NAME: addConditionValues
  *
  * DESCRIPTION: append condition value to the list of values
- *
- * RETURNS: nothing
- *
- * PARAMETERS : component object 
  **************************************************************************************************************************/
 -(void)addConditionValues:(NSString*)value{
     if(!_values){
@@ -261,10 +240,6 @@
  * FUNCTION NAME: setConditionOperator
  *
  * DESCRIPTION: sets condition operator
- *
- * RETURNS: nothing
- *
- * PARAMETERS : operator name
  **************************************************************************************************************************/
 -(void)setConditionOperator:(NSString*)ruleConditionValuesOperatorName{
     _ruleConditionValuesOperatorName = ruleConditionValuesOperatorName;
@@ -432,7 +407,7 @@
     //adding actions
     NSMutableArray *ruleActionsArray = [NSMutableArray array];
     for(RuleActions *ruleActionsObj in ruleObj.ruleActionsList){
-        NSDictionary *actionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:ruleActionsObj.ruleActionType,TYPE,ruleActionsObj.targetList,TARGET, nil];
+        NSDictionary *actionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:ruleActionsObj.type,TYPE,ruleActionsObj.targetList,TARGET, nil];
         [ruleActionsArray addObject:actionDictionary];
     }
     [createRuleDictionary setObject:ruleActionsArray forKey:ACTIONS];

@@ -23,11 +23,35 @@
 
 #ifndef IoT_RuleConditionValues_h
 #define IoT_RuleConditionValues_h
+
+/*!
+ * @brief The RuleConditionValues object that encapsulated information about a rule condition values.
+ */
 @interface RuleConditionValues:NSObject
 
--(void)addConditionComponentWithKey:(NSString*)keyName AndValue:(NSString*)keyValue;
+/*!
+ * Append key-value pair to component list
+ * @param name
+ * @param value
+ */
+-(void)addConditionComponentWithKey:(NSString*)name AndValue:(NSString*)value;
+
+/*!
+ * Sets rule condition type
+ * @param ruleConditionType
+ */
 -(void)setConditionType:(NSString*)ruleConditionType;
+
+/*!
+ * Append condition value to the list of values
+ * @param value The value of the condition
+ */
 -(void)addConditionValues:(NSString*)value;
+
+/*!
+ * Sets condition operator
+ * @param operator name
+ */
 -(void)setConditionOperator:(NSString*)ruleConditionValuesOperatorName;
 
 @end

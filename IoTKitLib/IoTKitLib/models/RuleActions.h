@@ -23,9 +23,22 @@
 
 #ifndef IoT_RuleActions_h
 #define IoT_RuleActions_h
+
+/*!
+ * @brief The RuleActions object that encapsulated information about a rule actions
+ */
 @interface RuleActions:NSObject
 
--(void)setRuleActionType:(NSString*)ruleActionType;
+/*!
+ * Sets action type on rule
+ * @param type The action type
+ */
+-(void)setRuleActionType:(NSString*)type;
+
+/*!
+ * Append rule target type to list of targets
+ * @param target the target for the rule
+ */
 -(void)addRuleActionTarget:(NSString*)target;
 
 @end
