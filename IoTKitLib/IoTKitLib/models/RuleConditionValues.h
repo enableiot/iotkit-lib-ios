@@ -50,7 +50,7 @@
 
 /*!
  * Sets condition operator
- * @param operator name
+ * @param ruleConditionValuesOperatorName operator name
  */
 -(void)setConditionOperator:(NSString*)ruleConditionValuesOperatorName;
 

@@ -73,7 +73,6 @@
  * call is valid; otherwise false. The actual result from
  * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
  * For synch model, return CloudResponse which wraps HTTP return code and response.
- * @throws JSONException
  */
 -(CloudResponse *)updateStatusOfRule:(NSString*)ruleId WithStatus:(NSString*)status;
 
@@ -85,7 +84,6 @@
  * call is valid; otherwise false. The actual result from
  * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
  * For synch model, return CloudResponse which wraps HTTP return code and response.
- * @throws JSONException
  */
 -(CloudResponse *)createRuleAsDraftUsing:(NSString*)ruleName;
 
@@ -97,9 +95,8 @@
  * call is valid; otherwise false. The actual result from
  * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
  * For synch model, return CloudResponse which wraps HTTP return code and response.
- * @throws JSONException
  */
--(CloudResponse *)createRule:(Rule*)RuleObj;
+-(CloudResponse *)createRule:(Rule*)ruleObj;
 
 /*!
  * Update the rule.
@@ -110,7 +107,6 @@
  * call is valid; otherwise false. The actual result from
  * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
  * For synch model, return CloudResponse which wraps HTTP return code and response.
- * @throws JSONException
  */
 -(CloudResponse *)updateARule:(Rule*)updateRuleObj OnRule:(NSString*)ruleId;
 

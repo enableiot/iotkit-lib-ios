@@ -41,7 +41,7 @@
 
 /*!
  * Create a new device with the device info.
- * @param objDevice the device info to create a new device with.
+ * @param deviceCreateObj the device info to create a new device with.
  * @return For async model, return CloudResponse which wraps true if the request of REST
  * call is valid; otherwise false. The actual result from
  * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
@@ -53,7 +53,7 @@
  * Update a single device. The device ID (deviceId) cannot be updated as it is the key.
  * If the device id does not exist, an error will be returned. The device id
  * that is used will be the current device that is cached usually after a create new device.
- * @param objUpdateDevice the device info to update the device with.
+ * @param deviceUpdationObj the device info to update the device with.
  * @return For async model, return CloudResponse which wraps true if the request of REST
  * call is valid; otherwise false. The actual result from
  * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.

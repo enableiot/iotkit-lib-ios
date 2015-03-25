@@ -43,27 +43,19 @@
  * call is valid; otherwise false. The actual result from
  * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
  * For synch model, return CloudResponse which wraps HTTP return code and response.
- * @throws JSONException
  */
 -(CloudResponse *) submitDataOn:(NSString*) componentName AndValue:(NSString*) componentValue
          AndLatitide:(double) latitude AndLongitude:(double) longitude AndHeight:(double) height
        AndAttributes:(NSDictionary*)attributes;
 
-/*!
- * Submit data for specific device and it's component. Device and component have to be
- * registered in the cloud before sending observations.
+/**
+ * Retrieve data for an account.
  *
- * @param deviceId       the identifier for the device to submit the data for.
- * @param componentName  the name of the component to look up the component id.
- * @param componentValue the value to set for the component.
- * @param latitude       lat location for the device in decimal
- * @param longitude      lon location for the device in decimal
- * @param height         altitude value in meters
+ * @param objRetrieveData time series data criteria for retrieve data from the cloud
  * @return For async model, return CloudResponse which wraps true if the request of REST
  * call is valid; otherwise false. The actual result from
- * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
+ * the REST call is return asynchronously as part {@link RequestStatusHandler#readResponse}.
  * For synch model, return CloudResponse which wraps HTTP return code and response.
- * @throws JSONException
  */
 -(CloudResponse *) retrieveDataOn:(ConfigureRetrieveData*)objRetrieveData;
 

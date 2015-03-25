@@ -76,13 +76,13 @@
 
 /*!
  * Sets rule opeartor name
- * @param opeartorName The name of the operator
+ * @param operatorName The name of the operator
  */
 -(void)setRuleOperatorName:(NSString*)operatorName;
 
 /*!
  * Adds rule action object to rule action list
- * @param ruleActionObj The rule action
+ * @param ruleActionsObj The rule action
  */
 -(void)addRuleActions:(RuleActions*)ruleActionsObj;
 

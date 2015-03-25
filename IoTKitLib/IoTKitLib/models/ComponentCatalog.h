@@ -49,13 +49,13 @@
 
 /*!
  * Sets minimum Name
- * @param minValue The mininum value
+ * @param min The mininum value
  */
 -(void) setMinValue:(double) min ;
 
 /*!
  * Sets maximum Name
- * @param maxValue The maximum value
+ * @param max The maximum value
  */
 -(void) setMaxValue:(double) max ;
 

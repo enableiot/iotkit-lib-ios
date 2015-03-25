@@ -59,13 +59,13 @@
 
 /*!
  * Set the start time for query data in be included in the report.
- * @param startTimestamp time in milliseconds since epoch time.
+ * @param timestamp time in milliseconds since epoch time.
  */
 -(void)setStartTimestamp:(long)timestamp;
 
 /*!
  * Set the end time for query data in be included in the report.
- * @param endTimestamp time in milliseconds since epoch time.
+ * @param timestamp time in milliseconds since epoch time.
  */
 -(void)setEndTimestamp:(long)timestamp;
 
@@ -101,7 +101,7 @@
 
 /*!
  * Limits the number of records returned for each component in the report.
- * @param componentRowLimit the number of row that will be returned.
+ * @param rowLimit the number of row that will be returned.
  */
 -(void)setComponentRowLimit:(NSInteger)rowLimit;
 

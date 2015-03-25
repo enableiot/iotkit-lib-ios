@@ -73,7 +73,7 @@
  * Update the account with a list of attributes
  *
  * @param accountNameToUpdate the name that identifies the account to be updated
- * @param atttributes the optional list of name value pair of attributes to be updated
+ * @param attributes the optional list of name value pair of attributes to be updated
  * @return For async model, return CloudResponse which wraps true if the request of REST
  * call is valid; otherwise false. The actual result from
  * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.

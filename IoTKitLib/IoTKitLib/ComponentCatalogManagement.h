@@ -62,7 +62,7 @@
  * Create a new custom component. The dimension and version attributes are used for determining
  * if the component exists. If not, a new component is created which auto-generated id results
  * the concatenation of dimension and version values.
- * @param componentCatalog the component type to be added to the catalog
+ * @param createComponentCatalog the component type to be added to the catalog
  * @return For async model, return CloudResponse which wraps true if the request of REST
  * call is valid; otherwise false. The actual result from
  * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
@@ -74,7 +74,7 @@
  * Update a component type definition by creating a brand new component which definition is
  * composed by the origin component data plus the requested changes having in mind that minor
  * version info (version attribute) is incremented by 1.
- * @param componentCatalog the component type to be updated in the catalog.
+ * @param createComponentCatalog the component type to be updated in the catalog.
  * @param componentId the identifier for the component to be updated.
  * @return For async model, return CloudResponse which wraps true if the request of REST
  * call is valid; otherwise false. The actual result from

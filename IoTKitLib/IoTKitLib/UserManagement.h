@@ -31,7 +31,7 @@
 /*!
  * Create a new user
  *
- * @param emailID  the email id for the user which is used as an identifier
+ * @param emailId  the email id for the user which is used as an identifier
  * @param password the password for the user
  * @return For async model, return CloudResponse which wraps true if the request of REST
  * call is valid; otherwise false. The actual result from
@@ -67,7 +67,7 @@
  * Update the user attributes for a given user
  *
  * @param userId         The identifier for the user to update the attributes for
- * @param userAttributes A list of name value pairs that specify the user attributes for the user
+ * @param listOfUserAttributes A list of name value pairs that specify the user attributes for the user
  * @return For async model, return CloudResponse which wraps true if the request of REST
  * call is valid; otherwise false. The actual result from
  * the REST call is return asynchronously as part HttpResponseDelegatee of DefaultConfiguration.
@@ -91,7 +91,7 @@
 /*!
  * Update the password
  *
- * @param token       The token that is used access the cloud backend for updating the password
+ * @param mailToken       The token that is used access the cloud backend for updating the password
  * @param newPassword The new password for the user
  * @return For async model, return CloudResponse which wraps true if the request of REST
  * call is valid; otherwise false. The actual result from
@@ -105,7 +105,7 @@
 /*!
  * Change the password for the user
  *
- * @param emailAddress    The email address of the user
+ * @param emailId    The email address of the user
  * @param currentPassword The current password for the user
  * @param newPassword     The new password for the user
  * @return For async model, return CloudResponse which wraps true if the request of REST
