@@ -224,6 +224,7 @@
 				FCEBA8681A440D9400F040DB /* Sources */,
 				FCEBA8691A440D9400F040DB /* Frameworks */,
 				FCEBA86A1A440D9400F040DB /* CopyFiles */,
+				F52CC9FA1AC264B100AD74BC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -264,6 +265,22 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F52CC9FA1AC264B100AD74BC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APPLEDOC_PATH=`which appledoc`\nif [ $APPLEDOC_PATH ]; then\n\n$APPLEDOC_PATH \\\n--project-name ${PROJECT_NAME} \\\n--project-company \"Intel\" \\\n--company-id \"com.intel\" \\\n--ignore \".m\" \\\n--ignore \"Pods\" \\\n--explicit-crossref \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--no-repeat-first-par \\\n--no-warn-missing-arg \\\n--no-warn-undocumented-object \\\n--no-warn-undocumented-member \\\n--no-warn-empty-description \\\n--docset-bundle-id ${PROJECT_NAME} \\\n--docset-bundle-name ${PROJECT_NAME} \\\n--docset-install-path ${PROJECT_DIR} \\\n--output ${TEMP_DIR}  \\\n${PROJECT_DIR} \\\n> ${PROJECT_DIR}/docset-generation.log 2>&1 &\n\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FCEBA8681A440D9400F040DB /* Sources */ = {
